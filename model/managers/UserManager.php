@@ -1,0 +1,22 @@
+<?php
+
+// Organise les classes, Model\manager appartient au dossier Manager qui fait partie du Model, s'occupent de la gestion des entités
+namespace Model\Managers;
+
+use App\Manager;
+use App\DAO;
+
+class UserManager extends Manager{
+
+    // on indique la classe POO et la table correspondante en BDD pour le manager concerné
+    // cette classe gère l'entité "user" située dans Model\Entities
+    protected $className = "Model\Entities\User";
+
+    // Intéragit avec la table "user" présente en base de données
+    protected $tableName = "user";
+
+    // Le constructeur (_construct) est une méthode qui s'exécute automatiquement lorsqu'un objet est créé
+    public function __construct(){
+        parent::connect();
+    }
+}
