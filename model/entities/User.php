@@ -9,7 +9,7 @@ use App\Entity;
 
 final class User extends Entity{
 
-    private $id_user;         // INT
+    private $idUser;         // INT
     private $name;            // VARCHAR
     private $firstName;       // VARCHAR
     private $pseudo;          // VARCHAR
@@ -30,21 +30,21 @@ final class User extends Entity{
     }
 
     /**
-     * Get the value of id_user
+     * Get the value of idUser
      */ 
-    public function getId_user()
+    public function getIdUser()
     {
-        return $this->id_user;
+        return $this->idUser;
     }
 
     /**
-     * Set the value of id_user
+     * Set the value of idUser
      *
      * @return  self
      */ 
-    public function setId_user($id_user)
+    public function setIdUser($idUser)
     {
-        $this->id_user = $id_user;
+        $this->idUser = $idUser;
 
         return $this;
     }

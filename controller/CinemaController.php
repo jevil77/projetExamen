@@ -8,6 +8,7 @@ use Model\Managers\CategoryManager;
 use Model\Managers\MovieManager;
 use Model\Managers\PostManager;
 use Model\Managers\EventManager;
+use Model\Managers\UserManager;
 
 class CinemaController extends AbstractController implements ControllerInterface{
 
@@ -73,4 +74,23 @@ class CinemaController extends AbstractController implements ControllerInterface
         ];
         var_dump($post);
     }
+
+
+
+    public function listUsers() {
+
+        $userManager = new userManager();
+        $users = $userManager->findAll();
+
+        return [
+            "view" => VIEW_DIR."cinema/listUsers.php",
+            "meta_description" => "Liste des utilisateurs :",
+            "data" => [
+                
+                "users" => $users,
+                
+            ]
+        ];
+
+  }
 }

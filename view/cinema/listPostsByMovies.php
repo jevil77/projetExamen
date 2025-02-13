@@ -10,7 +10,7 @@
 
 <?php 
 if (empty($posts)) { ?>
-    <p>Aucun post dans ce topic !</p>
+    <p>Aucun commentaire pour ce film !</p>
 <?php } else { ?>
 
 <?php foreach($posts as $post ){ ?>
