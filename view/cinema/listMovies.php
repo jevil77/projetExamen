@@ -1,5 +1,4 @@
 <?php
-    $category = $result["data"]['category']; 
     $movies = $result["data"]['movies']; 
 ?>
 
@@ -7,5 +6,5 @@
 
 <?php
 foreach($movies as $movie){ ?>
-    <p><a href="index.php?ctrl=cinema&action=listPostsByMovies&id="><?= $movie ?></a> par <?= $movie->getDirector() ?></p>
+    <p><a href="index.php?ctrl=cinema&action=infosMovies&id="><?= $movie ?></a> par <?= $movie->getDirector() ?></p>
 <?php } ?>

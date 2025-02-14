@@ -115,7 +115,7 @@ class CinemaController extends AbstractController implements ControllerInterface
     public function addCategoryForm(){
 
         return [
-            "view" => VIEW_DIR."cinema/form/addCategorieForm.php",
+            "view" => VIEW_DIR."cinema/form/addCategoryForm.php",
             "meta_description" => "Liste des catégories de films",
          
         ];
@@ -134,14 +134,14 @@ class CinemaController extends AbstractController implements ControllerInterface
                // créer une nouvelle instance de CategoryManager 
                $categoryManager = new CategoryManager();
                // récupérer les noms des catégories
-               $category = $categoryManager->findAll(["categoryName"]);
-
+               $category = $categoryManager->findAll(["categoryName","DESC"]);
+               var_dump('hello');
                // filtrer les données
                $categoryName = filter_input(INPUT_POST, "categoryName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-               
+              
                $data = ['categoryName'=> $categoryName];
 
-               $categorieManager->add($data);
+               $categoryManager->add($data);
             
             }   
     
@@ -149,58 +149,52 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
     }     
-    
-    public function addCategory(){
-
-        if(isset($_POST['submit'])) {
 
 
-               // créer une nouvelle instance de CategoryManager 
-               $categoryManager = new CategoryManager();
-               // récupérer les noms des catégories
-               $category = $categoryManager->findAll(["categoryName"]);
 
-               // filtrer les données
-               $categoryName = filter_input(INPUT_POST, "categoryName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-               
-               $data = ['categoryName'=> $categoryName];
+    public function listMovies() {
 
-               $categorieManager->add($data);
+        $movieManager = new MovieManager();
+        $movies = $movieManager->findAll();
+
+        return [
+            "view" => VIEW_DIR."cinema/listMovies.php",
+            "meta_description" => "Liste des films :",
+            "data" => [
+                
+                "movies" => $movies,
+                
+            ]
+        ];
+
+  }
+
+
+    public function infosMovies($id) {
+
+        $movieManager = new MovieManager();
+        $movie = $movieManager->findOneById($id);
+
+        return [
+           "view" => VIEW_DIR."cinema/infosMovies.php",
+           "meta_description" => " Infos des films:",
+           "data" => [
             
-            }   
+              "movie" => $movie,
+        
+            ]
+        ];
+
+
+
+
+
+
+    }
     
-         header("Location: index.php?ctrl=cinema&action=index");
+   
 
-
-    }        
-
-
-    public function addCategory(){
-
-        if(isset($_POST['submit'])) {
-
-
-               // créer une nouvelle instance de CategoryManager 
-               $categoryManager = new CategoryManager();
-               // récupérer les noms des catégories
-               $category = $categoryManager->findAll(["categoryName"]);
-
-               // filtrer les données
-               $categoryName = filter_input(INPUT_POST, "categoryName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-               
-               $data = ['categoryName'=> $categoryName];
-
-               $categorieManager->add($data);
-            
-            }   
     
-         header("Location: index.php?ctrl=cinema&action=index");
-         echo 'tt';
-
-
-    }  
-
-
 
 
 }
