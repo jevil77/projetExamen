@@ -93,4 +93,23 @@ class CinemaController extends AbstractController implements ControllerInterface
         ];
 
   }
+
+  public function infosUsers($id){
+        
+    $userManager = new userManager();
+    $user = $userManager->findOneById($id);
+
+    return [
+        "view" => VIEW_DIR."cinema/infosUsers.php",
+        "meta_description" => " Infos des Utilisateurs:",
+        "data" => [
+            
+            "user" => $user,
+        
+        ]
+    ];
+}
+
+
+
 }
