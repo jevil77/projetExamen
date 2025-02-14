@@ -195,6 +195,7 @@ class CinemaController extends AbstractController implements ControllerInterface
             }   
     
          header("Location: index.php?ctrl=cinema&action=index");
+         echo 'tt';
 
 
     }  
