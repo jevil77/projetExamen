@@ -148,6 +148,30 @@ class CinemaController extends AbstractController implements ControllerInterface
          header("Location: index.php?ctrl=cinema&action=index");
 
 
+    }     
+    
+    public function addCategory(){
+
+        if(isset($_POST['submit'])) {
+
+
+               // créer une nouvelle instance de CategoryManager 
+               $categoryManager = new CategoryManager();
+               // récupérer les noms des catégories
+               $category = $categoryManager->findAll(["categoryName"]);
+
+               // filtrer les données
+               $categoryName = filter_input(INPUT_POST, "categoryName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+               
+               $data = ['categoryName'=> $categoryName];
+
+               $categorieManager->add($data);
+            
+            }   
+    
+         header("Location: index.php?ctrl=cinema&action=index");
+
+
     }        
 
 
