@@ -174,6 +174,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
         $movieManager = new MovieManager();
         $movie = $movieManager->findOneById($id);
+        
 
         return [
            "view" => VIEW_DIR."cinema/infosMovies.php",
@@ -184,6 +185,81 @@ class CinemaController extends AbstractController implements ControllerInterface
         
             ]
         ];
+    
+    }
+
+
+    public function addMovieForm(){
+
+
+        return [
+            "view" => VIEW_DIR."cinema/form/addMovieForm.php",
+            "meta_description" => "Liste des films",
+         
+        ];
+
+    }
+
+
+    public function addMovie(){
+
+
+
+        if(isset($_POST["submit"])) {
+
+            $movieManager = new MovieManager();
+            //var_dump('hello');
+
+            
+            $movieTitle = filter_input(INPUT_POST, "movieTitle", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $releaseDate = filter_input(INPUT_POST, "releaseDate", FILTER_VALIDATE_INT);
+            $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
+            $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_FLOAT);
+            $director = filter_input(INPUT_POST, "director", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+           
+
+
+            $data = ['movieTitle' => $movieTitle,
+                     'releaseDate'=> $releaseDate,
+                     'duration'=> $duration,
+                     'synopsis'=> $synopsis,
+                     'rating' => $rating,
+                     'director'=> $director,
+                    
+                    ];
+            var_dump($movieTitle, $releaseDate, $duration, $synopsis, $rating, $director);
+            $movieManager->add($data);
+            //var_dump('hello');
+            
+            
+            $this->redirectTo("cinema", "listMovies");
+                     exit;
+
+
+            
+        }
+
+
+    }
+
+
+
+    public function deleteMovie($id){
+
+
+         $movieManager = new MovieManager();
+
+         $id = $movieManager->findOneById($id);
+
+         $id->delete($id);
+
+
+         $this->redirectTo("cinema", "listMovies");
+         exit;
+
+
+
 
 
 
@@ -191,6 +267,12 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
     }
+
+
+       
+
+
+    
     
    
 

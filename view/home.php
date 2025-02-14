@@ -7,4 +7,5 @@
     <a href="index.php?ctrl=security&action=register">S'inscrire</a>
     <a href="index.php?ctrl=cinema&action=listUsers">Liste des utilisateurs</a>
     <a href="index.php?ctrl=cinema&action=listMovies">Liste des films</a>
+    
 </p>

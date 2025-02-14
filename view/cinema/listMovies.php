@@ -8,3 +8,10 @@
 foreach($movies as $movie){ ?>
     <p><a href="index.php?ctrl=cinema&action=infosMovies&id="><?= $movie ?></a> par <?= $movie->getDirector() ?></p>
 <?php } ?>
+
+
+
+
+<a href="index.php?ctrl=cinema&action=addMovieForm">Ajouter un film</a>
+
+
