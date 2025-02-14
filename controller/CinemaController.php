@@ -94,21 +94,62 @@ class CinemaController extends AbstractController implements ControllerInterface
 
   }
 
-  public function infosUsers($id){
+    public function infosUsers($id){
         
-    $userManager = new userManager();
-    $user = $userManager->findOneById($id);
+        $userManager = new userManager();
+        $user = $userManager->findOneById($id);
 
-    return [
-        "view" => VIEW_DIR."cinema/infosUsers.php",
-        "meta_description" => " Infos des Utilisateurs:",
-        "data" => [
+        return [
+           "view" => VIEW_DIR."cinema/infosUsers.php",
+           "meta_description" => " Infos des Utilisateurs:",
+           "data" => [
             
-            "user" => $user,
+              "user" => $user,
         
-        ]
-    ];
-}
+            ]
+        ];
+    }
+
+
+
+    public function addCategoryForm(){
+
+        return [
+            "view" => VIEW_DIR."cinema/form/addCategorieForm.php",
+            "meta_description" => "Liste des catégories de films",
+         
+        ];
+
+
+    }
+
+
+
+
+    public function addCategory(){
+
+        if(isset($_POST['submit'])) {
+
+
+               // créer une nouvelle instance de CategoryManager 
+               $categoryManager = new CategoryManager();
+               // récupérer les noms des catégories
+               $category = $categoryManager->findAll(["categoryName"]);
+
+               // filtrer les données
+               $categoryName = filter_input(INPUT_POST, "categoryName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+               
+               $data = ['categoryName'=> $categoryName];
+
+               $categorieManager->add($data);
+            
+            }   
+    
+         header("Location: index.php?ctrl=cinema&action=index");
+
+
+    }        
+
 
 
 

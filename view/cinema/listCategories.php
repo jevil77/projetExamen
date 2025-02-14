@@ -11,4 +11,8 @@ foreach($categories as $category ){ ?>
 <?php } ?>
 
 
+
+<a href="index.php?ctrl=cinema&action=addCategorieForm">Ajouter une Catégorie</a>
+
+
   
