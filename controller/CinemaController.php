@@ -204,6 +204,9 @@ class CinemaController extends AbstractController implements ControllerInterface
     public function addMovie(){
 
 
+        
+
+
 
         if(isset($_POST["submit"])) {
 
@@ -231,7 +234,7 @@ class CinemaController extends AbstractController implements ControllerInterface
             var_dump($movieTitle, $releaseDate, $duration, $synopsis, $rating, $director);
             $movieManager->add($data);
             //var_dump('hello');
-            
+            //var_dump($movieTitle);
             
             $this->redirectTo("cinema", "listMovies");
                      exit;
