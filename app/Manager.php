@@ -67,7 +67,7 @@ abstract class Manager{
             return DAO::insert($sql);
         }
         catch(\PDOException $e){
-            echo $e->getMessage();
+            echo $e->getMessage(); 
             die();
         }
     }

@@ -1,6 +1,6 @@
 
 
-
+<h1>crotte</h1>
 
 
 
@@ -14,7 +14,7 @@
     <input type="text" id="movieTitle" name="movieTitle" placeholder="Titre du film" required>
     <br>
     
-     <label for="releaseDate">Année de sortie :</label>
+    <label for="releaseDate">Année de sortie :</label>
     <input type="number" id="releaseDate" name="releaseDate" placeholder="Année de sortie" required>
     <br>
 
@@ -38,8 +38,11 @@
     <!-- <label for="affiche_film">URL de l'affiche :</label>
     <input type="url" id="affiche_film" name="affiche_film" placeholder="Lien de l'affiche" required>
     <br> -->
-    
-    
+    <!-- <label for="trailer">Lien de la bande-annonce :</label>
+    <input type="url" id="trailer" name="trailer" placeholder="URL du trailer">
+    <br> -->
+
+     
 
     <button type="submit" name="submit">Ajouter le film</button>
 

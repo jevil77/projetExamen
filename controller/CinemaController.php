@@ -220,7 +220,7 @@ class CinemaController extends AbstractController implements ControllerInterface
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_FLOAT);
             $director = filter_input(INPUT_POST, "director", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-           
+            //var_dump($movieTitle);die;
 
 
             $data = ['movieTitle' => $movieTitle,
@@ -231,14 +231,14 @@ class CinemaController extends AbstractController implements ControllerInterface
                      'director'=> $director,
                     
                     ];
-            var_dump($movieTitle, $releaseDate, $duration, $synopsis, $rating, $director);
+            //var_dump($movieTitle, $releaseDate, $duration, $synopsis, $rating, $director);
             $movieManager->add($data);
-            //var_dump('hello');
-            //var_dump($movieTitle);
-            
+            var_dump($movieTitle);
+           
+            //var_dump("Le film a été ajouté avec succès");die;
             $this->redirectTo("cinema", "listMovies");
                      exit;
-
+ //var_dump($movieTitle);
 
             
         }
@@ -248,28 +248,28 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
 
-    public function deleteMovie($id){
+    // public function deleteMovie($id){
 
 
-         $movieManager = new MovieManager();
+    //      $movieManager = new MovieManager();
 
-         $id = $movieManager->findOneById($id);
+    //      $id = $movieManager->findOneById($id);
 
-         $id->delete($id);
-
-
-         $this->redirectTo("cinema", "listMovies");
-         exit;
+    //      $id->delete($id);
 
 
-
+    //      $this->redirectTo("cinema", "listMovies");
+    //      exit;
 
 
 
 
 
 
-    }
+
+
+
+    // }
 
 
        
