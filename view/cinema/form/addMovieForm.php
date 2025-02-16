@@ -1,6 +1,8 @@
+<?php
+    $categories = $result["data"]['categories']; 
+?>
 
 
-<h1>crotte</h1>
 
 
 
@@ -41,7 +43,13 @@
     <!-- <label for="trailer">Lien de la bande-annonce :</label>
     <input type="url" id="trailer" name="trailer" placeholder="URL du trailer">
     <br> -->
-
+    
+    <label for="idcategory">Catégorie :</label>
+    <select name="idCategory" required>
+        <?php foreach ($categories as $category) { ?>
+            <option value="<?= $category->getIdCategory() ?>"><?=$category->getCategoryName() ?></option>
+        <?php } ?>
+    </select>
      
 
     <button type="submit" name="submit">Ajouter le film</button>

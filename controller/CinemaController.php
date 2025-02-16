@@ -191,10 +191,15 @@ class CinemaController extends AbstractController implements ControllerInterface
 
     public function addMovieForm(){
 
+        $categoryManager = new CategoryManager();
+        $categories = $categoryManager->findAll(["categoryName", "ASC"]);
 
         return [
             "view" => VIEW_DIR."cinema/form/addMovieForm.php",
             "meta_description" => "Liste des films",
+            "data" => [
+            "categories" => $categories
+        ]
          
         ];
 
@@ -209,6 +214,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
         if(isset($_POST["submit"])) {
+            var_dump($_POST);die;
 
             $movieManager = new MovieManager();
             //var_dump('hello');
@@ -220,20 +226,25 @@ class CinemaController extends AbstractController implements ControllerInterface
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_FLOAT);
             $director = filter_input(INPUT_POST, "director", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            //var_dump($movieTitle);die;
+            $category_id = filter_input(INPUT_POST, "category_id", FILTER_VALIDATE_INT);
+            //var_dump($category_id,$movieTitle);die;
+            // if ($category_id === false || empty($category_id)) {
+            //     die("Erreur : Veuillez sélectionner une catégorie.");
+            // }
 
 
             $data = ['movieTitle' => $movieTitle,
                      'releaseDate'=> $releaseDate,
-                     'duration'=> $duration,
+                     'duration'=> $duration, 
                      'synopsis'=> $synopsis,
                      'rating' => $rating,
                      'director'=> $director,
+                     'category_id' => $category_id
                     
                     ];
             //var_dump($movieTitle, $releaseDate, $duration, $synopsis, $rating, $director);
             $movieManager->add($data);
-            var_dump($movieTitle);
+            //var_dump($movieTitle);
            
             //var_dump("Le film a été ajouté avec succès");die;
             $this->redirectTo("cinema", "listMovies");
