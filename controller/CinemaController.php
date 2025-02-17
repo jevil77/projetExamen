@@ -207,14 +207,14 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
     public function addMovie(){
-
+    //var_dump('hello');die;
 
         
 
 
 
         if(isset($_POST["submit"])) {
-            var_dump($_POST);die;
+            var_dump($_POST);
 
             $movieManager = new MovieManager();
             //var_dump('hello');
@@ -226,8 +226,8 @@ class CinemaController extends AbstractController implements ControllerInterface
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_FLOAT);
             $director = filter_input(INPUT_POST, "director", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $category_id = filter_input(INPUT_POST, "category_id", FILTER_VALIDATE_INT);
-            //var_dump($category_id,$movieTitle);die;
+            $category = filter_input(INPUT_POST, "category_id", FILTER_VALIDATE_INT);
+            var_dump($category,$movieTitle);
             // if ($category_id === false || empty($category_id)) {
             //     die("Erreur : Veuillez sélectionner une catégorie.");
             // }
@@ -239,7 +239,7 @@ class CinemaController extends AbstractController implements ControllerInterface
                      'synopsis'=> $synopsis,
                      'rating' => $rating,
                      'director'=> $director,
-                     'category_id' => $category_id
+                     'category_id' => $category
                     
                     ];
             //var_dump($movieTitle, $releaseDate, $duration, $synopsis, $rating, $director);

@@ -14,7 +14,7 @@
 
     <label for="movieTitle">Titre du film :</label>
     <input type="text" id="movieTitle" name="movieTitle" placeholder="Titre du film" required>
-    <br>
+    <br> 
     
     <label for="releaseDate">Année de sortie :</label>
     <input type="number" id="releaseDate" name="releaseDate" placeholder="Année de sortie" required>
@@ -34,7 +34,7 @@
 
     <label for="director"> Réalisateur :</label>
     <input type="text" id="director" name="director" placeholder="Réalisateur" required>
-    <br>
+    <br> 
 
     
     <!-- <label for="affiche_film">URL de l'affiche :</label>
@@ -44,12 +44,12 @@
     <input type="url" id="trailer" name="trailer" placeholder="URL du trailer">
     <br> -->
     
-    <label for="idcategory">Catégorie :</label>
-    <select name="idCategory" required>
+     <label for="category">Catégorie :</label>
+    <select name="category_id" id= "category_id" required>
         <?php foreach ($categories as $category) { ?>
-            <option value="<?= $category->getIdCategory() ?>"><?=$category->getCategoryName() ?></option>
+            <option value="<?= $category->getId() ?>"><?=$category->getCategoryName() ?></option>
         <?php } ?>
-    </select>
+    </select> 
      
 
     <button type="submit" name="submit">Ajouter le film</button>
@@ -57,3 +57,5 @@
 
     
 </form>
+
+</div> 
