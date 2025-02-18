@@ -34,3 +34,4 @@ foreach($movies as $movie){ ?>
 <a href="index.php?ctrl=cinema&action=addMovieForm">Ajouter un film</a>
 
 
+<!-- <p><a href="index.php?ctrl=cinema&action=infosMovies&id="><img src="public\img\<?=$movie->getPosterMovie() ?><?= $movie ?>" alt="Affiche de <?= $movie->getMovieTitle() ?> style="max-width: 200px; height: auto></a> par <?= $movie->getDirector() ?></p> -->

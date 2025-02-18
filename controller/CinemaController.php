@@ -239,7 +239,8 @@ class CinemaController extends AbstractController implements ControllerInterface
                      'synopsis'=> $synopsis,
                      'rating' => $rating,
                      'director'=> $director,
-                     'category_id' => $category
+                     'category_id' => $category,
+                     
                     
                     ];
             //var_dump($movieTitle, $releaseDate, $duration, $synopsis, $rating, $director);

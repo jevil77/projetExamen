@@ -12,13 +12,13 @@
     </head>
     <body>
         <div id="wrapper"> 
-            <div id="mainpage">
+            <div class="navbar">
                 <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
                 <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
                 <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
                 <header>
                     <nav>
-                        <div id="nav-left">
+                        <div class="nav-link a">
                             <a href="/">Accueil</a>
                             <?php
                             if(App\Session::isAdmin()){
@@ -26,7 +26,7 @@
                                 <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
                             <?php } ?>
                         </div>
-                        <div id="nav-right">
+                        <div class="nav-link a">
                         <?php
                             // si l'utilisateur est connecté 
                             if(App\Session::getUser()){
@@ -43,16 +43,33 @@
                             <?php
                             }
                         ?>
+                        <a href="index.php?ctrl=security&action=login">Se connecter</a>
+                        <a href="index.php?ctrl=security&action=register">S'inscrire</a>
+                        <a href="index.php?ctrl=cinema&action=listUsers">Liste des utilisateurs</a>
+                        <a href="index.php?ctrl=cinema&action=listMovies">Liste des films</a>
+
+
                         </div>
-                    </nav>
+
+
+                        
+                       </nav>
                 </header>
-                
+                        </div>   
                 <main id="forum">
                     <?= $page ?>
+
+
+                    
+                   
+                    
                 </main>
-            </div>
+            
+            
             <footer>
+                <div class="footer">
                 <p>&copy; <?= date_create("now")->format("Y") ?> - <a href="#">Règlement du forum</a> - <a href="#">Mentions légales</a></p>
+                        </div>
             </footer>
         </div>
         <script
