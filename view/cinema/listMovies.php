@@ -7,11 +7,51 @@
 
 
     <title>Document</title>
+
+   
 </head>
 <body>
+
+<style>
+        
+        .movie-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .movie1 {
+            display: flex;
+            align-items: center; 
+            background-color: #2c3440;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+       
+        .movie-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: white;
+        }
+
+        .movie-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .movie-info p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+</style>
     
-</body>
-</html>
+
+
 
 
 
@@ -23,15 +63,35 @@
 
 <h1>Liste des films</h1>
 
-<?php
-foreach($movies as $movie){ ?>
-    <p><a href="index.php?ctrl=cinema&action=infosMovies&id="><?= $movie ?></a> par <?= $movie->getDirector() ?></p>
-<?php } ?>
 
 
+
+
+
+
+
+
+
+
+<div class="movie-list">
+    <?php foreach ($movies as $movie) { ?>
+        <div class="movie1">
+        <h3><a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $movie->getIdMovie() ?>"><?= $movie->getMovieTitle() ?></a></h3>
+
+            
+            <div class="movie-info">
+                <p>Réalisé par : <?= $movie->getDirector() ?></p>
+                <p>Année de sortie : <?= $movie->getReleaseDate() ?></p>
+                
+            </div>
+        </div>
+    <?php } ?>
+</div>
 
 
 <a href="index.php?ctrl=cinema&action=addMovieForm">Ajouter un film</a>
 
 
-<!-- <p><a href="index.php?ctrl=cinema&action=infosMovies&id="><img src="public\img\<?=$movie->getPosterMovie() ?><?= $movie ?>" alt="Affiche de <?= $movie->getMovieTitle() ?> style="max-width: 200px; height: auto></a> par <?= $movie->getDirector() ?></p> -->
+
+</body>
+</html>

@@ -50,9 +50,47 @@
     </div>
 </section>
 
+<section>
 
 
+<div class="titre_section">
+    <p>Les prochains évènements</p>
+</div>
 
+
+<div class="movie-container1">
+    <div class="movie1">
+        <img src="public\img\losthighway2.jpg" alt="Film 1">
+        <div class="movie-info">
+            <h3>Lost Highway</h3>
+            <p>Samedi 22 février à 21h au théatre du... </p>
+            <a href="#" class="event-btn">Événement</a>
+            <p>Réserver sans attendre vos places pour cette projection hommage à David Lynch.</p>
+        </div>
+    </div>
+    
+    <div class="movie1">
+        <img src="public\img\frankenweenie.jpg" alt="Film 2">
+        <div class="movie-info">
+            <h3>Frankenweenie</h3>
+            <p>Samedi 1 mars à 21h au théatre du...</p>
+            <a href="#" class="event-btn">Événement</a>
+            <p>Ne manquez pas notre projection de frankenweenie de Tim Burton !</p>
+        </div>
+    </div>
+
+    <div class="movie1">
+        <img src="public\img\openyoureyes.jpg" alt="Film 3">
+        <div class="movie-info">
+            <h3>Open Your Eyes</h3>
+            <p>Dimanche 2 mars à 19h30 au théatre de la...</p>
+            <a href="#" class="event-btn">Événement</a>
+            <p>Venez frissoner devant cette pépite horrifique !</p>
+        </div>
+    </div>
+</div>
+
+</section>
 
 
                     
