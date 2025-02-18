@@ -85,7 +85,7 @@
             <h3>Open Your Eyes</h3>
             <p>Dimanche 2 mars à 19h30 au théatre de la...</p>
             <a href="#" class="event-btn">Événement</a>
-            <p>Venez frissoner devant cette pépite horrifique !</p>
+            <p>Venez frissonner devant cette pépite horrifique !</p>
         </div>
     </div>
 </div>
