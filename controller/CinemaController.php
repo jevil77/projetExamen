@@ -260,6 +260,80 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
 
+    public function addEventform(){
+
+        
+
+        return [
+            "view" => VIEW_DIR."cinema/form/addEventForm.php",
+            "meta_description" => "Liste des évènements"
+            
+        
+         
+        ];
+
+    }
+
+
+
+    public function addEvent(){
+
+
+
+            if(isset($_POST["submit"])) {
+            //var_dump($_POST);
+
+
+            $eventManager = new EventManager();
+
+
+
+
+             $eventName = filter_input(INPUT_POST, "eventName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+             $eventDateTime = filter_input(INPUT_POST, "eventDateTime", FILTER_VALIDATE_INT);
+             $placeAvailable = filter_input(INPUT_POST, "placeAvailable", FILTER_VALIDATE_INT);
+             $theatre = filter_input(INPUT_POST, "eventDateTime",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+             $city = filter_input(INPUT_POST, "city",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+             $postalCode = filter_input(INPUT_POST,"postalCode",FILTER_VALIDATE_INT);
+
+             var_dump($eventName, $eventDateTime, $placeAvailable, $theatre, $city, $postalCode);
+
+
+
+            $data = [
+
+              'eventName' => $eventName,
+              'eventDateTime' => $eventDateTime,
+              'placeAvailable' => $placeAvailable,
+              'theatre' => $theatre,
+              'city' => $city,
+              'postalCode' => $postalCode
+            
+            
+            
+            ];
+            //var_dump($eventName, $eventDateTime,$placeAvailable,$theatre,$city,$postalCode);
+              $eventManager->add($data);
+
+              $this->redirectTo("cinema", "listMovies");
+              exit;
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+    }
+
+
+
     // public function deleteMovie($id){
 
 

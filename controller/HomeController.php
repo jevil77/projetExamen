@@ -9,7 +9,8 @@ use App\AbstractController;
 use App\ControllerInterface;
 // UserManager est utilisé pour interagir avec les utilisateurs de la base de données
 use Model\Managers\UserManager;
-
+use Model\Managers\MovieManager;
+use Model\Managers\EventManager;
 
 
 // Homecontroller hérite des fonctions de AbstractController et implémente les méthodes définies dans ControllerInterface
@@ -20,9 +21,30 @@ class HomeController extends AbstractController implements ControllerInterface {
     // view : chemin du fichier de la vue
     // meta-description : description pour le référencement SEO (Search Engine Optimization / Optimisation pour les moteurs de recherche)
     public function index(){
+
+
+        $movieManager = new MovieManager();
+
+        $movies = $movieManager->findFiveLastMovies();
+
+        $eventManager = new EventManager();
+
+        $events = $eventManager->findFiveLastEvents();
+
+
+
+
+       
         return [
             "view" => VIEW_DIR."home.php",
-            "meta_description" => "Page d'accueil du forum"
+            "meta_description" => "Page d'accueil",
+            "data" => [
+
+                "movie" => $movies,
+                "event" => $events
+                 
+
+            ]
         ];
     }
    

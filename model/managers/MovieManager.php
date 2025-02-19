@@ -67,5 +67,23 @@ class MovieManager extends Manager{
         }
     }
 
+
+    
+
+    public function findFiveLastMovies(){
+
+
+    $sql = "SELECT *
+            FROM " . $this->tableName . " m
+            ORDER BY m.releaseDate DESC
+            LIMIT 5";
+
+    return $this->getMultipleResults(
+        DAO::select($sql, [], true), 
+        $this->className
+    );
+   }
+
+
     
 }

@@ -47,6 +47,8 @@
                         <a href="index.php?ctrl=security&action=register">S'inscrire</a>
                         <a href="index.php?ctrl=cinema&action=listUsers">Liste des utilisateurs</a>
                         <a href="index.php?ctrl=cinema&action=listMovies">Liste des films</a>
+                        <a href="index.php?ctrl=cinema&action=addEventForm">Evènements</a>
+                        <a href="index.php?ctrl=cinema&action=listEvents">Liste des évènements</a>
 
 
                         </div>

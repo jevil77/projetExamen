@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
+
     <title>Document</title>
 </head>
 <body>
@@ -12,41 +13,31 @@
     <img src="public/img/losthighway.jpg" alt="Affiche du film Whiplash">
 </section>
 
-
+<?php
+    $movies = $result["data"]['movie']; 
+    $events = $result["data"]['event'];
+?>
 
 
 <section class="section">
     <div class="movie-gallery">
         <a href="film.php">
-            <h3>Derniers courts-métrages ajoutés</h3>
+            <h3>Derniers courts-métrages</h3>
         </a>
     </div>
 
     <div class="movie-container">
-        <div class="movie">
-            <a href="detailFilm.php">
-                <img src="public/img/whiplash.jpg" alt="Affiche du film Whiplash">
-            </a>
-            <p class="movie-title">Whiplash</p>
+        
+        <?php foreach ($movies as $movie) { ?>
+            <div class="movie">
+            <a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $movie->getIdMovie() ?>">
+                <img src="public/img/<?= $movie->getMoviePoster() ?>" alt="Affiche du film">
+                
+            <p class="movie-title"><?= $movie->getMovieTitle() ?></a></p>
+            </diV>
+            <?php  } ?>
         </div>
-        <div class="movie">
-            <a href="detailFilm.php">
-                <img src="public/img/lightsout.jpg" alt="Affiche du film Whiplash">
-            </a>
-            <p class="movie-title">Lights Out</p>
-        </div>
-        <div class="movie">
-            <a href="detailFilm.php">
-                <img src="public/img/saw.jpg" alt="Affiche du film Whiplash">
-            </a>
-            <p class="movie-title">Saw</p>
-        </div>
-        <div class="movie">
-            <a href="detailFilm.php">
-                <img src="public/img/losthighway2.jpg" alt="Affiche du film Whiplash">
-            </a>
-            <p class="movie-title">Lost Highway</p>
-        </div>
+       
     </div>
 </section>
 
@@ -59,39 +50,26 @@
 
 
 <div class="movie-container1">
-    <div class="movie1">
-        <img src="public\img\losthighway2.jpg" alt="Film 1">
-        <div class="movie-info">
-            <h3>Lost Highway</h3>
-            <p>Samedi 22 février à 21h au théatre du... </p>
-            <a href="#" class="event-btn">Événement</a>
-            <p>Réserver sans attendre vos places pour cette projection hommage à David Lynch.</p>
-        </div>
-    </div>
+    <?php foreach ($events as $event) { ?>
     
-    <div class="movie1">
-        <img src="public\img\frankenweenie.jpg" alt="Film 2">
-        <div class="movie-info">
-            <h3>Frankenweenie</h3>
-            <p>Samedi 1 mars à 21h au théatre du...</p>
-            <a href="#" class="event-btn">Événement</a>
-            <p>Ne manquez pas notre projection de frankenweenie de Tim Burton !</p>
-        </div>
-    </div>
+    
 
     <div class="movie1">
-        <img src="public\img\openyoureyes.jpg" alt="Film 3">
-        <div class="movie-info">
-            <h3>Open Your Eyes</h3>
-            <p>Dimanche 2 mars à 19h30 au théatre de la...</p>
-            <a href="#" class="event-btn">Événement</a>
-            <p>Venez frissonner devant cette pépite horrifique !</p>
-        </div>
+    
+    <p><?= $event->getEventName() ?></p>
+        <img src="public/img/<?= $event->getMovie()->getMoviePoster() ?>" alt="Affiche du film"> 
+        
+        <a href="index.php?ctrl=cinema&action=eventInfos&id=" class="event-btn">Évènement</a>
+        <a href="index.php?ctrl=cinema&action=eventInfos&id=">
+        <p><?= $event->getEventName() ?><?= $event->getEventDateTime() ?> au <?= $event->getTheatre() ?></p>
+    </a>
+       
     </div>
+    <?php } ?>
 </div>
 
-</section>
-
+    
+   
 
                     
 
