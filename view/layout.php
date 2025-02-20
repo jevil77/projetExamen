@@ -37,14 +37,13 @@
                             }
                             else{
                                 ?>
-                                <a href="index.php?ctrl=security&action=login">Connexion</a>
-                                <a href="index.php?ctrl=security&action=register">Inscription</a>
+                                <a href="index.php?ctrl=security&action=loginForm">Connexion</a>
+                                <a href="index.php?ctrl=security&action=registerForm">Inscription</a>
                                 <a href="index.php?ctrl=cinema&action=index">Catégories</a>
                             <?php
                             }
                         ?>
-                        <a href="index.php?ctrl=security&action=login">Se connecter</a>
-                        <a href="index.php?ctrl=security&action=register">S'inscrire</a>
+                       
                         <a href="index.php?ctrl=cinema&action=listUsers">Liste des utilisateurs</a>
                         <a href="index.php?ctrl=cinema&action=listMovies">Liste des films</a>
                         <a href="index.php?ctrl=cinema&action=addEventForm">Evènements</a>

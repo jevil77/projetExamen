@@ -39,12 +39,7 @@
     <input type="url" id="trailer" name="trailer" placeholder="URL du trailer">
     <br> -->
     
-     <!-- <label for="category">Catégorie :</label>
-    <select name="category_id" id= "category_id" required>
-        <?php foreach ($categories as $category) { ?>
-            <option value="<?= $category->getId() ?>"><?=$category->getCategoryName() ?></option>
-        <?php } ?>
-    </select>  -->
+    
      
 
     <button type="submit" name="submit">Créer l'évènement</button>

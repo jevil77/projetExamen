@@ -9,14 +9,14 @@ use App\Entity;
 
 final class User extends Entity{
 
-    private $idUser;         // INT
+    private $id;         // INT
     private $name;            // VARCHAR
     private $firstName;       // VARCHAR
     private $pseudo;          // VARCHAR
     private $role;            // VARCHAR
     private $email;           // VARCHAR
     private $password;        // VARCHAR
-    private $dateAdded;    // DATETIME
+    private $creationDate;    // DATETIME
     private $event;
 
 
@@ -32,9 +32,9 @@ final class User extends Entity{
     /**
      * Get the value of idUser
      */ 
-    public function getIdUser()
+    public function getId()
     {
-        return $this->idUser;
+        return $this->id;
     }
 
     /**
@@ -42,9 +42,9 @@ final class User extends Entity{
      *
      * @return  self
      */ 
-    public function setIdUser($idUser)
+    public function setId($id)
     {
-        $this->idUser = $idUser;
+        $this->id = $id;
 
         return $this;
     }
@@ -172,9 +172,9 @@ final class User extends Entity{
       /**
      * Get the value of dateAdded
      */ 
-    public function getDateAdded()
+    public function getCreationDate()
     {
-        return $this->dateAdded;
+        return $this->creationDate;
     }
 
     /**
@@ -182,9 +182,9 @@ final class User extends Entity{
      *
      * @return  self
      */ 
-    public function setDateAdded($dateAdded)
+    public function setCreationDate($creationDate)
     {
-        $this->dateAdded = $dateAdded;
+        $this->creationDAte = $creationDate;
 
         return $this;
     }
@@ -213,7 +213,31 @@ final class User extends Entity{
     
     public function __toString() {
         return $this->pseudo;
+    }// Vérifie si l'utilisateur en session est administrateur (hasRole)
+
+    public function hasRole($role){
+
+
+        if($role == "ROLE_ADMIN"){
+
+
+ return true;
+
+
+      
+    
+    } else {
+
+            return false;
+
+
     }
+
+}
+  
+
+
+
 
     
 
