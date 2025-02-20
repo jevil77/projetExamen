@@ -11,7 +11,7 @@
     <br> 
     
     <label for="eventDateTime">Date et heure de l'évèvement</label>
-    <input type="number" id="eventDateTime" name="eventDateTime" placeholder="Date et heure de l'évènement" required>
+    <input type="text" id="eventDateTime" name="eventDateTime" placeholder="Date et heure de l'évènement" required>
     <br>
 
     <label for="placeAvailable">Nombre de place disponible :</label>

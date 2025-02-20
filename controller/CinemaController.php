@@ -290,7 +290,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
              $eventName = filter_input(INPUT_POST, "eventName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-             $eventDateTime = filter_input(INPUT_POST, "eventDateTime", NITIZE_FULL_SPECIAL_CHARS);
+             $eventDateTime = filter_input(INPUT_POST, "eventDateTime", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $placeAvailable = filter_input(INPUT_POST, "placeAvailable", FILTER_VALIDATE_INT);
              $theatre = filter_input(INPUT_POST, "theatre",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $city = filter_input(INPUT_POST, "city",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -314,7 +314,7 @@ class CinemaController extends AbstractController implements ControllerInterface
             ];
             //var_dump($eventName, $eventDateTime,$placeAvailable,$theatre,$city,$postalCode);
               $eventManager->add($data);
-              var_dump($data);die;
+              var_dump($data);
 
               $this->redirectTo("cinema", "listMovies");
               exit;
