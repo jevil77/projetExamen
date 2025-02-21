@@ -12,7 +12,7 @@
 
 
 
-    <p><a href="index.php?ctrl=cinema&action=infosMovies&id"><?= ($movie->getIdMovie()."".$movie->getMovieTitle()."   ". $movie->getReleaseDate()."  ". $movie->getDuration()."  ".$movie->getSynopsis()."  ".$movie->getRating()."  ".$movie->getDirector())?></a></p>
+    <p><a href="index.php?ctrl=cinema&action=infosMovies&id"><?= ($movie->getId()."".$movie->getMovieTitle()."   ". $movie->getReleaseDate()."  ". $movie->getDuration()."  ".$movie->getSynopsis()."  ".$movie->getRating()."  ".$movie->getDirector())?></a></p>
 
 <?php } ?>
 

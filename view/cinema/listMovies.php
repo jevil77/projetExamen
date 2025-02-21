@@ -76,11 +76,11 @@
 <div class="movie-list">
     <?php foreach ($movies as $movie) { ?>
         <div class="movie1">
-        <h3><a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $movie->getIdMovie() ?>"><?= $movie->getMovieTitle() ?></a></h3>
+        <h3><a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $movie->getId() ?>"><?= $movie->getMovieTitle() ?></a></h3>
 
             
             <div class="movie-info">
-                <p>Réalisé par : <?= $movie->getDirector() ?></p>
+                <p>Réalisé par : <?= $movie->getUser() ?></p>
                 <p>Année de sortie : <?= $movie->getReleaseDate() ?></p>
                 
             </div>

@@ -11,7 +11,7 @@ use App\Entity;
 // Cette classe représente un modèle pour un film dans la gestion de films. Structure orientée objet où chaque propriété correspond à un champ de la base de données
 final class Movie extends Entity{
 
-    private $idMovie;      // INT
+    private $id;      // INT
     private $movieTitle;    // VARCHAR
     private $releaseDate;   // INT
     private $duration;      // INT
@@ -19,7 +19,7 @@ final class Movie extends Entity{
     private $rating;        // DECIMAL
     private $trailer;       // VARCHAR
     private $moviePoster;   // VARCHAR
-    private $director;      // VARCHAR
+     // VARCHAR
     private $category;      // 
     private $user;          // 
     
@@ -41,9 +41,9 @@ final class Movie extends Entity{
     /**
      * Get the value of id_movie
      */ 
-    public function getIdMovie()
+    public function getId()
     {
-        return $this->idMovie;
+        return $this->id;
     }
     
     // Définit la valeur de id_movie
@@ -52,9 +52,9 @@ final class Movie extends Entity{
      *
      * @return  self
      */ 
-    public function setIdMovie($idMovie)
+    public function setId($idMovie)
     {
-        $this->idMovie = $idMovie;
+        $this->id = $idMovie;
 
         return $this;
     }
@@ -201,25 +201,6 @@ final class Movie extends Entity{
         return $this;
     }
 
-     /**
-     * Get the value of director
-     */ 
-    public function getDirector()
-    {
-        return $this->director;
-    }
-
-    /**
-     * Set the value of director
-     *
-     * @return  self
-     */ 
-    public function setDirector($director)
-    {
-        $this->director = $director;
-
-        return $this;
-    }
 
     /**
      * Get the value of category

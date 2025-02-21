@@ -32,9 +32,9 @@
     <input type="number" id="rating" name="rating" placeholder="Note" required>
     <br>
 
-    <label for="director"> Réalisateur :</label>
+    <!-- <label for="user"> Réalisateur :</label>
     <input type="text" id="director" name="director" placeholder="Réalisateur" required>
-    <br> 
+    <br>  -->
 
     
     <!-- <label for="affiche_film">URL de l'affiche :</label>

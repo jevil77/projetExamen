@@ -214,7 +214,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
         if(isset($_POST["submit"])) {
-            var_dump($_POST);
+            // var_dump($_POST);
 
             $movieManager = new MovieManager();
             //var_dump('hello');
@@ -225,28 +225,50 @@ class CinemaController extends AbstractController implements ControllerInterface
             $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_FLOAT);
-            $director = filter_input(INPUT_POST, "director", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $category = filter_input(INPUT_POST, "category_id", FILTER_VALIDATE_INT);
-            var_dump($category,$movieTitle);
+            // var_dump($category,$movieTitle);
             // if ($category_id === false || empty($category_id)) {
             //     die("Erreur : Veuillez sélectionner une catégorie.");
             // }
 
 
-            $data = ['movieTitle' => $movieTitle,
-                     'releaseDate'=> $releaseDate,
-                     'duration'=> $duration, 
-                     'synopsis'=> $synopsis,
-                     'rating' => $rating,
-                     'director'=> $director,
-                     'category_id' => $category,
+            
+            
+
+            // Récupére le user en session dans la variable $user
+            $user = Session::getUser();
+            if (!$user) {
+                die("Erreur : Aucun utilisateur connecté.");
+            }
+            
+            $data = [
+                'movieTitle' => $movieTitle,
+                'releaseDate' => $releaseDate,
+                'duration' => $duration,
+                'synopsis' => $synopsis,
+                'rating' => $rating,
+                'category_id' => $category,
+                //  'user_id' => App\Session::getUser()->getId()
+                 // Récupère l'id du user en session
+                'user_id' => $user->getId() 
+            ];
+
+
+           
+            // $data = ['movieTitle' => $movieTitle,
+            //          'releaseDate'=> $releaseDate,
+            //          'duration'=> $duration, 
+            //          'synopsis'=> $synopsis,
+            //          'rating' => $rating,
+            //          'category_id' => $category,
+            //          'user_id' => $user=Session::getUser()
                      
                     
-                    ];
+            //        ];
             //var_dump($movieTitle, $releaseDate, $duration, $synopsis, $rating, $director);
             $movieManager->add($data);
             //var_dump($movieTitle);
-           
+            var_dump($data);
             //var_dump("Le film a été ajouté avec succès");die;
             $this->redirectTo("cinema", "listMovies");
                      exit;
@@ -260,28 +282,30 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
 
-    public function addEventform(){
+    public function addEventform($id){
 
-        
+        $movieManager = new MovieManager();
+        $movies = $movieManager->findMoviesByUser($id);
+
 
         return [
             "view" => VIEW_DIR."cinema/form/addEventForm.php",
-            "meta_description" => "Liste des évènements"
-            
+            "meta_description" => "Liste des évènements",
+            "data" => [
+                "movies" => $movies
+            ]
+          ];
         
-         
-        ];
-
     }
 
 
 
     public function addEvent(){
 
-
+ 
 
             if(isset($_POST["submit"])) {
-            //var_dump($_POST);
+           
 
 
             $eventManager = new EventManager();
@@ -295,8 +319,10 @@ class CinemaController extends AbstractController implements ControllerInterface
              $theatre = filter_input(INPUT_POST, "theatre",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $city = filter_input(INPUT_POST, "city",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $postalCode = filter_input(INPUT_POST,"postalCode",FILTER_VALIDATE_INT);
+            
 
-             var_dump($eventName, $eventDateTime, $placeAvailable, $theatre, $city, $postalCode);
+
+            //  var_dump($eventName, $eventDateTime, $placeAvailable, $theatre, $city, $postalCode);
 
 
 
@@ -307,14 +333,19 @@ class CinemaController extends AbstractController implements ControllerInterface
               'placeAvailable' => $placeAvailable,
               'theatre' => $theatre,
               'city' => $city,
-              'postalCode' => $postalCode
-            
+              'postalCode' => $postalCode,
+              
+
+              
             
             
             ];
-            //var_dump($eventName, $eventDateTime,$placeAvailable,$theatre,$city,$postalCode);
+            
+            // var_dump($data);
+            
+           
               $eventManager->add($data);
-              var_dump($data);
+            //   var_dump($data);
 
               $this->redirectTo("cinema", "listMovies");
               exit;

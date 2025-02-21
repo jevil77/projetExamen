@@ -12,6 +12,9 @@
     </head>
     <body>
         <div id="wrapper"> 
+
+
+       
             <div class="navbar">
                 <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
                 <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
@@ -46,7 +49,9 @@
                        
                         <a href="index.php?ctrl=cinema&action=listUsers">Liste des utilisateurs</a>
                         <a href="index.php?ctrl=cinema&action=listMovies">Liste des films</a>
-                        <a href="index.php?ctrl=cinema&action=addEventForm">Evènements</a>
+                <?php        if (isset($_SESSION['user'])) { ?>
+                        <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Evènements</a>
+                <?php    } ?>
                         <a href="index.php?ctrl=cinema&action=listEvents">Liste des évènements</a>
 
 

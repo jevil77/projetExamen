@@ -5,5 +5,5 @@
 
 
 <?php foreach($users as $user ){ ?>
-    <p><a href="index.php?ctrl=cinema&action=infosUsers&id=<?=$user->getIdUser()?>"><?= $user->getPseudo()?></p>
+    <p><a href="index.php?ctrl=cinema&action=infosUsers&id=<?=$user->getId()?>"><?= $user->getPseudo()?></p>
 <?php } ?>

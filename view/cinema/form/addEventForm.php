@@ -1,14 +1,28 @@
+<?php
+    $movies = $result["data"]['movies']; 
+
+    ?>
+
 
 
 
 
 <div class="form">   
     
-<form action="index.php?ctrl=cinema&action=addEvent" method="POST">
+    <form action="index.php?ctrl=cinema&action=addEvent" method="POST">
+        
+        <label for="eventName">Nom de l'évènement:</label>
+        <input type="text" id="eventName" name="eventName" placeholder="Nom de l'évènement" required>
+        <br> 
+        
+        <label for="movie">Choisissez un film :</label>
+        <select name="movie_id" id="movie" required>
+            <?php foreach ($movies as $movie) { ?>
 
-    <label for="eventName">Nom de l'évènement:</label>
-    <input type="text" id="eventName" name="eventName" placeholder="Nom de l'évènement" required>
-    <br> 
+            <option value="<?= $movie->getId() ?>"><?=$movie->getMovieTitle() ?></option>
+        <?php } ?>
+    </select>
+
     
     <label for="eventDateTime">Date et heure de l'évèvement</label>
     <input type="text" id="eventDateTime" name="eventDateTime" placeholder="Date et heure de l'évènement" required>

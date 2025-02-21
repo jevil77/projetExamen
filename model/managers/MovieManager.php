@@ -1,4 +1,7 @@
 <?php
+
+
+
 namespace Model\Managers;
 
 use App\Manager;
@@ -85,5 +88,23 @@ class MovieManager extends Manager{
    }
 
 
-    
-}
+
+   public function findMoviesByUser($id){
+
+    $sql = "SELECT *
+            FROM ".$this->tableName." m
+            WHERE m.user_id = :user_id";
+            
+            
+            return $this->getMultipleResults(    
+                DAO::select($sql, ['user_id' => $id], true), 
+                $this->className
+            );    
+        }    
+        
+        
+        
+        
+        
+        
+     }
