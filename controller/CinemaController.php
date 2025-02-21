@@ -324,7 +324,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
             //  var_dump($eventName, $eventDateTime, $placeAvailable, $theatre, $city, $postalCode);
 
-
+            $user = Session::getUser();
 
             $data = [
 
@@ -334,6 +334,8 @@ class CinemaController extends AbstractController implements ControllerInterface
               'theatre' => $theatre,
               'city' => $city,
               'postalCode' => $postalCode,
+              
+              "user_id" => $user->getId()
               
 
               
