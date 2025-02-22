@@ -252,7 +252,7 @@ class CinemaController extends AbstractController implements ControllerInterface
                  // Récupère l'id du user en session
                 'user_id' => $user->getId() 
             ];
-
+            var_dump($user,$movieTitle);
 
            
             // $data = ['movieTitle' => $movieTitle,
@@ -319,12 +319,16 @@ class CinemaController extends AbstractController implements ControllerInterface
              $theatre = filter_input(INPUT_POST, "theatre",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $city = filter_input(INPUT_POST, "city",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $postalCode = filter_input(INPUT_POST,"postalCode",FILTER_VALIDATE_INT);
+             $movieId =filter_input(INPUT_POST,"movie_id",FILTER_VALIDATE_INT);
             
 
 
             //  var_dump($eventName, $eventDateTime, $placeAvailable, $theatre, $city, $postalCode);
 
             $user = Session::getUser();
+            if (!$user) {
+                die("Erreur : Aucun utilisateur connecté.");
+            }
 
             $data = [
 
@@ -334,6 +338,7 @@ class CinemaController extends AbstractController implements ControllerInterface
               'theatre' => $theatre,
               'city' => $city,
               'postalCode' => $postalCode,
+              'movie_id '=> $movieId,
               
               "user_id" => $user->getId()
               
