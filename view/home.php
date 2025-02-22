@@ -57,8 +57,9 @@
 
     <div class="movie1">
     
-    <p><?= $event->getEventName() ?></p>
+    
         <img src="public/img/<?= $event->getMovie()->getMoviePoster()?>" alt="Affiche du film"> 
+        <p><?= $event->getEventName() ?></p>
         <a href="index.php?ctrl=cinema&action=eventInfos&id=" class="event-btn">Évènement</a>
         <a href="index.php?ctrl=cinema&action=eventInfos&id=">
         <p><?= $event->getEventName() ?><?= $event->getEventDateTime() ?> au <?= $event->getTheatre()?> </p>

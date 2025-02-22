@@ -12,6 +12,6 @@
 
 
 
-    <p><a href="index.php?ctrl=cinema&action=infosUsers&id"><?= ($user->getIdUser()."".$user->getName()."   ". $user->getFirstName()."  ". $user->getPseudo()."  ".$user->getRole()."  ".$user->getEmail())?></a></p>
+    <p><a href="index.php?ctrl=cinema&action=infosUsers&id"><?= ($user->getId()."".$user->getName()."   ". $user->getFirstName()."  ". $user->getPseudo()."  ".$user->getRole()."  ".$user->getEmail())?></a></p>
 
 <?php } ?>
