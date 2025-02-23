@@ -53,6 +53,8 @@
                 <?php        if (isset($_SESSION['user'])) { ?>
                         <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Evènements</a>
                 <?php    } ?>
+                        <a href="index.php?ctrl=cinema&action=addEventForm">Créer un évènement</a>
+
                         <a href="index.php?ctrl=cinema&action=listEvents">Liste des évènements</a>
 
 

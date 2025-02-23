@@ -45,7 +45,12 @@
     <input type="number" id="code postal" name="postalCode" placeholder="Code postal" required>
     <br> 
 
-    
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        Select image to upload:
+         <input type="file" name="fileToUpload" id="fileToUpload">
+         <input type="submit" value="Upload Image" name="submit">
+    </form>
+
     <!-- <label for="affiche_film">URL de l'affiche :</label>
     <input type="url" id="affiche_film" name="affiche_film" placeholder="Lien de l'affiche" required>
     <br> -->
