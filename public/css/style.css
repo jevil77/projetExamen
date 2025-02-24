@@ -363,14 +363,14 @@ footer {
     font-family: Arial, sans-serif;
 }
 
-/* Styles des labels */
+
 .custom-form label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-/* Styles des champs de saisie */
+
 .custom-form input,
 .custom-form textarea {
     width: 100%;
@@ -382,14 +382,14 @@ footer {
     transition: border-color 0.3s;
 }
 
-/* Effet focus */
+
 .custom-form input:focus,
 .custom-form textarea:focus {
     border-color: #b5070c;
     outline: none;
 }
 
-/* Bouton de soumission */
+
 .custom-form button {
     width: 100%;
     padding: 10px;
@@ -402,13 +402,12 @@ footer {
     transition: background 0.3s;
 }
 
-/* Effet hover sur le bouton */
 .custom-form button:hover {
     background: #b5070c;
 } 
 
 
-/* Styles généraux du formulaire */
+
 .cinema-form {
     max-width: 400px;
     margin: 20px auto;
@@ -417,7 +416,7 @@ footer {
     color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
-    font-family: 'Cinzel', serif; /* Style d'affiche de film */
+    font-family: 'Cinzel', serif; 
     text-align: center;
 }
 
