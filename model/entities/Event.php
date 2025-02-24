@@ -16,6 +16,7 @@ final class Event extends Entity{
     private $theatre; // VARCHAR
     private $city; // VARCHAR
     private $postalCode; // INT
+    private $imagePath;
     private $user;
     private $movie;
 
@@ -219,17 +220,35 @@ final class Event extends Entity{
     }
 
 
+     /**
+     * Get the value of imagePath
+     */ 
+    public function getImagePath()
+    {
+        return $this->imagePath;
+    }
+
+    /**
+     * Set the value of imagePath
+     *
+     * @return  self
+     */ 
+    public function setImagePath($imagePath)
+    {
+        $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
+
     public function __toString(){
         return $this->eventName;
     }
 
     
+
+    
 }
-
-
-
-
-
 
 // Entité : une entité représente une table de la base de données sous forme de classe PHP.
 // Elle permet de manipuler des données sous forme d'objets.

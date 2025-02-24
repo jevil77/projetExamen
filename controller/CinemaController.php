@@ -302,6 +302,10 @@ class CinemaController extends AbstractController implements ControllerInterface
 
     public function addEvent(){
 
+
+
+
+
  
 
             if(isset($_POST["submit"])) {
@@ -314,7 +318,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
              $eventName = filter_input(INPUT_POST, "eventName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-             $eventDateTime = filter_input(INPUT_POST, "eventDateTime", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+             $eventDateTime = filter_input(INPUT_POST, "eventDateTime",FILTER_VALIDATE_INT);
              $placeAvailable = filter_input(INPUT_POST, "placeAvailable", FILTER_VALIDATE_INT);
              $theatre = filter_input(INPUT_POST, "theatre",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $city = filter_input(INPUT_POST, "city",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -322,23 +326,68 @@ class CinemaController extends AbstractController implements ControllerInterface
              $movieId =filter_input(INPUT_POST,"movie_id",FILTER_VALIDATE_INT);
 
 
+
              
-             $target_dir = "uploads/";
-             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+             if (!isset($_FILES["fileToUpload"]) || $_FILES["fileToUpload"]["error"] !== 0) {
+                die("Erreur : Aucun fichier n'a été uploadé ou une erreur s'est produite.");
+            }
+    
+            var_dump($_POST,$_FILES);
+
+             
+             $target_dir = "public/uploads/";
+             $imagePath = $target_dir . basename($_FILES["fileToUpload"]["name"]);
              $uploadOk = 1;
-             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-             // Check if image file is a actual image or fake image
+             $imageFileType = strtolower(pathinfo($imagePath,PATHINFO_EXTENSION));
+             // Vérifie si l'image est une vraie image
              if(isset($_POST["submit"])) {
                $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
                if($check !== false) {
-                 echo "File is an image - " . $check["mime"] . ".";
+                 echo "Le fichier est une image " . $check["mime"] . ".";
                  $uploadOk = 1;
                } else {
-                 echo "File is not an image.";
+                 echo "Le fichier n'est pas une image";
                  $uploadOk = 0;
                }
              }
 
+             //var_dump($_FILES);
+
+
+             // Vérifie si le fichier existe déjà
+             if (file_exists($imagePath)) {
+             echo "Désolé, le fichier existe déjà";
+             $uploadOk = 0;
+             }
+
+
+             // Vérifie la taille du fichier
+            if ($_FILES["fileToUpload"]["size"] > 500000) {
+                echo "Désolé, votre fichier est trop volumineux.";
+                $uploadOk = 0;
+             }
+
+            
+
+             // Autorise certains types de fichiers
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+               echo "Désolé, seulement les fichiers de type JPG, JPEG, PNG & GIF sont autorisés.";
+               $uploadOk = 0;
+            }
+
+
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $imagePath)) {
+                echo "Le fichier " . (basename($_FILES["fileToUpload"]["name"])) . " a été uploadé avec succès.";
+            } else {
+                die("Erreur lors de l'upload du fichier.");
+            }
+            
+
+
+
+       
+            //var_dump($_FILES);
 
             //  var_dump($eventName, $eventDateTime, $placeAvailable, $theatre, $city, $postalCode);
 
@@ -355,6 +404,7 @@ class CinemaController extends AbstractController implements ControllerInterface
               'theatre' => $theatre,
               'city' => $city,
               'postalCode' => $postalCode,
+              'image_path' => $imagePath,
               'movie_id '=> $movieId,
               
               "user_id" => $user->getId()
@@ -365,14 +415,17 @@ class CinemaController extends AbstractController implements ControllerInterface
             
             ];
             
-            // var_dump($data);
+            //var_dump($_FILES,$_POST);
             
            
               $eventManager->add($data);
-            //   var_dump($data);
+               var_dump($eventDateTime);
 
               $this->redirectTo("cinema", "listMovies");
               exit;
+
+
+           // var_dump($_FILES);
 
 
 

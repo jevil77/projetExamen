@@ -56,9 +56,11 @@
         <!-- <?php var_dump($event); ?> -->
 
     <div class="movie1">
+    <?php var_dump($event->getImagePath()); ?>
+
     
     
-        <img src="public/img/<?= $event->getMovie()->getMoviePoster()?>" alt="Affiche du film"> 
+        <img src="public/uploads<?= $event->getImagePath()?>" alt="Affiche du film"> 
         <p><?= $event->getEventName() ?></p>
         <a href="index.php?ctrl=cinema&action=eventInfos&id=" class="event-btn">Évènement</a>
         <a href="index.php?ctrl=cinema&action=eventInfos&id=">

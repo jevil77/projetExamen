@@ -9,7 +9,7 @@
 
 <div class="form">   
     
-    <form action="index.php?ctrl=cinema&action=addEvent" method="POST">
+    <form action="index.php?ctrl=cinema&action=addEvent" method="POST"  enctype="multipart/form-data">
         
         <label for="eventName">Nom de l'évènement:</label>
         <input type="text" id="eventName" name="eventName" placeholder="Nom de l'évènement" required>
@@ -45,11 +45,20 @@
     <input type="number" id="code postal" name="postalCode" placeholder="Code postal" required>
     <br> 
 
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        Select image to upload:
-         <input type="file" name="fileToUpload" id="fileToUpload">
-         <input type="submit" value="Upload Image" name="submit">
+    
+    
+    <label>Select image to upload:</label>
+    <input type="file" name="fileToUpload" id="fileToUpload">
+
+    <br>
+
+
+    <button type="submit" name="submit">Créer l'évènement</button>
+        
     </form>
+
+
+
 
     <!-- <label for="affiche_film">URL de l'affiche :</label>
     <input type="url" id="affiche_film" name="affiche_film" placeholder="Lien de l'affiche" required>
@@ -61,7 +70,11 @@
     
      
 
-    <button type="submit" name="submit">Créer l'évènement</button>
+   
+    <br>
+
+
+    
 
 
     

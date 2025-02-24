@@ -32,11 +32,7 @@
     <input type="number" id="rating" name="rating" placeholder="Note" required>
     <br>
 
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-     Choisissez une image à télécharger
-       <input type="file" name="fileToUpload" id="fileToUpload">
-       <input type="submit" value="Upload Image" name="submit">
-    </form>
+  
 
 
 
