@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
+
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
 <?php
     $categories = $result["data"]['categories']; 
 ?>
@@ -8,7 +23,7 @@
 
     
     
-<div class="form">   
+<div class="custom-form">   
     
 <form action="index.php?ctrl=cinema&action=addMovie" method="POST">
 
