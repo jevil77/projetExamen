@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">        
     <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=add" />
 
 
     <title>Document</title>
@@ -13,7 +14,6 @@
 <body>
 
 <style>
-        
         .movie-list {
             display: flex;
             flex-direction: column;
@@ -48,7 +48,35 @@
             font-size: 1rem;
             margin-bottom: 10px;
         }
+
+
+
+        .btn-add-movie {
+        display: inline-block;
+        background-color: #ff4500; 
+        text-decoration: none;
+        color: #ffffff;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        transition: background 0.3s, transform 0.2s;
+        }
+        
+        .btn-add-movie:hover {
+            
+        background-color: #e63e00; 
+        transform: scale(1.05);
+        }
+        .btn-add-movie:active {
+        background-color: #cc3700;
+        transform: scale(0.95);
+        }
+
+
 </style>
+
+
     
 
 
@@ -62,6 +90,10 @@
 ?>
 
 <h1>Liste des films</h1>
+
+
+<a href="index.php?ctrl=cinema&action=addMovieForm" class="btn-add-movie">+ Ajouter un film </a>
+
 
 
 
@@ -90,7 +122,6 @@
 </div>
 
 
-<a href="index.php?ctrl=cinema&action=addMovieForm">Ajouter un film</a>
 
 
 
