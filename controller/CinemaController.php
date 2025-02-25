@@ -232,6 +232,61 @@ class CinemaController extends AbstractController implements ControllerInterface
             // }
 
 
+            $target_dir = "public/uploads/";
+            $imagePath = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($imagePath,PATHINFO_EXTENSION));
+            // Vérifie si l'image est une vraie image
+            if(isset($_POST["submit"])) {
+              $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+              if($check !== false) {
+                echo "Le fichier est une image " . $check["mime"] . ".";
+                $uploadOk = 1;
+              } else {
+                echo "Le fichier n'est pas une image";
+                $uploadOk = 0;
+              }
+            }
+
+            //var_dump($_FILES);
+
+
+            // Vérifie si le fichier existe déjà
+            if (file_exists($imagePath)) {
+            echo "Désolé, le fichier existe déjà";
+            $uploadOk = 0;
+            }
+
+
+            // Vérifie la taille du fichier
+           if ($_FILES["fileToUpload"]["size"] > 500000) {
+               echo "Désolé, votre fichier est trop volumineux.";
+               $uploadOk = 0;
+            }
+
+           
+
+            // Autorise certains types de fichiers
+           if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+              echo "Désolé, seulement les fichiers de type JPG, JPEG, PNG & GIF sont autorisés.";
+              $uploadOk = 0;
+           }
+
+
+           if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $imagePath)) {
+               echo "Le fichier " . (basename($_FILES["fileToUpload"]["name"])) . " a été uploadé avec succès.";
+           } else {
+               die("Erreur lors de l'upload du fichier.");
+           }
+           
+
+
+
+      
+           // var_dump($_FILES);
+
+
+
             
             
 
@@ -248,6 +303,7 @@ class CinemaController extends AbstractController implements ControllerInterface
                 'synopsis' => $synopsis,
                 'rating' => $rating,
                 'category_id' => $category,
+                'imagePath' => $imagePath,
                 //  'user_id' => App\Session::getUser()->getId()
                  // Récupère l'id du user en session
                 'user_id' => $user->getId() 

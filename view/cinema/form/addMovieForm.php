@@ -25,7 +25,7 @@
     
 <div class="custom-form">   
     
-<form action="index.php?ctrl=cinema&action=addMovie" method="POST">
+<form action="index.php?ctrl=cinema&action=addMovie" method="POST"enctype="multipart/form-data" >
 
     <label for="movieTitle">Titre du film :</label>
     <input type="text" id="movieTitle" name="movieTitle" placeholder="Titre du film" required>
@@ -72,6 +72,11 @@
             <option value="<?= $category->getId() ?>"><?=$category->getCategoryName() ?></option>
         <?php } ?>
     </select> 
+
+    <label>Sélectionner une image à télécharger:</label>
+    <input type="file" name="fileToUpload" id="fileToUpload">
+
+    <br>
      
 
     <button type="submit" name="submit">Ajouter le film</button>

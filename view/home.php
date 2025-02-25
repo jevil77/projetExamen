@@ -31,7 +31,7 @@
         <?php foreach ($movies as $movie) { ?>
             <div class="movie">
             <a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $movie->getId() ?>">
-                <img src="public/img/<?= $movie->getMoviePoster() ?>" alt="Affiche du film">
+                <img src="<?= $movie->getImagePath() ?>" alt="Affiche du film">
                 
             <p class="movie-title"><?= $movie->getMovieTitle() ?></a></p>
             </diV>
@@ -53,14 +53,13 @@
     <?php foreach ($events as $event) { ?>
     
     
-        <!-- <?php var_dump($event); ?> -->
+    
 
     <div class="movie1">
-    <!-- <?php var_dump($event->getImagePath()); ?> -->
-
+   
     
     
-        <img src="public/uploads<?= $event->getImagePath()?>" alt="Affiche du film"> 
+        <img src="<?= $event->getImagePath()?>" alt="Affiche du film"> 
         <p><?= $event->getEventName() ?></p>
         <a href="index.php?ctrl=cinema&action=eventInfos&id=" class="event-btn">Évènement</a>
         <a href="index.php?ctrl=cinema&action=eventInfos&id=">

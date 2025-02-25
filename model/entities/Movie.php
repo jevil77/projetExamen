@@ -18,7 +18,7 @@ final class Movie extends Entity{
     private $synopsis;      // TEXT
     private $rating;        // DECIMAL
     private $trailer;       // VARCHAR
-    private $moviePoster;   // VARCHAR
+    private $imagePath;   // VARCHAR
      // VARCHAR
     private $category;      // 
     private $user;          // 
@@ -182,25 +182,24 @@ final class Movie extends Entity{
 
 
      /**
-     * Get the value of moviePoster
+     * Get the value of imagePath
      */ 
-    public function getMoviePoster()
+    public function getImagePath()
     {
-        return $this->moviePoster;
+        return $this->imagePath;
     }
 
     /**
-     * Set the value of moviePoster
+     * Set the value of imagePath
      *
      * @return  self
      */ 
-    public function setMoviePoster($moviePoster)
+    public function setImagePath($imagePath)
     {
-        $this->moviePoster = $moviePoster;
+        $this->imagePath = $imagePath;
 
         return $this;
     }
-
 
     /**
      * Get the value of category
@@ -253,4 +252,6 @@ final class Movie extends Entity{
     
 
     
+
+   
 }
