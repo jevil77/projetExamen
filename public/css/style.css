@@ -435,9 +435,9 @@ footer {
     align-items: flex-start;
     gap: 20px;
     background-color: #2b2b2b; 
-    padding: 15px;
-    border-radius: 8px;
-    max-width: 1000px;
+    margin:auto;
+    padding: 50px;
+    max-width: 1200px;
     color: #fff;
 }
 
