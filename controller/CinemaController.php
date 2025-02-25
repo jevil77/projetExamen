@@ -278,14 +278,6 @@ class CinemaController extends AbstractController implements ControllerInterface
           
 
 
-      
-           
-
-
-
-            
-            
-
             // Récupére le user en session dans la variable $user
             $user = Session::getUser();
             if (!$user) {
@@ -463,6 +455,8 @@ class CinemaController extends AbstractController implements ControllerInterface
             
             
             $eventManager->add($data);
+                        //var_dump($_POST,$_FILES);
+
                
               $this->redirectTo("cinema", "listMovies");
               exit;

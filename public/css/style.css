@@ -429,3 +429,51 @@ footer {
     background-color: #cc3700;
     transform: scale(0.95);
 }
+
+.movie-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: #2b2b2b; 
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 1000px;
+    color: #fff;
+}
+
+.movie-poster {
+    width: 150px; 
+    border-radius: 5px;
+}
+
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.movie-info h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.movie-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.details-btn {
+    
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #e50914; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    max-width: 75px;
+}
+
+.details-btn:hover {
+    background-color: #b2070f;
+}
