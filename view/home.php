@@ -57,15 +57,21 @@
 
     <div class="movie1">
    
+    <div class="event-card">
+    <img src="<?= $movie->getImagePath() ?>" alt="Affiche du film">
     
+    <div class="event-details">
+        <h3><p><?= $event->getEventName() ?></p></h3>
+        <p><?= $movie->getMovieTitle() ?> - <?= $movie->getReleaseDate() ?></p>
+        <p><?= $movie->getSynopsis() ?></p>
+        <p>Date et heure <?= $event->getEventDateTime() ?></p>
+        <p> au <?= $event->getTheatre()?> </p>
+        <a href="lien_evenement" class="details-btn1">Évènement</a>
+    </div>
+   </div>
+
     
-        <img src="<?= $event->getImagePath()?>" alt="Affiche du film"> 
-        <p><?= $event->getEventName() ?></p>
-        <a href="index.php?ctrl=cinema&action=eventInfos&id=" class="event-btn">Évènement</a>
-        <a href="index.php?ctrl=cinema&action=eventInfos&id=">
-        <p><?= $event->getEventName() ?><?= $event->getEventDateTime() ?> au <?= $event->getTheatre()?> </p>
-    </a>
-       
+        
     </div>
     <?php } ?>
 </div>
