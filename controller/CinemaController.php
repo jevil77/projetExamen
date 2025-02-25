@@ -207,12 +207,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
     public function addMovie(){
-    //var_dump('hello');die;
-
         
-
-
-
         if(isset($_POST["submit"])) {
             // var_dump($_POST);
 
@@ -226,17 +221,17 @@ class CinemaController extends AbstractController implements ControllerInterface
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_FLOAT);
             $category = filter_input(INPUT_POST, "category_id", FILTER_VALIDATE_INT);
-            // var_dump($category,$movieTitle);
-            // if ($category_id === false || empty($category_id)) {
-            //     die("Erreur : Veuillez sélectionner une catégorie.");
-            // }
-
-
+            
+            // Il s'agit du fichier où sera stocké l'image
             $target_dir = "public/uploads/";
+            // Spécifie le chemin d'accès du fichier à télécharger, ($_FILES["fileToUpload"]["name"]) récupère le nom du fichier envoyé, basename -> récupère seulement le nom 
+            // du fichier, imagePath -> chemin complet
             $imagePath = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            // Indique si l'upload est valide
             $uploadOk = 1;
+            // Récupère l'extension du fichier
             $imageFileType = strtolower(pathinfo($imagePath,PATHINFO_EXTENSION));
-            // Vérifie si l'image est une vraie image
+            // Vérifie si le fichier est bien une image
             if(isset($_POST["submit"])) {
               $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
               if($check !== false) {
@@ -248,7 +243,7 @@ class CinemaController extends AbstractController implements ControllerInterface
               }
             }
 
-            //var_dump($_FILES);
+           
 
 
             // Vérifie si le fichier existe déjà
@@ -272,18 +267,19 @@ class CinemaController extends AbstractController implements ControllerInterface
               $uploadOk = 0;
            }
 
-
+            // Chemin temporaire où le fichier est stocké après l'upload
+            // move_uploaded_file -> déplace le fichier temporaire vers le dossier définitif
            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $imagePath)) {
                echo "Le fichier " . (basename($_FILES["fileToUpload"]["name"])) . " a été uploadé avec succès.";
            } else {
                die("Erreur lors de l'upload du fichier.");
            }
            
-
+          
 
 
       
-           // var_dump($_FILES);
+           
 
 
 
@@ -308,27 +304,16 @@ class CinemaController extends AbstractController implements ControllerInterface
                  // Récupère l'id du user en session
                 'user_id' => $user->getId() 
             ];
-            var_dump($user,$movieTitle);
-
            
-            // $data = ['movieTitle' => $movieTitle,
-            //          'releaseDate'=> $releaseDate,
-            //          'duration'=> $duration, 
-            //          'synopsis'=> $synopsis,
-            //          'rating' => $rating,
-            //          'category_id' => $category,
-            //          'user_id' => $user=Session::getUser()
-                     
-                    
-            //        ];
-            //var_dump($movieTitle, $releaseDate, $duration, $synopsis, $rating, $director);
+        
             $movieManager->add($data);
-            //var_dump($movieTitle);
-            var_dump($data);
-            //var_dump("Le film a été ajouté avec succès");die;
+          
+            //var_dump($_POST,$_FILES);die;
+          
+           
             $this->redirectTo("cinema", "listMovies");
                      exit;
- //var_dump($movieTitle);
+
 
             
         }
@@ -443,10 +428,9 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
        
-            // var_dump($_FILES);
+           
 
-            //  var_dump($eventName, $eventDateTime, $placeAvailable, $theatre, $city, $postalCode);
-
+           
             $user = Session::getUser();
             if (!$user) {
                 die("Erreur : Aucun utilisateur connecté.");
@@ -476,17 +460,15 @@ class CinemaController extends AbstractController implements ControllerInterface
             
             ];
             
-             //var_dump($_POST);die;
             
-           
-              $eventManager->add($data);
-                //var_dump($_POST);
-
+            
+            $eventManager->add($data);
+               
               $this->redirectTo("cinema", "listMovies");
               exit;
 
 
-           // var_dump($_FILES);
+           
 
 
 
