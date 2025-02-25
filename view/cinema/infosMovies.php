@@ -17,7 +17,7 @@
         <p><strong>Note :</strong> <?= $movie->getRating() ?>/10</p>
         <p><strong>Synopsis :</strong> <?= $movie->getSynopsis() ?></p>
         <p><strong>Réalisé par :</strong> <?= $movie->getUser() ?></p>
-        <a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $movie->getId() ?>" class="details-btn">Voir plus</a>
+        <a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $movie->getId() ?>" class="details-btn">...</a>
     </div>
 </div>
 
