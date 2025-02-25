@@ -56,7 +56,7 @@
         <!-- <?php var_dump($event); ?> -->
 
     <div class="movie1">
-    <?php var_dump($event->getImagePath()); ?>
+    <!-- <?php var_dump($event->getImagePath()); ?> -->
 
     
     

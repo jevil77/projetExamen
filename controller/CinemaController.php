@@ -333,7 +333,7 @@ class CinemaController extends AbstractController implements ControllerInterface
                 die("Erreur : Aucun fichier n'a été uploadé ou une erreur s'est produite.");
             }
     
-            var_dump($_POST,$_FILES);
+            //var_dump($_POST,$_FILES);
 
              
              $target_dir = "public/uploads/";
@@ -387,7 +387,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
        
-            //var_dump($_FILES);
+            // var_dump($_FILES);
 
             //  var_dump($eventName, $eventDateTime, $placeAvailable, $theatre, $city, $postalCode);
 
@@ -395,6 +395,11 @@ class CinemaController extends AbstractController implements ControllerInterface
             if (!$user) {
                 die("Erreur : Aucun utilisateur connecté.");
             }
+
+            // Convertie la date dans un format accepté par la base de données. Remplace le T par un espace pour respecter le format YYYY-MM-DD HH:MM:SS attendu par MySQL
+            $eventDateTime = !empty($_POST['eventDateTime']) ? str_replace("T", " ", $_POST['eventDateTime']) . ":00" : null;
+
+
 
             $data = [
 
@@ -404,7 +409,7 @@ class CinemaController extends AbstractController implements ControllerInterface
               'theatre' => $theatre,
               'city' => $city,
               'postalCode' => $postalCode,
-              'image_path' => $imagePath,
+              'imagePath' => $imagePath,
               'movie_id '=> $movieId,
               
               "user_id" => $user->getId()
@@ -415,11 +420,11 @@ class CinemaController extends AbstractController implements ControllerInterface
             
             ];
             
-            //var_dump($_FILES,$_POST);
+             //var_dump($_POST);die;
             
            
               $eventManager->add($data);
-               var_dump($eventDateTime);
+                //var_dump($_POST);
 
               $this->redirectTo("cinema", "listMovies");
               exit;

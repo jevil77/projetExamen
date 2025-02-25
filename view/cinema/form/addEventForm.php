@@ -25,7 +25,7 @@
 
     
     <label for="eventDateTime">Date et heure de l'évèvement</label>
-    <input type="text" id="eventDateTime" name="eventDateTime" placeholder="Date et heure de l'évènement" required>
+    <input type="datetime-local" id="eventDateTime" name="eventDateTime" placeholder="Date et heure de l'évènement" required>
     <br>
 
     <label for="placeAvailable">Nombre de place disponible :</label>
@@ -47,7 +47,7 @@
 
     
     
-    <label>Select image to upload:</label>
+    <label>Sélectionner une image à télécharger:</label>
     <input type="file" name="fileToUpload" id="fileToUpload">
 
     <br>
