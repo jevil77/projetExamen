@@ -10,11 +10,11 @@ class SecurityController extends AbstractController{
 
 
 
-    public function registerForm(){
-        var_dump('hello');
+    public function registerForm (){
+        
 
         return [
-            "view" => VIEW_DIR."security/register.php",
+            "view" => VIEW_DIR."security/registerUser.php",
             "meta_description" => "Formulaire d'inscription"
          
         ];
@@ -24,27 +24,30 @@ class SecurityController extends AbstractController{
 
 
 
-    public function register () {
+    public function registerUser () {
+
+        //var_dump('hello');die;
 
         
         
         if(isset($_POST["submit"])) {
 
-            var_dump($_POST);
+            //var_dump('hello');
+
             
         
-               $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-               $firstName = filter_input(INPUT_POST, "firstName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            //    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            //    $firstName = filter_input(INPUT_POST, "firstName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $pseudo = filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-               $role = filter_input(INPUT_POST, "role", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            //    $role = filter_input(INPUT_POST, "role", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $password_confirm = filter_input(INPUT_POST, "password_confirm", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                
         
+            //var_dump($pseudo,$email,$password);
         
-        
-            if($name && $firstName && $pseudo && $role && $email && $password && $password_confirm) {
+            if( $pseudo  && $email && $password && $password_confirm) {
             
      
                $userManager = new UserManager();
@@ -67,10 +70,9 @@ class SecurityController extends AbstractController{
                 
                 
                     $userManager->add([
-                        "name" => $name,
-                        "firstName" => $firstName,
+                    
                         "pseudo" => $pseudo,
-                        "role" => $role,
+                        
                         "email" => $email,
                         
                         "password" => password_hash($password, PASSWORD_DEFAULT),
@@ -78,8 +80,7 @@ class SecurityController extends AbstractController{
                      ]);
                     
                 
-
-                    
+                     //var_dump($_POST);die;
                     
                     
                     }
@@ -95,7 +96,98 @@ class SecurityController extends AbstractController{
 
         }
 
-    }               
+    }         
+
+
+
+
+    public function registerRealisateurForm(){
+      
+
+        return [
+            "view" => VIEW_DIR."security/registerRealisateur.php",
+            "meta_description" => "Formulaire d'inscription"
+         
+        ];
+
+
+    }
+
+
+    public function registerRealisateur(){
+
+
+        if(isset($_POST["submit"])) {
+
+            //var_dump('hello');
+
+            
+        
+               $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+               $firstName = filter_input(INPUT_POST, "firstName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+               $pseudo = filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+               $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+               $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+               $password_confirm = filter_input(INPUT_POST, "password_confirm", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+
+               if( $name && $firstName && $pseudo && $email && $password && $password_confirm) {
+            
+     
+                $userManager = new UserManager();
+             
+                $user = $userManager->findOneByEmail($email);
+
+                if ($user) {
+                    //echo "Un compte avec cet email existe déjà.";
+
+                    $this->redirectTo("security", "loginForm");
+                    exit;
+                
+                } else {
+                    
+                    if($password == $password_confirm && strlen($password) >= 5) {
+                    
+                
+                
+                    $userManager->add([
+
+                        "name" => $name,
+                        "firstName" => $firstName,
+                        "pseudo" => $pseudo,
+                        "email" => $email,
+                        "password" => password_hash($password, PASSWORD_DEFAULT),
+                        "role" => "ROLE_REALISATEUR"
+                       
+                     ]);
+                    
+                
+                     //var_dump($_POST);die;
+                    
+                    
+                    }
+                     $this->redirectTo("security", "loginForm");
+                     exit;
+
+                        
+        
+                }
+
+                         
+            }
+
+        }
+
+    }         
+               
+
+
+
+
+
+    
+    
+
             
     public function loginForm() {
 
@@ -120,42 +212,38 @@ class SecurityController extends AbstractController{
                         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-                        // var_dump($mail,$password);die;
+                         //var_dump($email,$password);
 
 
                         if($email && $password) {
-
+                           
                            $user = $userManager->findOneByEmail($email);
-                    
-                           if($user){
+                        //   var_dump($user);
                         
+                           if($user){
+                            
                                 $hash = $user->getPassword();
-                    
-
+                               
+                                // var_dump($email,$password);
                     
 
                                 if(password_verify($password, $hash)){
  
                                  $_SESSION["user"] = $user;
                                  $_SESSION["message"] = "Bienvenue ! ";
-                                 // $_SESSION["user"] = $user;
+                                  //$_SESSION["user"] = $user;
                                  $this->redirectTo( "home","listUsers");
-                                 var_dump($_SESSION);
+                                
                                  
                                 
                                 
                           
-                                       
-                                }   else {
-
-                                        echo "Un problème est survenu";
-                                        // $this->redirectTo("security", "login");
-                                         
-                                }    
-                            
-                            
+                                } else {
+                                    echo "Le mot de passe est incorrect.";
+                                }
+                            } else {
+                                echo "Aucun utilisateur trouvé avec cet email.";
                             }
-                        
                         
                         }
                     
@@ -195,7 +283,3 @@ class SecurityController extends AbstractController{
 
 
 
-
-    
-    
- 

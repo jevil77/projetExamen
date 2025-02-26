@@ -366,7 +366,7 @@ class CinemaController extends AbstractController implements ControllerInterface
                 die("Erreur : Aucun fichier n'a été uploadé ou une erreur s'est produite.");
             }
     
-            //var_dump($_POST,$_FILES);
+            //var_dump($_POST,$_FILES);die;
 
              
              $target_dir = "public/uploads/";

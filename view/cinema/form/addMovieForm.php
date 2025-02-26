@@ -32,11 +32,11 @@
     <br> 
     
     <label for="releaseDate">Année de sortie :</label>
-    <input type="number" id="releaseDate" name="releaseDate" placeholder="Année de sortie" required>
+    <input type="number" id="releaseDate" name="releaseDate" min=1900 max=2030 placeholder="Année de sortie" required>
     <br>
 
     <label for="duration">Durée (en minutes) :</label>
-    <input type="number" id="duration" name="duration" placeholder="Durée en minutes" required>
+    <input type="number" id="duration" name="duration" min=1 max=300 placeholder="Durée en minutes" required>
     <br>
 
     <label for="synopsis">Synopsis :</label>
@@ -44,7 +44,7 @@
     <br>
 
     <label for="rating">Note :</label>
-    <input type="number" id="rating" name="rating" placeholder="Note" required>
+    <input type="number" id="rating" name="rating" min=0 max=10 placeholder="Note" required>
     <br>
 
   

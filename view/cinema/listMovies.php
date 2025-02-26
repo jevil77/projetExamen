@@ -31,6 +31,13 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
+
+        .movie1 img {
+          max-width: 200px; 
+          height: auto; 
+          border-radius: 5px; 
+        }
+
        
         .movie-info {
             display: flex;
@@ -48,6 +55,9 @@
             font-size: 1rem;
             margin-bottom: 10px;
         }
+
+       
+
 
 
 
@@ -107,7 +117,7 @@
 
 <div class="movie-list">
     <?php foreach ($movies as $movie) { ?>
-        <div class="movie1">
+        <div class="movie1 img">
         <img src="<?=$movie->GetImagePath() ?>" alt="affiche du film">
         <h3><a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $movie->getId() ?>"><?= $movie->getMovieTitle() ?></a></h3>
 

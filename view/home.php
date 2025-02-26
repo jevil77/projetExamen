@@ -48,7 +48,7 @@
     <p>Les prochains évènements</p>
 </div>
 
-
+<?php var_dump($events); ?>
 <div class="movie-container1">
     <?php foreach ($events as $event) { ?>
     
@@ -66,7 +66,7 @@
         <p><?= $movie->getSynopsis() ?></p>
         <p>Date et heure <?= $event->getEventDateTime() ?></p>
         <p> au <?= $event->getTheatre()?> </p>
-        <a href="lien_evenement" class="details-btn1">Évènement</a>
+        <a href="lien_evenement" class="details-btn1">Réserver</a>
     </div>
    </div>
 

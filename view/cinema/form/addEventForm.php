@@ -25,11 +25,11 @@
 
     
     <label for="eventDateTime">Date et heure de l'évèvement</label>
-    <input type="datetime-local" id="eventDateTime" name="eventDateTime" placeholder="Date et heure de l'évènement" required>
+    <input type="datetime-local" id="eventDateTime" name="eventDateTime" min="2025-02-26T00:00" placeholder="Date et heure de l'évènement" required>
     <br>
 
     <label for="placeAvailable">Nombre de place disponible :</label>
-    <input type="number" id="placeAvailable" name="placeAvailable" placeholder="Nombre de place disponible" required>
+    <input type="number" id="placeAvailable" name="placeAvailable" min=0 max=500 placeholder="Nombre de place disponible" required>
     <br>
 
     <label for="theatre">Lieu de l'évènement</label>
@@ -42,7 +42,7 @@
     <br>
 
     <label for="postalCode">Code Postal</label>
-    <input type="number" id="code postal" name="postalCode" placeholder="Code postal" required>
+    <input type="number" id="code postal" name="postalCode" min=0 max=99999 placeholder="Code postal" required>
     <br> 
 
     
