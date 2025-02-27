@@ -46,9 +46,8 @@
 
 <div class="titre_section">
     <p>Les prochains évènements</p>
-</div>
 
-<?php var_dump($events); ?>
+
 <div class="movie-container1">
     <?php foreach ($events as $event) { ?>
     
@@ -58,22 +57,24 @@
     <div class="movie1">
    
     <div class="event-card">
-    <img src="<?= $movie->getImagePath() ?>" alt="Affiche du film">
+    <img src="<?= $event->getImagePath() ?>" alt="Affiche du film">
     
     <div class="event-details">
         <h3><p><?= $event->getEventName() ?></p></h3>
-        <p><?= $movie->getMovieTitle() ?> - <?= $movie->getReleaseDate() ?></p>
-        <p><?= $movie->getSynopsis() ?></p>
+        <p><?= $event->getMovie()->getMovieTitle() ?> - <?= $event->getMovie()->getReleaseDate() ?></p>
+        <p><?= $event->getMovie()->getSynopsis() ?></p>
         <p>Date et heure <?= $event->getEventDateTime() ?></p>
         <p> au <?= $event->getTheatre()?> </p>
-        <a href="lien_evenement" class="details-btn1">Réserver</a>
+
+        <a href="index.php?ctrl=cinema&action=bookEventForm" class="details-btn1">Réserver</a>
     </div>
    </div>
 
     
         
     </div>
-    <?php } ?>
+    <?php     
+} ?>
 </div>
 
     
