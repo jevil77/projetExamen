@@ -57,7 +57,9 @@
     <div class="movie1">
    
     <div class="event-card">
-    <img src="<?= $event->getImagePath() ?>" alt="Affiche du film">
+       <a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $event->getMovie()->getId() ?>">
+           <img src="<?= $event->getImagePath() ?>" alt="Affiche du film">
+        </a>
     
     <div class="event-details">
         <h3><p><?= $event->getEventName() ?></p></h3>
