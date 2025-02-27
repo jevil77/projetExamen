@@ -476,7 +476,7 @@ class CinemaController extends AbstractController implements ControllerInterface
         public function listEvents() {
 
 
-            $eventManager = new eventManager();
+            $eventManager = new EventManager();
             $events = $eventManager->findAll();
     
             return [
@@ -495,11 +495,21 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
         public function bookEventForm() {
+            
+            
+            $eventManager = new EventManager();
+            $events = $eventManager->findAll();
+
+
 
 
             return [
                 "view" => VIEW_DIR."cinema/form/bookEventForm.php",
                 "meta_description" => "Réservation :",
+                "data" => [
+
+                    "events" => $events
+                ]
                 
             ];
 
