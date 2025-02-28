@@ -6,6 +6,7 @@ use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\CategoryManager;
 use Model\Managers\MovieManager;
+use Model\Managers\ParticipateManager;
 use Model\Managers\PostManager;
 use Model\Managers\EventManager;
 use Model\Managers\UserManager;
@@ -494,32 +495,157 @@ class CinemaController extends AbstractController implements ControllerInterface
         }
 
 
-        public function bookEventForm() {
+        // public function bookEventForm() {
             
             
-            $eventManager = new EventManager();
-            $events = $eventManager->findAll();
+        //     $eventManager = new EventManager();
+        //     $events = $eventManager->findAll();
 
 
 
 
-            return [
-                "view" => VIEW_DIR."cinema/form/bookEventForm.php",
-                "meta_description" => "Réservation :",
-                "data" => [
+        //     return [
+        //         "view" => VIEW_DIR."cinema/form/bookEventForm.php",
+        //         "meta_description" => "Réservation :",
+        //         "data" => [
 
-                    "events" => $events
-                ]
+        //             "events" => $events
+        //         ]
                 
+        //     ];
+
+        //  }
+
+
+
+
+    public function bookEvent($id) {
+
+        $eventManager = new EventManager();
+        $event = $eventManager->findOneById($id);
+        // $user = App\Session::getUser()->getId();
+        $user = Session::getUser();
+        $user_id = $user->getId();
+
+        
+        $reservePlace = filter_input(INPUT_POST, "reservePlace", FILTER_VALIDATE_INT );
+        
+        if(isset($_POST["submit"])) {     
+            
+            $participateManager = new ParticipateManager();
+            // $participate = $participateManager->findOneById($id);
+            $data = [
+                'reservePlace'=> $reservePlace,
+                'user_id' => $user_id,
+                'event_id' => $id
             ];
-
-
-
-
-
-
-
+            
+            $participateManager->add($data);
         }
+        return [
+            "view" => VIEW_DIR."cinema/bookEvent.php",
+            "meta_description" => "Réservation :",
+            "data" => [
+             "event" => $event
+            ]
+            ];
+    }
+}
+        
+        
+        
+        
+        // $pseudo = filter_input(INPUT_POST, "pseudo",FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+                // $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+                // $reservePlace = filter_input(INPUT_POST, "reservePlace",  FILTER_VALIDATE_INT );
+        
+        
+
+
+               
+
+
+    
+
+
+               
+
+               
+                //  var_dump($pseudo,$email,$reservePlace);die;
+
+
+
+                // if ($event->getPlaceAvailable() < $participate->getReservePlace()) {
+                //          die("Erreur : Pas assez de places disponibles.");
+
+
+
+
+
+            
+            //  ];
+
+    // }
+
+  
+
+         // fonction pour décrémenter le nombre de places réservées du nombre de places disponibles
+
+
+    //      public function deductPlace() {
+
+            
+
+
+
+    //         if(isset($_POST["submit"])) {
+
+
+
+    //             $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT );
+    //             $pseudo = filter_input(INPUT_POST, "pseudo",FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+    //             $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+    //             $nb_places = filter_input(INPUT_POST, "nb_places",  FILTER_VALIDATE_INT );
+
+
+    //             var_dump($pseudo,$email,$nb_places);
+
+
+    //             $eventManager = new EventManager();
+
+
+
+    //              if ($placeAvailable < $nb_places) {
+    //                 die("Erreur : Pas assez de places disponibles.");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //         }
+
+
+
+
+    //      }
 
 
 
@@ -530,28 +656,28 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
 
-    // public function deleteMovie($id){
+    // // public function deleteMovie($id){
 
 
-    //      $movieManager = new MovieManager();
+    // //      $movieManager = new MovieManager();
 
-    //      $id = $movieManager->findOneById($id);
+    // //      $id = $movieManager->findOneById($id);
 
-    //      $id->delete($id);
-
-
-    //      $this->redirectTo("cinema", "listMovies");
-    //      exit;
+    // //      $id->delete($id);
 
 
-
+    // //      $this->redirectTo("cinema", "listMovies");
+    // //      exit;
 
 
 
 
 
 
-    // }
+
+
+
+    // // }
 
 
        
@@ -564,4 +690,7 @@ class CinemaController extends AbstractController implements ControllerInterface
     
 
 
-}
+    //     }
+
+     
+    // }

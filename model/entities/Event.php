@@ -9,7 +9,7 @@ use App\Entity;
 
 final class Event extends Entity{
 
-    private $idEvent;    // INT
+    private $id;    // INT
     private $eventName;   // VARCHAR
     private $eventDateTime; // DATETIME
     private $placeAvailable; // INT
@@ -41,9 +41,9 @@ final class Event extends Entity{
     /**
      * Get the value of idEvent
      */ 
-    public function getIdEvent()
+    public function getId()
     {
-        return $this->idEvent;
+        return $this->id;
     }
 
     /**
@@ -51,9 +51,9 @@ final class Event extends Entity{
      *
      * @return  self
      */ 
-    public function setIdEvent($idEvent)
+    public function setId($id)
     {
-        $this->idEvent = $idEvent;
+        $this->id = $id;
 
         return $this;
     }
