@@ -1,4 +1,6 @@
 <?php
+
+
 namespace Controller;
 
 use App\Session;
@@ -520,28 +522,47 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
     public function bookEvent($id) {
+        var_dump($id);
 
         $eventManager = new EventManager();
         $event = $eventManager->findOneById($id);
+
+
         // $user = App\Session::getUser()->getId();
         $user = Session::getUser();
         $user_id = $user->getId();
 
+        $reservePlace = 0; 
+
+
+
+        if (isset($_POST["submit"])) {  
+
+            // Permet de s'assurer que event_id est un entier
+            $event_id = isset($_POST["event_id"]) ? (int)$_POST["event_id"] : 0;
+            $reservePlace = filter_input(INPUT_POST, "reservePlace", FILTER_VALIDATE_INT);
         
-        $reservePlace = filter_input(INPUT_POST, "reservePlace", FILTER_VALIDATE_INT );
+            if ($event_id <= 0 || !$reservePlace) {
+                die("Données invalides.");
+            }
         
-        if(isset($_POST["submit"])) {     
             
+        
             $participateManager = new ParticipateManager();
-            // $participate = $participateManager->findOneById($id);
             $data = [
-                'reservePlace'=> $reservePlace,
+                'reservePlace' => $reservePlace,
                 'user_id' => $user_id,
-                'event_id' => $id
+                'event_id' => $event_id
             ];
-            
             $participateManager->add($data);
         }
+        var_dump($data); die;
+
+        $newPlaceAvailable = $event->getPlaceAvailable() - $reservePlace;
+        $eventManager->updatePlaces($event_id, $newPlaceAvailable);
+
+ 
+        
         return [
             "view" => VIEW_DIR."cinema/bookEvent.php",
             "meta_description" => "Réservation :",
@@ -549,10 +570,13 @@ class CinemaController extends AbstractController implements ControllerInterface
              "event" => $event
             ]
             ];
-    }
-}
+
+
+
+    
+        }
         
-        
+    } 
         
         
         // $pseudo = filter_input(INPUT_POST, "pseudo",FILTER_SANITIZE_FULL_SPECIAL_CHARS );

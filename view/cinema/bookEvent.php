@@ -9,6 +9,7 @@
 
 
 <form action="index.php?ctrl=cinema&action=bookEvent" method="POST">
+<input type="hidden" name="event_id" value="<?= $event->getId(); ?>">
 
     <!-- <label for="pseudo">Pseudo</label>
     <input type="text" id="pseudo" name="pseudo" placeholder="Entrez votre pseudo" required>

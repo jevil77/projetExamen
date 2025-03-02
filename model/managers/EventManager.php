@@ -63,6 +63,24 @@ class EventManager extends Manager {
     }
 
 
+
+    public function updatePlaces($event_id, $newPlaceAvailable) {
+        $sql = "UPDATE events SET place_available = :newPlaceAvailable WHERE id = :event_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            "newPlaceAvailable" => $newPlaceAvailable,
+            "event_id" => $event_id
+        ]);
+    }
+    
+
+
+    
+
+
+    
+
+
    
     
     
