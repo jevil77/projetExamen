@@ -22,7 +22,7 @@ $events = $result["data"]['events'];
                         <p>Date et heure <?= $event->getEventDateTime() ?></p>
                         <p> au <?= $event->getTheatre() ?> </p>
 
-                        <a href="index.php?ctrl=cinema&action=bookEvent&id=<?= $event->getId()?>" class="details-btn1">Réserver</a>
+                        <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId()?>" class="details-btn1">Réserver</a>
                     </div>
                   </div>
             </div>

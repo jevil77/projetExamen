@@ -39,39 +39,40 @@ class EventManager extends Manager {
 
 
 
-       public function add($data){
-        //$keys = ['username' , 'password', 'email']
-        $keys = array_keys($data);
-        //$values = ['Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com']
-        $values = array_values($data);
-        //"username,password,email"
-        $sql = "INSERT INTO ".$this->tableName."
-                (".implode(',', $keys).") 
-                VALUES
-                ('".implode("','",$values)."')";
-                //"'Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com'"
-        /*
-            INSERT INTO user (username,password,email) VALUES ('Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com') 
-        */
-        try{
-            return DAO::insert($sql);
-        }
-        catch(\PDOException $e){
-            echo $e->getMessage(); 
-            die();
+
+       // Cette fonction met à jour le nombre de places disponibles d'un évènement identifié par in id dans la base de données
+
+       public function updatePlaces($event_id, $newPlaceAvailable) {
+        $sql = "UPDATE event SET placeAvailable = :newPlaceAvailable WHERE id_event = :event_id";
+
+        // Modifie placeAvailable avec une nouvelle valeur (:newPlaceAvailable).  Met à jour l'événement correspondant à l'id
+       
+        try {
+            $result = DAO::update($sql, [
+                'newPlaceAvailable' => $newPlaceAvailable,
+                'event_id' => $event_id
+            ]);
+    
+            if (!$result) {
+                throw new \Exception("La mise à jour du nombre de places a échoué.");
+            }
+    
+            return $result;
+        } catch (\Exception $e) {
+            error_log("Erreur lors de la mise à jour des places : " . $e->getMessage());
+            return false;
         }
     }
-
-
-
-    public function updatePlaces($event_id, $newPlaceAvailable) {
-        $sql = "UPDATE events SET place_available = :newPlaceAvailable WHERE id = :event_id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([
-            "newPlaceAvailable" => $newPlaceAvailable,
-            "event_id" => $event_id
-        ]);
-    }
+     
+   
+   
+   
+   
+   
+   
+   
+   
+ }
     
 
 
@@ -86,4 +87,4 @@ class EventManager extends Manager {
     
 
     
-}
+

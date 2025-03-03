@@ -8,7 +8,7 @@
 
 
 
-<form action="index.php?ctrl=cinema&action=bookEvent" method="POST">
+<form action="index.php?ctrl=cinema&action=bookEvent&id=<?= $event->getId(); ?>" method="POST">
 <input type="hidden" name="event_id" value="<?= $event->getId(); ?>">
 
     <!-- <label for="pseudo">Pseudo</label>

@@ -9,8 +9,9 @@
        <?php } ?>
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <script src="https://kit.fontawesome.com/ccbe9956fa.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
         <title>FORUM</title>
     </head>
@@ -40,7 +41,7 @@
                                 ?>
                                 <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                                 <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
-                                <a href="index.php?ctrl=cinema&action=bookEventForm">Réserver une séance</a>
+                                <a href="index.php?ctrl=cinema&action=bookEventForm&id=">Réserver une séance</a>
                                 <a href="index.php?ctrl=cinema&action=index">Catégories</a>
                                 <?php
                             }
@@ -59,7 +60,7 @@
                 <?php        if (isset($_SESSION['user'])) { ?>
                         <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Evènements</a>
                 <?php    } ?>
-                        <a href="index.php?ctrl=cinema&action=addEventForm">Créer un évènement</a>
+                        <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Créer un évènement</a>
 
                         <a href="index.php?ctrl=cinema&action=listEvents">Liste des évènements</a>
 

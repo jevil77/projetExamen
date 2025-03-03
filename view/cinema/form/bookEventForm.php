@@ -1,46 +1,31 @@
 <?php
-    $events = $result["data"]['events']; 
+    $event = $result["data"]['event']; 
 
 ?>
 
 
-<div class="custom-form">  
 
 
-<form action="index.php?ctrl=cinema&action=bookEvent" method="POST">
 
-    <label for="pseudo">Pseudo</label>
-        <input type="text" id="pseudo" name="pseudo" placeholder="Entrez votre pseudo" required>
-        <br>
 
-        
-        <label for="email">Mail :</label>
-        <input type="email" id="email" name="email" placeholder="Entrez votre mail" required>
-        <br>
-        
+<form action="index.php?ctrl=cinema&action=bookEvent&id=<?= $event->getId(); ?>" method="POST">
+<input type="hidden" name="event_id" value="">
 
-    <label for="event">Choisissez un évènement :</label>
-        <select name="event" id="event" required>
-            <?php foreach ($events as $event) { ?>
+    <!-- <label for="pseudo">Pseudo</label>
+    <input type="text" id="pseudo" name="pseudo" placeholder="Entrez votre pseudo" required>
+    <br>
 
-            <option value="<?= $event->getIdEvent() ?>"><?=$event->getEventName() ?> - <?=$event->getMovie()->getMovieTitle()?> ( <?= $event->getPlaceAvailable() ?> places restantes )</option>
+    
+    <label for="email">Mail :</label>
+    <input type="email" id="email" name="email" placeholder="Entrez votre mail" required>
+    <br> -->
 
-        <?php } ?>
-        </select>
-        <br>
-
-    <label for="placeAvailable">Nombre de places :</label>
-    <input type="number" id="placeAvailable" name="placeAvailable" min="1" max="5" required>
+    <label for="reservePlace">Nombre de places :</label>
+    <input type="number" id="reservePlace" name="reservePlace" min="1" max="5" required>
     <br>
 
 
 
-    <input type="submit" name="submit" value="Réserver">
+    <button type="submit" name="submit">Confirmer</button>
+
 </form>
-
-</div>
-
-
-
- 
-    

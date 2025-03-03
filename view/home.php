@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
+ 
 
     <title>Document</title>
 </head>
@@ -32,9 +33,11 @@
             <div class="movie">
             <a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $movie->getId() ?>">
                 <img src="<?= $movie->getImagePath() ?>" alt="Affiche du film">
+               
                 
             <p class="movie-title"><?= $movie->getMovieTitle() ?></a></p>
-            </diV>
+            <a href="index.php?ctrl=cinema&action=likeMovie&id=<?= $movie->getId() ?>"><i class="fa-regular fa-heart"></i> </a>
+            </div>
             <?php  } ?>
         </div>
        

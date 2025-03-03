@@ -20,7 +20,7 @@
             <?php foreach ($movies as $movie) { ?>
 
             <option value="<?= $movie->getId() ?>"><?=$movie->getMovieTitle() ?></option>
-        <?php var_dump($movie); } ?>
+        <?php } ?>
     </select>
 
     

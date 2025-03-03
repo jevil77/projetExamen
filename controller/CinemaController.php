@@ -12,6 +12,7 @@ use Model\Managers\ParticipateManager;
 use Model\Managers\PostManager;
 use Model\Managers\EventManager;
 use Model\Managers\UserManager;
+use Model\Managers\LikerManager;
 
 class CinemaController extends AbstractController implements ControllerInterface{
 
@@ -329,6 +330,7 @@ class CinemaController extends AbstractController implements ControllerInterface
             "meta_description" => "Liste des évènements",
             "data" => [
                 "movies" => $movies
+
             ]
           ];
         
@@ -360,6 +362,8 @@ class CinemaController extends AbstractController implements ControllerInterface
              $city = filter_input(INPUT_POST, "city",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $postalCode = filter_input(INPUT_POST,"postalCode",FILTER_VALIDATE_INT);
              $movieId =filter_input(INPUT_POST,"movie_id",FILTER_VALIDATE_INT);
+
+             
 
 
 
@@ -497,83 +501,148 @@ class CinemaController extends AbstractController implements ControllerInterface
         }
 
 
-        // public function bookEventForm() {
+        public function bookEventForm($id) {
             
             
-        //     $eventManager = new EventManager();
-        //     $events = $eventManager->findAll();
+            $eventManager = new EventManager();
+            $event = $eventManager->findOneById($id);
 
 
 
+            return [
+                "view" => VIEW_DIR."cinema/form/bookEventForm.php",
+                "meta_description" => "Réservation :",
+                "data" => [
 
-        //     return [
-        //         "view" => VIEW_DIR."cinema/form/bookEventForm.php",
-        //         "meta_description" => "Réservation :",
-        //         "data" => [
-
-        //             "events" => $events
-        //         ]
+                    "event" => $event
+                ]
                 
-        //     ];
+            ];
 
-        //  }
-
-
-
-
-    public function bookEvent($id) {
-        var_dump($id);
-
-        $eventManager = new EventManager();
-        $event = $eventManager->findOneById($id);
-
-
-        // $user = App\Session::getUser()->getId();
-        $user = Session::getUser();
-        $user_id = $user->getId();
-
-        $reservePlace = 0; 
+         }
 
 
 
-        if (isset($_POST["submit"])) {  
 
-            // Permet de s'assurer que event_id est un entier
-            $event_id = isset($_POST["event_id"]) ? (int)$_POST["event_id"] : 0;
-            $reservePlace = filter_input(INPUT_POST, "reservePlace", FILTER_VALIDATE_INT);
+         public function bookEvent($id) {
+
+            //Récupère le user connecté
+            $user = Session::getUser();
         
-            if ($event_id <= 0 || !$reservePlace) {
-                die("Données invalides.");
+            if (!$user) {
+                die("Utilisateur non connecté.");
             }
-        
             
+            //récupère l'id de l'utilisateur connecté
+            $user_id = $user->getId();
+
+            
+            //Soumission du formulaire
+            if (isset($_POST["submit"])) {  
+                // Vérification et filtrage des données
+                $reservePlace = filter_input(INPUT_POST, "reservePlace", FILTER_VALIDATE_INT);
+
+
+                //Vérifie si le nombre de places sélectionnées est valide
+                if (!$reservePlace || $reservePlace <= 0) {
+                    die("Le nombre de places réservées est invalide.");
+                }
         
-            $participateManager = new ParticipateManager();
-            $data = [
-                'reservePlace' => $reservePlace,
-                'user_id' => $user_id,
-                'event_id' => $event_id
-            ];
-            $participateManager->add($data);
+                $participateManager = new ParticipateManager();
+        
+                // Ajout de la participation
+                $data = [
+                    'reservePlace' => $reservePlace,
+                    'user_id' => $user_id,
+                    'event_id' => $id
+                ];
+        
+                if (!$participateManager->add($data)) {
+                    die("Erreur lors de l'ajout de la participation.");
+                }
+                
+                // Définir la variable
+                $eventManager = new EventManager();      
+                $event = $eventManager->findOneById($id);
+        
+                if (!$event) {
+                    die("Événement introuvable.");
+                }
+        
+                // Calcul du nouveau nombre de places disponibles
+                $newPlaceAvailable = $event->getPlaceAvailable() - $reservePlace;
+        
+                if ($newPlaceAvailable < 0) {
+                    die("Impossible de réserver : plus assez de places disponibles.");
+                }
+        
+                // Mise à jour du nombre de places disponibles
+                if (!$eventManager->updatePlaces($id, $newPlaceAvailable)) {
+                    die("Erreur lors de la mise à jour du nombre de places disponibles.");
+                }
+        
+        
+                // Redirection après traitement
+                $this->redirectTo("cinema", "listMovies");
+                exit;
+            }
         }
-        var_dump($data); die;
 
-        $newPlaceAvailable = $event->getPlaceAvailable() - $reservePlace;
-        $eventManager->updatePlaces($event_id, $newPlaceAvailable);
 
- 
+
+
+
+
+        public function likeMovie($id){
+
+
+
+
+
+            $user = Session::getUser();
         
-        return [
-            "view" => VIEW_DIR."cinema/bookEvent.php",
-            "meta_description" => "Réservation :",
-            "data" => [
-             "event" => $event
-            ]
+            if (!$user) {
+                die("Utilisateur non connecté.");
+            }
+
+
+            $user_id = $user->getId();
+            
+
+
+            $likerManager = new LikerManager;
+            $movie = $likerManager->findOneById($id);
+
+           
+
+           
+            var_dump($id,$likerManager,$movie);
+            $data = [
+                
+                'user_id' => $user_id,
+                'movie_id'=> $id
             ];
+             
+            //var_dump($user_id,$movie_id);die;
+
+            $likerManager->add($data);
 
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
         
     } 
