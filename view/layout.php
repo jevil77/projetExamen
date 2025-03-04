@@ -41,7 +41,7 @@
                                 ?>
                                 <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                                 <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
-                                <a href="index.php?ctrl=cinema&action=bookEventForm&id=">Réserver une séance</a>
+                                <a href="index.php?ctrl=cinema&action=bookEventForm">Réserver une séance</a>
                                 <a href="index.php?ctrl=cinema&action=index">Catégories</a>
                                 <?php
                             }
@@ -59,9 +59,10 @@
                         <a href="index.php?ctrl=cinema&action=listMovies">Liste des films</a>
                 <?php        if (isset($_SESSION['user'])) { ?>
                         <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Evènements</a>
-                <?php    } ?>
                         <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Créer un évènement</a>
 
+                <?php    } ?>
+                       
                         <a href="index.php?ctrl=cinema&action=listEvents">Liste des évènements</a>
 
 

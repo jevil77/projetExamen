@@ -18,6 +18,21 @@ class LikerManager extends Manager{
     }
 
 
+    public function hasliked($user_id, $movie_id) {
+
+        $sql= "SELECT * FROM liker WHERE user_id = :user_id AND movie_id = :movie_id";
+
+        return $this->getOneOrNullResult(
+            DAO::select($sql, ['user_id' => $user_id,
+                               'movie_id' => $movie_id
+        
+        ], true), 
+            $this->className
+        );
+
+}
+
+
 
 
 }

@@ -14,26 +14,28 @@ use Model\Managers\EventManager;
 use Model\Managers\UserManager;
 use Model\Managers\LikerManager;
 
+
+
 class CinemaController extends AbstractController implements ControllerInterface{
 
     public function index() {
-        
-        // créer une nouvelle instance de CategoryManager
+        // Créer une nouvelle instance de CategoryManager
         $categoryManager = new CategoryManager();
-        // récupérer la liste de toutes les catégories grâce à la méthode findAll de Manager.php (triés par nom)
+        
+        // Récupérer la liste de toutes les catégories triées par nom (descendant)
         $categories = $categoryManager->findAll(["categoryName", "DESC"]);
     
-        // le controller communique avec la vue "listCategories" (view) pour lui envoyer la liste des catégories (data)
+        // Le controller communique avec la vue "listCategories" pour lui envoyer la liste des catégories
         return [
-            "view" => VIEW_DIR."cinema/listCategories.php",
+            "view" => VIEW_DIR . "cinema/listCategories.php",
             "meta_description" => "Liste des catégories de films",
             "data" => [
                 "categories" => $categories
-            ] 
+            ]
         ];
-       
     }
 
+    
     public function listMoviesByCategory($id) {
          
         // créer une nouvelle instance de MovieManager 
@@ -64,10 +66,6 @@ class CinemaController extends AbstractController implements ControllerInterface
         $posts = $postManager->findPostsByMovies($id);
         $movies = $movieManager->findOneById($id);
         
-
-        
-       
-
         return [
             "view" => VIEW_DIR."cinema/listPostsByMovies.php",
             "meta_description" => "Liste des posts par film : ".$movies,
@@ -76,7 +74,6 @@ class CinemaController extends AbstractController implements ControllerInterface
                 "posts" => $posts
             ]
         ];
-        var_dump($post);
     }
 
 
@@ -90,13 +87,11 @@ class CinemaController extends AbstractController implements ControllerInterface
             "view" => VIEW_DIR."cinema/listUsers.php",
             "meta_description" => "Liste des utilisateurs :",
             "data" => [
-                
                 "users" => $users,
-                
-            ]
+                ]
         ];
 
-  }
+    }
 
     public function infosUsers($id){
         
@@ -107,9 +102,7 @@ class CinemaController extends AbstractController implements ControllerInterface
            "view" => VIEW_DIR."cinema/infosUsers.php",
            "meta_description" => " Infos des Utilisateurs:",
            "data" => [
-            
-              "user" => $user,
-        
+            "user" => $user,
             ]
         ];
     }
@@ -340,20 +333,9 @@ class CinemaController extends AbstractController implements ControllerInterface
 
     public function addEvent(){
 
-
-
-
-
- 
-
             if(isset($_POST["submit"])) {
            
-
-
             $eventManager = new EventManager();
-
-
-
 
              $eventName = filter_input(INPUT_POST, "eventName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $eventDateTime = filter_input(INPUT_POST, "eventDateTime",FILTER_VALIDATE_INT);
@@ -363,10 +345,7 @@ class CinemaController extends AbstractController implements ControllerInterface
              $postalCode = filter_input(INPUT_POST,"postalCode",FILTER_VALIDATE_INT);
              $movieId =filter_input(INPUT_POST,"movie_id",FILTER_VALIDATE_INT);
 
-             
-
-
-
+            
              
 
              if (!isset($_FILES["fileToUpload"]) || $_FILES["fileToUpload"]["error"] !== 0) {
@@ -613,20 +592,34 @@ class CinemaController extends AbstractController implements ControllerInterface
             $likerManager = new LikerManager;
             $movie = $likerManager->findOneById($id);
 
-           
+            $hasLiked = $likerManager->hasLiked($user_id, $id);
 
-           
-            var_dump($id,$likerManager,$movie);
-            $data = [
+            if($hasLiked){
+                $_SESSION['alert'] = "<div class='alert'><p>Vous avez déjà liké ce film !</p></div>";
+
+
+            } else { $data = [
                 
                 'user_id' => $user_id,
                 'movie_id'=> $id
-            ];
-             
-            //var_dump($user_id,$movie_id);die;
+            
+                
+            ];}
 
             $likerManager->add($data);
 
+
+            $_SESSION['alert'] = "<div class='alert'><p>Vous avez liké ce film !</p></div>";
+
+           
+
+           
+            // var_dump($id,$likerManager,$movie);
+           
+             
+            // //var_dump($user_id,$movie_id);die;
+
+           
 
 
 
@@ -644,6 +637,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
         }
+        
         
     } 
         

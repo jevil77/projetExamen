@@ -1,17 +1,24 @@
 <?php
     $user = $result["data"]['user']; 
     // var_dump('hello');
-    var_dump($result["data"]['user']);
+    //var_dump($result["data"]['user']);
 ?>
 
 
 
 
 <?php  { ?>
+   <div class="user-card">
+    <div class="user-info">
+                <p>Nom : <?= $user->getName() ?></p>
+                <p>Prénom : <?= $user->getFirstName() ?></p>
+                <p>Pseudo : <?= $user->getPseudo() ?></p>
+                <p>Rôle : <?= $user->getRole() ?></p>
+                <p>Email : <?= $user->getEmail() ?></p>
+                
+            </div>
+    </div>
 
-
-
-
-    <p><a href="index.php?ctrl=cinema&action=infosUsers&id"><?= ($user->getId()."".$user->getName()."   ". $user->getFirstName()."  ". $user->getPseudo()."  ".$user->getRole()."  ".$user->getEmail())?></a></p>
-
+    
+    
 <?php } ?>
