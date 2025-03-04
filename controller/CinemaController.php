@@ -61,11 +61,14 @@ class CinemaController extends AbstractController implements ControllerInterface
 
     public function listPostsByMovies($id) {
 
+        // Nouvelle instance de PostManager et MovieManager
         $postManager = new PostManager();
         $movieManager = new MovieManager();
+        // Récupère les commentaires associés à un film
         $posts = $postManager->findPostsByMovies($id);
+        // Récupère les détails d'un film
         $movies = $movieManager->findOneById($id);
-        
+        // Renvoie à la vue la liste des posts par film
         return [
             "view" => VIEW_DIR."cinema/listPostsByMovies.php",
             "meta_description" => "Liste des posts par film : ".$movies,
@@ -77,141 +80,133 @@ class CinemaController extends AbstractController implements ControllerInterface
     }
 
 
-
     public function listUsers() {
-
-        $userManager = new userManager();
+        // Nouvelle instance de UserManager
+        $userManager = new UserManager();
+        // Récupère tous les utilisateurs
         $users = $userManager->findAll();
-
+        // Renvoie à la vue la liste des utilisateurs
         return [
             "view" => VIEW_DIR."cinema/listUsers.php",
             "meta_description" => "Liste des utilisateurs :",
-            "data" => [
-                "users" => $users,
-                ]
+            "data" => ["users" => $users,]
         ];
-
     }
 
     public function infosUsers($id){
-        
-        $userManager = new userManager();
+        // Nouvelle instance de UserManager
+        $userManager = new UserManager();
+        // Récupère les informations d'un utilisateur
         $user = $userManager->findOneById($id);
-
+        // Renvoie à la vue les informations d'un utilisateur
         return [
            "view" => VIEW_DIR."cinema/infosUsers.php",
            "meta_description" => " Infos des Utilisateurs:",
-           "data" => [
-            "user" => $user,
-            ]
+           "data" => ["user" => $user]
         ];
     }
-
-
-
+    
+    
     public function addCategoryForm(){
-
+        // Affiche un formulaire permettant d'ajouter une catégorie
         return [
             "view" => VIEW_DIR."cinema/form/addCategoryForm.php",
             "meta_description" => "Liste des catégories de films",
-         
         ];
-
-
     }
 
 
 
 
     public function addCategory(){
+        // Cette fonction permet d'ajouter une catégorie
 
+        // Soumission du formulaire en méthode POST
         if(isset($_POST['submit'])) {
-
-
-               // créer une nouvelle instance de CategoryManager 
+               // Nouvelle instance de CategoryManager 
                $categoryManager = new CategoryManager();
-               // récupérer les noms des catégories
+               // Récupére les noms des catégories
                $category = $categoryManager->findAll(["categoryName","DESC"]);
                var_dump('hello');
-               // filtrer les données
+               // Filtre les données
                $categoryName = filter_input(INPUT_POST, "categoryName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-              
+               // Prépare les données pour l'ajout en base de données
                $data = ['categoryName'=> $categoryName];
-
-               $categoryManager->add($data);
-            
-            }   
-    
+               //  Ajoute les données en base de données
+               $categoryManager->add($data);}   
+         // Redirige après l'ajout
          header("Location: index.php?ctrl=cinema&action=index");
-
-
-    }     
-
-
-
+        }     
+        
+        
+        
     public function listMovies() {
+            // Cette fonction affiche la liste des films
+            // Nouvelle instance MovieManager
+            $movieManager = new MovieManager();
+            // Récupère tous les films
+            $movies = $movieManager->findAll();
+            // Envoie à la vue la liste des films
+            return [
+                "view" => VIEW_DIR . "cinema/listMovies.php",
+                "meta_description" => "Liste des films :",
+                "data" => [
+                    "movies" => $movies,
+                ]
+            ];
+        }
+        
 
-        $movieManager = new MovieManager();
-        $movies = $movieManager->findAll();
-
-        return [
-            "view" => VIEW_DIR."cinema/listMovies.php",
-            "meta_description" => "Liste des films :",
-            "data" => [
-                
-                "movies" => $movies,
-                
-            ]
-        ];
-
-  }
+  
 
 
     public function infosMovies($id) {
+            // Affiche les informations des films
+            // Nouvelle instance MovieManager
+            $movieManager = new MovieManager();
+            // Récupère les films par leur id
+            $movie = $movieManager->findOneById($id);
+            // Envoie à la vue les informations sur les films
+            return [
+                "view" => VIEW_DIR . "cinema/infosMovies.php",
+                "meta_description" => "Infos des films :",
+                "data" => [
+                    "movie" => $movie,
+                ]
+            ];
+        }
 
-        $movieManager = new MovieManager();
-        $movie = $movieManager->findOneById($id);
+
         
-
-        return [
-           "view" => VIEW_DIR."cinema/infosMovies.php",
-           "meta_description" => " Infos des films:",
-           "data" => [
-            
-              "movie" => $movie,
-        
-            ]
-        ];
-    
-    }
-
-
     public function addMovieForm(){
-
+        // Affiche un formulaire permettant l'ajout d'un film
+        // Nouvelle instance de CategoryManager pour sélectionner une catégorie de films dans le formulaire
         $categoryManager = new CategoryManager();
         $categories = $categoryManager->findAll(["categoryName", "ASC"]);
-
+    
         return [
             "view" => VIEW_DIR."cinema/form/addMovieForm.php",
             "meta_description" => "Liste des films",
             "data" => [
             "categories" => $categories
-        ]
+            ]
          
         ];
-
+    
     }
+    
 
 
     public function addMovie(){
+        // Cette fonction permet d'ajouter un film
         
         if(isset($_POST["submit"])) {
-            // var_dump($_POST);
-
+           
+            // Nouvelle instance de MovieManager
             $movieManager = new MovieManager();
-            //var_dump('hello');
+           
 
-            
+            // Filtrer les données envoyées dans le formulaire
             $movieTitle = filter_input(INPUT_POST, "movieTitle", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $releaseDate = filter_input(INPUT_POST, "releaseDate", FILTER_VALIDATE_INT);
             $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
@@ -294,7 +289,7 @@ class CinemaController extends AbstractController implements ControllerInterface
                 'user_id' => $user->getId() 
             ];
            
-        
+            // Enregistre les datas
             $movieManager->add($data);
           
             //var_dump($_POST,$_FILES);die;
@@ -572,72 +567,42 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
 
-        public function likeMovie($id){
-
-
-
-
-
+        public function likeMovie($id) {
             $user = Session::getUser();
         
+            // Vérifie si l'utilisateur est connecté
             if (!$user) {
-                die("Utilisateur non connecté.");
+                $_SESSION['alert'] = "<div class='alert alert-danger'><p>Vous devez être connecté pour liker un film.</p></div>";
+                header("Location: /login"); // Redirection vers la page de connexion
+                exit;
             }
-
-
-            $user_id = $user->getId();
-            
-
-
-            $likerManager = new LikerManager;
-            $movie = $likerManager->findOneById($id);
-
-            $hasLiked = $likerManager->hasLiked($user_id, $id);
-
-            if($hasLiked){
-                $_SESSION['alert'] = "<div class='alert'><p>Vous avez déjà liké ce film !</p></div>";
-
-
-            } else { $data = [
-                
-                'user_id' => $user_id,
-                'movie_id'=> $id
-            
-                
-            ];}
-
-            $likerManager->add($data);
-
-
-            $_SESSION['alert'] = "<div class='alert'><p>Vous avez liké ce film !</p></div>";
-
-           
-
-           
-            // var_dump($id,$likerManager,$movie);
-           
-             
-            // //var_dump($user_id,$movie_id);die;
-
-           
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        }
         
+            $user_id = $user->getId();
+            $likerManager = new LikerManager();
+        
+            // Vérifie si l'utilisateur a déjà liké ce film
+            $hasLiked = $likerManager->hasLiked($user_id, $id);
+        
+            if ($hasLiked) {
+                $_SESSION['alert'] = "<div class='alert alert-warning'><p>Vous avez déjà liké ce film !</p></div>";
+            } else {
+                // Ajoute un like si l'utilisateur n'a pas encore liké ce film
+                $data = [
+                    'user_id' => $user_id,
+                    'movie_id' => $id
+                ];
+        
+                $likerManager->add($data);
+        
+                $_SESSION['alert'] = "<div class='alert alert-success'><p>Vous avez liké ce film !</p></div>";
+            }
+        
+            // Redirection vers la page du film ou la liste des films
+            header("Location: /movies");
+            exit;
+        }
+         
+ 
         
     } 
         
