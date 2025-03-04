@@ -1,7 +1,17 @@
 <?php
 
 
+
 namespace Controller;
+
+// Active l'affichage des erreurs (à enlever en production)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+ 
+// Capture tout ce que PHP affiche
+ob_start();
+
 
 use App\Session;
 use App\AbstractController;
@@ -235,32 +245,22 @@ class CinemaController extends AbstractController implements ControllerInterface
                 $uploadOk = 0;
               }
             }
-
-           
-
-
             // Vérifie si le fichier existe déjà
             if (file_exists($imagePath)) {
             echo "Désolé, le fichier existe déjà";
             $uploadOk = 0;
             }
-
-
             // Vérifie la taille du fichier
            if ($_FILES["fileToUpload"]["size"] > 500000) {
                echo "Désolé, votre fichier est trop volumineux.";
                $uploadOk = 0;
             }
-
-           
-
             // Autorise certains types de fichiers
            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
               echo "Désolé, seulement les fichiers de type JPG, JPEG, PNG & GIF sont autorisés.";
               $uploadOk = 0;
            }
-
-            // Chemin temporaire où le fichier est stocké après l'upload
+           // Chemin temporaire où le fichier est stocké après l'upload
             // move_uploaded_file -> déplace le fichier temporaire vers le dossier définitif
            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $imagePath)) {
                echo "Le fichier " . (basename($_FILES["fileToUpload"]["name"])) . " a été uploadé avec succès.";
@@ -268,10 +268,7 @@ class CinemaController extends AbstractController implements ControllerInterface
                die("Erreur lors de l'upload du fichier.");
            }
            
-          
-
-
-            // Récupére le user en session dans la variable $user
+           // Récupère le user en session dans la variable $user
             $user = Session::getUser();
             if (!$user) {
                 die("Erreur : Aucun utilisateur connecté.");
@@ -291,17 +288,22 @@ class CinemaController extends AbstractController implements ControllerInterface
             ];
            
             // Enregistre les données
-            $movieManager->add($data);
-          
-            //var_dump($_POST,$_FILES);die;
-          
-           
+            $movieManager->add($data);          
+            // Redirige vers la liste de films
             $this->redirectTo("cinema", "listMovies");
+
+
+            // Capture et log tout ce qui a été affiché avant d'envoyer la réponse JSON
+$output = ob_get_clean();
+if (!empty($output)) {
+    error_log("PHP output before JSON: " . $output);
+}
+ 
+// Envoie un JSON propre pour AJAX
+header("Content-Type: application/json");
+echo json_encode(["status" => "error", "message" => "Unexpected output: " . $output]);
                      exit;
-
-
-            
-        }
+                    }
 
 
     }
@@ -309,11 +311,13 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
     public function addEventform($id){
-
+        // Formulaire pour créer un évènement
+        // Nouvelle instance de MovieManager
         $movieManager = new MovieManager();
+        // Recherche les films par utilisateur
         $movies = $movieManager->findMoviesByUser($id);
 
-
+        
         return [
             "view" => VIEW_DIR."cinema/form/addEventForm.php",
             "meta_description" => "Liste des évènements",
@@ -322,17 +326,17 @@ class CinemaController extends AbstractController implements ControllerInterface
 
             ]
           ];
-        
-    }
+        }
 
 
 
     public function addEvent(){
-
+            // Cette fonction permet de créer un évènement
+            // Soumission du formulaire
             if(isset($_POST["submit"])) {
-           
+            // Nouvelle instance
             $eventManager = new EventManager();
-
+            // Les données envoyées par le formulaire sont filtrés
              $eventName = filter_input(INPUT_POST, "eventName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $eventDateTime = filter_input(INPUT_POST, "eventDateTime",FILTER_VALIDATE_INT);
              $placeAvailable = filter_input(INPUT_POST, "placeAvailable", FILTER_VALIDATE_INT);
@@ -340,17 +344,12 @@ class CinemaController extends AbstractController implements ControllerInterface
              $city = filter_input(INPUT_POST, "city",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $postalCode = filter_input(INPUT_POST,"postalCode",FILTER_VALIDATE_INT);
              $movieId =filter_input(INPUT_POST,"movie_id",FILTER_VALIDATE_INT);
-
-            
              
-
+             // s'assure qu'un fichier a bien été uploadé
              if (!isset($_FILES["fileToUpload"]) || $_FILES["fileToUpload"]["error"] !== 0) {
                 die("Erreur : Aucun fichier n'a été uploadé ou une erreur s'est produite.");
             }
-    
-            //var_dump($_POST,$_FILES);die;
-
-             
+            // Fichier où sera stocké l'image
              $target_dir = "public/uploads/";
              $imagePath = $target_dir . basename($_FILES["fileToUpload"]["name"]);
              $uploadOk = 1;
@@ -366,45 +365,29 @@ class CinemaController extends AbstractController implements ControllerInterface
                  $uploadOk = 0;
                }
              }
-
-             //var_dump($_FILES);
-
-
              // Vérifie si le fichier existe déjà
              if (file_exists($imagePath)) {
              echo "Désolé, le fichier existe déjà";
              $uploadOk = 0;
              }
-
-
+             
              // Vérifie la taille du fichier
             if ($_FILES["fileToUpload"]["size"] > 500000) {
                 echo "Désolé, votre fichier est trop volumineux.";
                 $uploadOk = 0;
              }
-
-            
-
              // Autorise certains types de fichiers
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
                echo "Désolé, seulement les fichiers de type JPG, JPEG, PNG & GIF sont autorisés.";
                $uploadOk = 0;
             }
-
-
+            
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $imagePath)) {
                 echo "Le fichier " . (basename($_FILES["fileToUpload"]["name"])) . " a été uploadé avec succès.";
             } else {
                 die("Erreur lors de l'upload du fichier.");
             }
             
-
-
-
-       
-           
-
-           
             $user = Session::getUser();
             if (!$user) {
                 die("Erreur : Aucun utilisateur connecté.");
@@ -412,9 +395,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
             // Convertie la date dans un format accepté par la base de données. Remplace le T par un espace pour respecter le format YYYY-MM-DD HH:MM:SS attendu par MySQL
             $eventDateTime = !empty($_POST['eventDateTime']) ? str_replace("T", " ", $_POST['eventDateTime']) . ":00" : null;
-
-
-
+            
             $data = [
 
               'eventName' => $eventName,
@@ -427,30 +408,11 @@ class CinemaController extends AbstractController implements ControllerInterface
               'movie_id '=> $movieId,
               
               "user_id" => $user->getId()
-              
-
-              
-            
-            
             ];
             
-            
-            
             $eventManager->add($data);
-                        //var_dump($_POST,$_FILES);
-
-               
-              $this->redirectTo("cinema", "listMovies");
-              exit;
-
-
-           
-
-
-
-
-
-
+            $this->redirectTo("cinema", "listMovies");
+            exit;
         }
 
     }
@@ -568,40 +530,59 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
 
-        public function likeMovie($id) {
-            $user = Session::getUser();
+        public function toggleLikeMovie($id) {
+            // La fonction toggle est une fonction qui permet d'alterner entre deux états ou actions par un simple clic
+            // Indique au navigateur que la réponse envoyée est au format JSON.
+            // JSON Format de données textuel (Javascript Object Notation)
+            header("Content-Type: application/json");
         
-            // Vérifie si l'utilisateur est connecté
-            if (!$user) {
-                $_SESSION['alert'] = "<div class='alert alert-danger'><p>Vous devez être connecté pour liker un film.</p></div>";
-                header("Location: /login"); // Redirection vers la page de connexion
-                exit;
+            try {
+                $user = Session::getUser();
+                // Récupère l'utilisateur connecté
+                if (!$user) {
+                    // Si l'utilisateur n'est pas connecté
+                    // json_encode est utilisée pour transformer des données PHP en format JSON. Envoie une réponse structurée au client, généralement interface JS qui attend des réponses en JSON
+                    echo json_encode(["status" => "error", "message" => "Vous devez être connecté pour liker."]);
+                    exit;
+                }
+                
+                // Récupère l'id de l'utilisateur connecté en appelant la méthode 
+                $user_id = $user->getId();
+                // Nouvelle instance de LikerManager
+                $likerManager = new LikerManager();
+                // Vérifie si l'utilisateur a déjà liké le film
+                if ($likerManager->hasLiked($user_id, $id)) {
+                    // Supprime le like si l'utilisateur a déjà liké
+                    $likerManager->removeLike($user_id, $id);
+                    //  on passe l'état du "like" à false pour indiquer que le film n'est plus liké
+                    $liked = false;
+                } else {
+                    // Si l'utilisateur n'a pas encore liké, on ajoute le like
+                    // Nouvel enregistrement dans la table liker
+                    $likerManager->addLike($user_id, $id);
+                    // Mise à jour de l'état du "like" pour indiquer que le film est maintenant liké
+                    $liked = true;
+                }
+        
+                $likeCount = $likerManager->countLikes($id);
+                // Compte le nombre total de likes associés à un film
+                // $likerManager : gère les interactions avec la BDD
+                // Valeur stocké dans $likeCount
+
+                // Convertit en chaîne de caractères JSON (JS le lit facilement)
+                echo json_encode([
+                    "status" => "success",
+                    "liked" => $liked,
+                    "likeCount" => $likeCount
+                ]);
+                // Gère les exceptions en PHP
+            } catch (\Exception $e) {
+                error_log("Erreur SQL dans toggleLikeMovie(): " . $e->getMessage());
+                echo json_encode(["status" => "error", "message" => "Erreur SQL : " . $e->getMessage()]);
             }
-        
-            $user_id = $user->getId();
-            $likerManager = new LikerManager();
-        
-            // Vérifie si l'utilisateur a déjà liké ce film
-            $hasLiked = $likerManager->hasLiked($user_id, $id);
-        
-            if ($hasLiked) {
-                $_SESSION['alert'] = "<div class='alert alert-warning'><p>Vous avez déjà liké ce film !</p></div>";
-            } else {
-                // Ajoute un like si l'utilisateur n'a pas encore liké ce film
-                $data = [
-                    'user_id' => $user_id,
-                    'movie_id' => $id
-                ];
-        
-                $likerManager->add($data);
-        
-                $_SESSION['alert'] = "<div class='alert alert-success'><p>Vous avez liké ce film !</p></div>";
-            }
-        
-            // Redirection vers la page du film ou la liste des films
-            header("Location: /movies");
             exit;
         }
+         
          
  
         
@@ -747,3 +728,8 @@ class CinemaController extends AbstractController implements ControllerInterface
 
      
     // }
+
+
+   //  JavaScript Object Notation (JSON) est un format textuel standard permettant de représenter des données structurées en fonction de la syntaxe d'objet JavaScript.
+   //  Il est couramment utilisé pour transmettre des données dans des applications Web (par exemple, pour envoyer des données du serveur au client, afin qu'elles puissent être affichées sur une page Web, ou vice versa). 
+   // Vous le rencontrerez assez souvent, c'est pourquoi dans cet article, nous vous donnons tout ce dont vous avez besoin pour travailler avec JSON à l'aide de JavaScript, y compris l'analyse de JSON pour pouvoir accéder aux données qu'il contient et la création de JSON.

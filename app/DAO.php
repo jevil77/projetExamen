@@ -35,20 +35,19 @@ abstract class DAO{
             )   
         );
     }
-
-    public static function insert($sql){
-        try{
+    public static function insert($sql, $params = []) {
+        try {
             $stmt = self::$bdd->prepare($sql);
-            $stmt->execute();
-            //on renvoie l'id de l'enregistrement qui vient d'être ajouté en base, 
-            //pour s'en servir aussitôt dans le controleur
+            $stmt->execute($params);
+    
+            // Retourne l'ID du dernier enregistrement inséré
             return self::$bdd->lastInsertId();
-            
-        }
-        catch(\Exception $e){
-            echo $e->getMessage();
+        } catch (\PDOException $e) {
+            error_log("❌ ERREUR SQL dans insert() : " . $e->getMessage());
+            die(json_encode(["error" => "Erreur SQL lors de l'insertion."])); // JSON pour AJAX
         }
     }
+     
 
     public static function update($sql, $params){
         try{

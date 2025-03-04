@@ -13,7 +13,13 @@ final class Liker extends Entity {
     private $user;
     private $movie;
 
-
+    
+    
+    
+    
+    public function __construct($data){         
+        $this->hydrate($data);        
+    }
 
 
    
