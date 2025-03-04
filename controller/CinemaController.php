@@ -224,6 +224,7 @@ class CinemaController extends AbstractController implements ControllerInterface
             // Récupère l'extension du fichier
             $imageFileType = strtolower(pathinfo($imagePath,PATHINFO_EXTENSION));
             // Vérifie si le fichier est bien une image
+            //$_FILES est une superglobale qui stocke les fichiers envoyés via le formulaire en POST avec enctype="multipart/form-data".
             if(isset($_POST["submit"])) {
               $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
               if($check !== false) {
@@ -289,7 +290,7 @@ class CinemaController extends AbstractController implements ControllerInterface
                 'user_id' => $user->getId() 
             ];
            
-            // Enregistre les datas
+            // Enregistre les données
             $movieManager->add($data);
           
             //var_dump($_POST,$_FILES);die;

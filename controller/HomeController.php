@@ -48,21 +48,22 @@ class HomeController extends AbstractController implements ControllerInterface {
         ];
     }
    
-    // Méthode qui vérifie que l'user a le rôle de ROLE_USER
-    public function users(){
-        $this->restrictTo("ROLE_USER");
+    // Méthode qui vérifie que l'utilisateur a le rôle de ROLE_USER
+    public function users() {
+         $this->restrictTo("ROLE_USER");
 
-        $manager = new UserManager();
-        $users = $manager->findAll(['register_date', 'DESC']);
+         $manager = new UserManager();
+         $users = $manager->findAll(['register_date', 'DESC']);
 
         return [
-            "view" => VIEW_DIR."security/users.php",
-            "meta_description" => "Liste des utilisateurs du forum",
-            "data" => [ 
-                "users" => $users 
-            ]
+             "view" => VIEW_DIR . "security/users.php",
+             "meta_description" => "Liste des utilisateurs du forum",
+             "data" => [
+                 "users" => $users
+             ]
         ];
     }
+
 
 
 

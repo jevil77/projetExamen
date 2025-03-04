@@ -10,48 +10,50 @@ final class Liker extends Entity {
 
 
 
-    private $user_id;
-    private $movie_id;
+    private $user;
+    private $movie;
 
 
 
+
+   
 
     /**
-     * Get the value of user_id
+     * Get the value of user
      */ 
-    public function getUser_id()
+    public function getUser()
     {
-        return $this->user_id;
+        return $this->user;
     }
 
     /**
-     * Set the value of user_id
+     * Set the value of user
      *
      * @return  self
      */ 
-    public function setUser_id($user_id)
+    public function setUser($user)
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get the value of movie_id
+     * Get the value of movie
      */ 
-    public function getMovie_id()
+    public function getMovie()
     {
-        return $this->movie_id;
+        return $this->movie;
     }
 
     /**
-     * Set the value of movie_id
+     * Set the value of movie
      *
      * @return  self
      */ 
-    public function setMovie_id($movie_id)
+    public function setMovie($movie)
     {
-        $this->movie_id = $movie_id;
+        $this->movie = $movie;
 
         return $this;
     }
