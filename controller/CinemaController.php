@@ -548,7 +548,7 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
                 
                 // Récupère l'id de l'utilisateur connecté en appelant la méthode 
                 $user_id = $user->getId();
-                // Nouvelle instance de LikerManager
+                // Nouvelle instance du gestionnaire des likes
                 $likerManager = new LikerManager();
                 // Vérifie si l'utilisateur a déjà liké le film
                 if ($likerManager->hasLiked($user_id, $id)) {
@@ -575,9 +575,11 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
                     "liked" => $liked,
                     "likeCount" => $likeCount
                 ]);
-                // Gère les exceptions en PHP
+                // Ce bloc de code capte et gère les erreurs qui pourrait survenir lors de l'exécuton de try. $e objet qui contient les détails de l'erreur
             } catch (\Exception $e) {
+                //Enregistre l'erreur dans les logs du serveur. $e-> message d'erreur de PHP
                 error_log("Erreur SQL dans toggleLikeMovie(): " . $e->getMessage());
+                // Convertit un tableau associatif en JSON et l'affiche en HTTP
                 echo json_encode(["status" => "error", "message" => "Erreur SQL : " . $e->getMessage()]);
             }
             exit;
@@ -587,147 +589,9 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
  
         
     } 
-        
-        
-        // $pseudo = filter_input(INPUT_POST, "pseudo",FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-                // $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-                // $reservePlace = filter_input(INPUT_POST, "reservePlace",  FILTER_VALIDATE_INT );
-        
-        
-
-
-               
 
 
     
-
-
-               
-
-               
-                //  var_dump($pseudo,$email,$reservePlace);die;
-
-
-
-                // if ($event->getPlaceAvailable() < $participate->getReservePlace()) {
-                //          die("Erreur : Pas assez de places disponibles.");
-
-
-
-
-
-            
-            //  ];
-
-    // }
-
-  
-
-         // fonction pour décrémenter le nombre de places réservées du nombre de places disponibles
-
-
-    //      public function deductPlace() {
-
-            
-
-
-
-    //         if(isset($_POST["submit"])) {
-
-
-
-    //             $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT );
-    //             $pseudo = filter_input(INPUT_POST, "pseudo",FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-    //             $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-    //             $nb_places = filter_input(INPUT_POST, "nb_places",  FILTER_VALIDATE_INT );
-
-
-    //             var_dump($pseudo,$email,$nb_places);
-
-
-    //             $eventManager = new EventManager();
-
-
-
-    //              if ($placeAvailable < $nb_places) {
-    //                 die("Erreur : Pas assez de places disponibles.");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //         }
-
-
-
-
-    //      }
-
-
-
-
-
-
-    
-
-
-
-    // // public function deleteMovie($id){
-
-
-    // //      $movieManager = new MovieManager();
-
-    // //      $id = $movieManager->findOneById($id);
-
-    // //      $id->delete($id);
-
-
-    // //      $this->redirectTo("cinema", "listMovies");
-    // //      exit;
-
-
-
-
-
-
-
-
-
-    // // }
-
-
-       
-
-
-    
-    
-   
-
-    
-
-
-    //     }
-
-     
-    // }
 
 
    //  JavaScript Object Notation (JSON) est un format textuel standard permettant de représenter des données structurées en fonction de la syntaxe d'objet JavaScript.
