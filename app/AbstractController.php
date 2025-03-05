@@ -22,16 +22,17 @@ abstract class AbstractController{
 
         $url = $ctrl ? "?ctrl=".$ctrl : "";               // contrôleur cible
         $url.= $action ? "&action=".$action : "";         // action à exécuter
-        $url.= $id ? "&id=".$id : "";                     //
+        $url.= $id ? "&id=".$id : "";                     // identifiant d'un élément
 
-        header("Location: $url");
+        header("Location: $url");                         // redirection vers la nouvelle url
         die();
     }
 
 
 
+// Cette méthode sert à restreindre l'accès ,à certains utilisateurs, à certaines pages 
     public function restrictTo($role){
-        
+        // Vérifie si l'utilisateur est connecté et si il possède le rôle requis sinon il est redirigé
         if(!Session::getUser() || !Session::getUser()->hasRole($role)){
             $this->redirectTo("security", "login");
         }

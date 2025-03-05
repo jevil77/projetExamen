@@ -63,8 +63,7 @@ class LikerManager extends Manager {
     // False : on attend une ligne avec le total des likes
         $result = DAO::select($sql, ['movie_id' => $movie_id], false);
     // Retourne la valeur de likeCount en la convertissant en entier (INT)
-    <div class=""></div>
-        return $result ? (int) $result['likeCount'] : 0;
+    return $result ? (int) $result['likeCount'] : 0;
     }
 }
  
