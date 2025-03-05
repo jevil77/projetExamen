@@ -24,6 +24,9 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
         <span class="like-icon"><?= $hasLiked ? '❤️' : '🤍' ?></span>
         <span class="like-count"><?= $likeCount ?></span>
     </button>
+    <button class="like-btn">
+    <a href="index.php?ctrl=cinema&action=addToWatchlist&id="<?= $movie->getId() ?> class="btn-add-movie">+</a>
+   </button>
 </div>
 </div>
 

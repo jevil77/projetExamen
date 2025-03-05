@@ -23,6 +23,7 @@ use Model\Managers\PostManager;
 use Model\Managers\EventManager;
 use Model\Managers\UserManager;
 use Model\Managers\LikerManager;
+use Model\Managers\WatchlistManager;
 
 
 
@@ -294,12 +295,12 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
             // Capture et log tout ce qui a été affiché avant d'envoyer la réponse JSON
-$output = ob_get_clean();
-if (!empty($output)) {
-    error_log("PHP output before JSON: " . $output);
-}
+            $output = ob_get_clean();
+            if (!empty($output)) {
+            error_log("PHP output before JSON: " . $output);
+        }
  
-// Envoie un JSON propre pour AJAX
+             // Envoie un JSON propre pour AJAX
 header("Content-Type: application/json");
 echo json_encode(["status" => "error", "message" => "Unexpected output: " . $output]);
                      exit;
@@ -583,6 +584,20 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
                 echo json_encode(["status" => "error", "message" => "Erreur SQL : " . $e->getMessage()]);
             }
             exit;
+        }
+
+
+        public function addToWatchlist() {
+
+            $user_id = $user->getId();
+
+            $watchlistManager = new WatchlistManager();
+
+
+
+
+
+
         }
          
          
