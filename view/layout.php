@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
-        <title>FORUM</title>
+        <title>Projet Examen</title>
     </head>
     <body>
         <div id="wrapper"> 
@@ -39,7 +39,7 @@
                             // si l'utilisateur est connecté 
                             if(App\Session::getUser()){
                                 ?>
-                                <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                                <a href="index.php?ctrl=security&action=infosUsers&id="><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                                 <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                                 <a href="index.php?ctrl=cinema&action=bookEventForm&id=">Réserver une séance</a>
                                 <a href="index.php?ctrl=cinema&action=index">Catégories</a>

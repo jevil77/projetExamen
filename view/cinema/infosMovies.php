@@ -32,6 +32,10 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
     <button class="like-btn">
     <a href="index.php?ctrl=cinema&action=addToWatchlist&id=<?= $movie->getId() ?>" class="btn-add-movie">+</a>
    </button>
+   <button class="like-btn">
+    <a href="index.php?ctrl=cinema&action=addPost&id=<?= $movie->getId() ?>" ><i class="fa-regular fa-comment fa-xl" style="color: #e50914;"></i></a>
+   </button>
+
     
 </div>
 </div>

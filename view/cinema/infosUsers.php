@@ -1,7 +1,19 @@
+
+
+
 <?php
     $user = $result["data"]['user']; 
     // var_dump('hello');
     //var_dump($result["data"]['user']);
+?>
+<?php
+if (isset($user) && $user) {
+    // L'utilisateur est valide, on peut appeler getName()
+    echo $user->getName();
+} else {
+    // Si l'utilisateur n'est pas défini ou valide, afficher un message d'erreur
+    echo "Utilisateur non trouvé ou non connecté.";
+}
 ?>
 
 

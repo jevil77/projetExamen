@@ -29,7 +29,19 @@ class WatchlistManager extends Manager{
         // Vérifie si le total est supérieur à 0, si oui, le film est dans la watchlist
         return $result && $result['total'] > 0;
     }
+
+    public function getUserWatchlist($userId) {
+        // Requête SQL pour récupérer les films associés à un utilisateur
+        $sql = "SELECT m.* FROM movie m
+                JOIN watchlist w ON m.id = w.movie_id
+                WHERE w.user_id = :user_id";
+    
+        // Exécution de la requête avec les paramètres
+        $result = DAO::select($sql, ['user_id' => $userId]);
+    
+        return $result;
+    }
     
 
 
-}
+    }

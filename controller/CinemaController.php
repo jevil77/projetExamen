@@ -105,18 +105,44 @@ class CinemaController extends AbstractController implements ControllerInterface
     }
 
     public function infosUsers($id){
+
+
+        $user = Session::getUser();
+
+
+    
+    if (!$user) {
+        die("Erreur : Utilisateur non connecté.");
+
         // Nouvelle instance de UserManager
         $userManager = new UserManager();
         // Récupère les informations d'un utilisateur
         $user = $userManager->findOneById($id);
+
+        
+
+        $watchlistManager = new WatchlistManager();
+
+        $watchlist = $watchlistManager->getUserWatchlist($user->getId());
+
+        var_dump($userId);die;
+
+
+
+                        
+        
         // Renvoie à la vue les informations d'un utilisateur
-        return [
+         return [
            "view" => VIEW_DIR."cinema/infosUsers.php",
            "meta_description" => " Infos des Utilisateurs:",
-           "data" => ["user" => $user]
+           "data" => [
+                      "user" => $user,
+                      "watchlist" => $watchlist
+
+                    ]
         ];
     }
-    
+   }
     
     public function addCategoryForm(){
         // Affiche un formulaire permettant d'ajouter une catégorie
@@ -521,7 +547,7 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
         
         
                 // Redirection après traitement
-                $this->redirectTo("cinema", "listMovies");
+                $this->redirectTo("cinema", "listMovies",["id" => $user_id]);
                 exit;
             }
         }
@@ -593,11 +619,29 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
 
 
             $user = Session::getUser();
-            if (!$user) {
-                die("Erreur : utilisateur non connecté.");
-            }
+          // Récupérer l'utilisateur depuis la session
 
-            $user_id = $user->getId();
+          $user_id = $user->getId();
+
+
+            // // Vérification si l'utilisateur est bien un objet User
+            // if ($user instanceof Model\Entities\User) {
+                // echo $user->getName();  // Appeler getName() si c'est un objet valide
+            // } else {
+            //     // Si l'utilisateur n'est pas trouvé ou pas connecté, afficher un message d'erreur
+            //     echo "Utilisateur non trouvé ou non connecté.";
+            // }
+            // var_dump($user);
+
+            
+
+
+
+
+            // if (!$user) {
+            //     die("Erreur : utilisateur non connecté.");
+            // }
+ 
             
             $watchlistManager = new WatchlistManager();
             $movieManager = new MovieManager();
@@ -611,7 +655,7 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
                 echo "Ce film est déjà dans votre watchlist.";
                 return;
             }
-            var_dump($user_id,$id);
+        
 
             $data = [
                 'user_id'=> $user_id,
@@ -621,13 +665,13 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
 
             $watchlistManager->add($data);
             echo "Film ajouté à la watchlist !";
-            var_dump($id);
+            
 
 
-            //var_dump($user_id,$id);die;
+            var_dump($user,$id);
 
-            $this->redirectTo("cinema", "infosUsers");
-                exit;
+            $this->redirectTo("cinema", "infosUsers", ["user_id" => $user_id]);
+            exit;
 
 
 
