@@ -371,7 +371,7 @@ footer {
     color: white;
     text-decoration: none;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     border-radius: 8px;
     transition: background 0.3s, transform 0.2s;
@@ -480,3 +480,16 @@ footer {
     font-weight: bold;
     font-size: 1rem;
 }
+
+
+.align-icons {
+        display: flex;
+        align-items: center; 
+        justify-content: start; 
+        gap: 15px; 
+        padding-top: 15px;
+ }
+    
+    
+    
+

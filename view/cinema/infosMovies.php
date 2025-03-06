@@ -24,17 +24,18 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
     <p><strong>Réalisé par :</strong> <?= $movie->getUser() ?></p>
     <p><strong>Synopsis :</strong> <?= $movie->getSynopsis() ?></p>
 
-    <!-- Bouton de like -->
+ <div class="align-icons">
     <button class="like-btn" data-movie-id="<?= $movie->getId() ?>">
         <span class="like-icon"><?= $hasLiked ? '❤️' : '🤍' ?></span>
         <span class="like-count"><?= $likeCount ?></span>
     </button>
     <button class="like-btn">
-    <a href="index.php?ctrl=cinema&action=addToWatchlist&id=<?= $movie->getId() ?>" class="btn-add-movie">+</a>
+    <a href="index.php?ctrl=cinema&action=addToWatchlist&id=<?= $movie->getId() ?>" class="btn-add-movie"><i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i></a>
    </button>
    <button class="like-btn">
     <a href="index.php?ctrl=cinema&action=addPost&id=<?= $movie->getId() ?>" ><i class="fa-regular fa-comment fa-xl" style="color: #e50914;"></i></a>
    </button>
+</div>
 
     
 </div>
