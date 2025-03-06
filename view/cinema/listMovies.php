@@ -125,7 +125,6 @@
             <div class="movie-info">
                 <p>Réalisé par : <?= $movie->getUser() ?></p>
                 <p>Année de sortie : <?= $movie->getReleaseDate() ?></p>
-                
             </div>
         </div>
     <?php } ?>

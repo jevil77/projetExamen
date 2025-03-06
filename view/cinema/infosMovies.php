@@ -1,12 +1,17 @@
 
 <?php
 // error_log();
+// Importation de la classe Session situé dans la namespace App
 use App\Session as Session;
-
+// Récupère un objet movie
 $movie = $result["data"]['movie']; 
+// Instance de LikerManager
 $likerManager = new \Model\Managers\LikerManager();
+// Compte le nombre de likes
 $likeCount = $likerManager->countLikes($movie->getId());
+// Récupère l'utilisateur connecté
 $user = \App\Session::getUser();
+// Vérifie si l'utilisateur a déjà liké le film
 $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : false;
 ?>
 
@@ -25,8 +30,9 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
         <span class="like-count"><?= $likeCount ?></span>
     </button>
     <button class="like-btn">
-    <a href="index.php?ctrl=cinema&action=addToWatchlist&id="<?= $movie->getId() ?> class="btn-add-movie">+</a>
+    <a href="index.php?ctrl=cinema&action=addToWatchlist&id=<?= $movie->getId() ?>" class="btn-add-movie">+</a>
    </button>
+    
 </div>
 </div>
 

@@ -587,25 +587,58 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
         }
 
 
-        public function addToWatchlist() {
+        public function addToWatchlist($id) {
+
+            //var_dump($id);
+
+
+            $user = Session::getUser();
+            if (!$user) {
+                die("Erreur : utilisateur non connecté.");
+            }
 
             $user_id = $user->getId();
-
+            
             $watchlistManager = new WatchlistManager();
+            $movieManager = new MovieManager();
+            
+            // Récupération du film
+            $movie = $movieManager->findOneById($id);
+            if (!$movie) {
+                die("Erreur : film non trouvé.");
+            }
+            if ($watchlistManager->isInWatchlist($user_id, $id)) {
+                echo "Ce film est déjà dans votre watchlist.";
+                return;
+            }
+            var_dump($user_id,$id);
+
+            $data = [
+                'user_id'=> $user_id,
+                'movie_id'=> $id
+            ];
+            //var_dump($user_id,$id);
+
+            $watchlistManager->add($data);
+            echo "Film ajouté à la watchlist !";
+            var_dump($id);
+
+
+            //var_dump($user_id,$id);die;
+
+            $this->redirectTo("cinema", "infosUsers");
+                exit;
 
 
 
 
-
-
-        }
-         
+            
          
  
         
     } 
 
-
+}
     
 
 
