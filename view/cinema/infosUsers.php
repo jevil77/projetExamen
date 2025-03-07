@@ -3,6 +3,8 @@
 
 <?php
     $user = $result["data"]['user']; 
+    $watchlist = $result['data']['watchlist'];
+    
     // var_dump('hello');
     //var_dump($result["data"]['user']);
 ?>
@@ -29,8 +31,29 @@ if (isset($user) && $user) {
                 <p>Email : <?= $user->getEmail() ?></p>
                 
             </div>
+
+   
+
+    
     </div>
 
     
     
 <?php } ?>
+
+
+<div class="movie-list">
+
+<?php foreach ($watchlist as $movie) {?>
+            
+    <a href="index.php?ctrl=cinema&action=infosUsers&id=<?= $movie['id_movie'] ?>"> <?=$movie['movieTitle'] ?>
+   <div class="movie1 img"> 
+       <img src=" <?=$movie['imagePath'] ?>" alt=""></a>
+    </div>
+    
+
+            
+    
+    <?php }?> 
+
+</div>

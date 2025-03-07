@@ -39,7 +39,7 @@
                             // si l'utilisateur est connecté 
                             if(App\Session::getUser()){
                                 ?>
-                                <a href="index.php?ctrl=security&action=infosUsers&id="><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                                <a href="index.php?ctrl=security&action=infosUsers&id=<?= App\Session::getUser()->getId() ?>">&nbsp;<span class="fas fa-user"></span></a>
                                 <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                                 <a href="index.php?ctrl=cinema&action=bookEventForm&id=">Réserver une séance</a>
                                 <a href="index.php?ctrl=cinema&action=index">Catégories</a>

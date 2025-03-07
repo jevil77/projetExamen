@@ -104,32 +104,48 @@ class CinemaController extends AbstractController implements ControllerInterface
         ];
     }
 
+    
+    
     public function infosUsers($id){
 
+       
 
-        $user = Session::getUser();
-
-
+       
+       
     
-    if (!$user) {
-        die("Erreur : Utilisateur non connecté.");
+    // if (!$user) {
+    //     die("Erreur : Utilisateur non connecté.");
+    // }
 
         // Nouvelle instance de UserManager
         $userManager = new UserManager();
+      
         // Récupère les informations d'un utilisateur
         $user = $userManager->findOneById($id);
 
+       
         
 
+    
+        
+       
+        
+        
+        
+        
         $watchlistManager = new WatchlistManager();
-
         $watchlist = $watchlistManager->getUserWatchlist($user->getId());
 
-        var_dump($userId);die;
+        
+        //  var_dump($watchlist);die;
+        
+        
+
+        
+        
 
 
 
-                        
         
         // Renvoie à la vue les informations d'un utilisateur
          return [
@@ -137,12 +153,13 @@ class CinemaController extends AbstractController implements ControllerInterface
            "meta_description" => " Infos des Utilisateurs:",
            "data" => [
                       "user" => $user,
-                      "watchlist" => $watchlist
+                      "watchlist" => $watchlist,
+                      "id" => $id
 
                     ]
         ];
     }
-   }
+   
     
     public function addCategoryForm(){
         // Affiche un formulaire permettant d'ajouter une catégorie
@@ -618,26 +635,14 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
             //var_dump($id);
 
 
-            $user = Session::getUser();
-          // Récupérer l'utilisateur depuis la session
+             $user = Session::getUser();
+            // Récupérer l'utilisateur depuis la session
 
-          $user_id = $user->getId();
+             $user_id = $user->getId();
 
 
-            // // Vérification si l'utilisateur est bien un objet User
-            // if ($user instanceof Model\Entities\User) {
-                // echo $user->getName();  // Appeler getName() si c'est un objet valide
-            // } else {
-            //     // Si l'utilisateur n'est pas trouvé ou pas connecté, afficher un message d'erreur
-            //     echo "Utilisateur non trouvé ou non connecté.";
-            // }
+           
             // var_dump($user);
-
-            
-
-
-
-
             // if (!$user) {
             //     die("Erreur : utilisateur non connecté.");
             // }
@@ -668,9 +673,9 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
             
 
 
-            var_dump($user,$id);
+            //var_dump($user,$id);
 
-            $this->redirectTo("cinema", "infosUsers", ["user_id" => $user_id]);
+            $this->redirectTo("cinema", "listMovies");
             exit;
 
 
