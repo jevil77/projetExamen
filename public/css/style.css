@@ -628,3 +628,12 @@ footer {
     font-weight: bold;
     color: white;
 }
+
+
+.no-movies {
+    text-align: center;
+    font-size: 18px;
+    color: #ccc;
+    margin-top: 20px;
+}
+

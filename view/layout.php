@@ -51,7 +51,7 @@
                         <i class="fa-solid fa-user"></i> Profil <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="index.php?ctrl=cinema&action=infosUsers&id=<?= App\Session::getUser()->getId() ?>">Mon profil</a>
+                        <a href="index.php?ctrl=cinema&action=infosUser&id=<?= App\Session::getUser()->getId() ?>">Mon profil</a>
                          <a href="index.php?ctrl=cinema&action=addEventForm">Créer un évènement</a>
                         <a href="index.php?ctrl=cinema&action=listEvents">Réserver</a>
                         <a href="index.php?ctrl=security&action=logout">Déconnexion</a>

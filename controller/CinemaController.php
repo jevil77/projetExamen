@@ -149,7 +149,7 @@ class CinemaController extends AbstractController implements ControllerInterface
         
         // Renvoie à la vue les informations d'un utilisateur
          return [
-           "view" => VIEW_DIR."cinema/infosUsers.php",
+           "view" => VIEW_DIR."cinema/infosUser.php",
            "meta_description" => " Infos des Utilisateurs:",
            "data" => [
                       "user" => $user,

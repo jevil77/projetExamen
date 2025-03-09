@@ -46,15 +46,21 @@
 
 <div class="watchlist img">
 
-<?php foreach ($watchlist as $movie) {?>
-    <div class="film">        
-    <a href="index.php?ctrl=cinema&action=infosUsers&id=<?= $movie['id_movie'] ?>"> <?=$movie['movieTitle'] ?>
-      
-       <img src=" <?=$movie['imagePath'] ?>" alt=""></a>
+<?php if (!empty($watchlist)) { ?>
 
-    </div>
-            
+    <?php foreach ($watchlist as $movie) {?>
+        <div class="film">        
+        <a href="index.php?ctrl=cinema&action=infosUser&id=<?= $movie['id_movie'] ?>"> <?=$movie['movieTitle'] ?>
+          
+           <img src=" <?=$movie['imagePath'] ?>" alt=""></a>
+    
+        </div>
+    
     
     <?php }?> 
+
+    <?php } else { ?>
+        <p class="no-movies">Aucun film dans cette watchlist.</p>
+<?php } ?>
 
 </div>
