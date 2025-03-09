@@ -9,10 +9,10 @@
     <title>Document</title>
 </head>
 <body>
-
+<!-- 
 <section class="banner">
     <img src="public/img/losthighway.jpg" alt="Affiche du film Whiplash">
-</section>
+</section> -->
 
 <?php
     $movies = $result["data"]['movie']; 

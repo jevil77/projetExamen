@@ -10,11 +10,91 @@
 h1 {
     color:black;}
 
-
-
-
-
+/* css navbar */
 .navbar {
+    background-color: #2c3440;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Poppins", sans-serif;
+}
+
+
+.nav-left a {
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.nav-center, .nav-right {
+    display: flex;
+    gap: 1.5rem;
+}
+
+
+.nav-center a, .nav-right a, .dropbtn {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: color 0.3s ease-in-out;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: #2c3440;
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.nav-center a:hover, .nav-right a:hover, .dropbtn:hover {
+    color: #e63946
+}
+
+.home-icon i {
+    color: #E63946;
+}
+
+.home-icon:hover i {
+    color: #ff4d5a; 
+}
+
+
+
+/* .navbar {
     background-color: #2c3440; 
     padding: 2rem 2rem;
     display: flex;
@@ -36,7 +116,7 @@ h1 {
     transition: color 0.3s ease;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-  }
+  } */
 
 
 
@@ -309,59 +389,79 @@ footer {
 }
 
 
-
-.custom-form {
+/* css formulaire */
+.cinema-form {
     max-width: 500px;
     margin: 20px auto;
     padding: 20px;
-    background: #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    background: #121212; 
+    color: #ffffff; 
+    border-radius: 10px;
+    font-family: 'Arial', sans-serif;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 
-.custom-form label {
-    display: block;
-    margin-bottom: 5px;
+.cinema-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
     font-weight: bold;
+    color: #E63946; 
 }
 
 
-.custom-form input,
-.custom-form textarea {
+.cinema-form label {
+    display: block;
+    font-size: 14px;
+    margin: 10px 0 5px;
+    color: #B0B0B0; 
+}
+
+
+.cinema-form input,
+.cinema-form select,
+.cinema-form textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 12px;
+    background: #1E1E1E; 
+    border: 1px solid #333; 
+    color: #fff;
     font-size: 16px;
-    transition: border-color 0.3s;
+    border-radius: 5px;
+    transition: border 0.3s, box-shadow 0.3s;
 }
 
 
-.custom-form input:focus,
-.custom-form textarea:focus {
-    border-color: #b5070c;
+.cinema-form input:focus,
+.cinema-form select:focus,
+.cinema-form textarea:focus {
+    border-color: #E63946; 
+    box-shadow: 0 0 8px rgba(230, 57, 70, 0.5);
     outline: none;
 }
 
 
-.custom-form button {
+.cinema-form button {
     width: 100%;
-    padding: 10px;
-    background: #b5070c;
-    color: #fff;
+    padding: 12px;
+    background: #E63946;
+    color: white;
     border: none;
     border-radius: 5px;
     font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
 }
 
-.custom-form button:hover {
-    background: #b5070c;
-} 
+
+.cinema-form button:hover {
+    background: #D62828;
+}
+.cinema-form button:active {
+    transform: scale(0.98);
+}
 
  
 
@@ -490,6 +590,41 @@ footer {
         padding-top: 20px;
  }
     
+ .watchlist {
+    display: flex; 
+    gap: -50px; /* Permet le chevauchement */
+    padding: 20px 0; 
+    margin-top: 100px;
     
-    
+}
 
+.watchlist .film {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 200px;
+    position: relative;
+    transition: transform 0.3s ease-in-out, z-index 0.3s; /* tansition fluide au survol de l'affiche */
+}
+
+.watchlist img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+   
+}
+
+.watchlist .film:hover {
+    transform: scale(1.1);
+    z-index: 1; /* Amène l'image au premier plan */
+}
+
+.watchlist .title {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}

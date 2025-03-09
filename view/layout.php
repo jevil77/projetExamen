@@ -20,57 +20,55 @@
 
 
        
-            <div class="navbar">
-                <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
-                <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
-                <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
-                <header>
-                    <nav>
-                        <div class="nav-link a">
-                            <a href="/">Accueil</a>
-                            <?php
-                            if(App\Session::isAdmin()){
-                                ?>
-                                <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
-                            <?php } ?>
-                        </div>
-                        <div class="nav-link a">
-                        <?php
-                            // si l'utilisateur est connecté 
-                            if(App\Session::getUser()){
-                                ?>
-                                <a href="index.php?ctrl=security&action=infosUsers&id=<?= App\Session::getUser()->getId() ?>">&nbsp;<span class="fas fa-user"></span></a>
-                                <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
-                                <a href="index.php?ctrl=cinema&action=bookEventForm&id=">Réserver une séance</a>
-                                <a href="index.php?ctrl=cinema&action=index">Catégories</a>
-                                <?php
-                            }
-                            else{
-                                ?>
-                                <a href="index.php?ctrl=security&action=loginForm">Connexion</a>
-                                <a href="index.php?ctrl=security&action=registerForm">Inscription utilisateur</a>
-                                <a href="index.php?ctrl=security&action=registerRealisateurForm">Inscription réalisateur</a>
-                                
-                            <?php
-                            }
-                        ?>
-                        <a href="index.php?ctrl=home&action=home"><i class="fa-solid fa-house"></i></a>
-                        <a href="index.php?ctrl=cinema&action=listUsers">Liste des utilisateurs</a>
-                        <a href="index.php?ctrl=cinema&action=listMovies">Liste des films</a>
-                <?php        if (isset($_SESSION['user'])) { ?>
-                        <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Evènements</a>
-                        <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Créer un évènement</a>
+        <header>
+    <nav class="navbar">
+        <!-- Logo Acceuil -->
+        <div class="nav-left">
+            <a href="index.php?ctrl=index" class="home-icon"><i class="fa-solid fa-house"></i> Accueil</a>
+        </div>
 
-                <?php    } ?>
-                       
-                        <a href="index.php?ctrl=cinema&action=listEvents">Liste des évènements</a>
+        <!-- Liens principaux avec menu déroulant -->
+        <div class="nav-center">
+            
+            <a href="index.php?ctrl=cinema&action=listMovies">Films</a>
+            <div class="dropdown">
+                <button class="dropbtn">Catégories <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="index.php?ctrl=cinema&action=index">Tous les genres</a>
+                    <a href="index.php?ctrl=cinema&action=listMoviesByCategory&id=2">Thriller</a>
+                    <a href="index.php?ctrl=cinema&action=listMoviesByCategory&id=4">Horreur</a>
+                    <a href="/index.php?ctrl=cinema&action=listMoviesByCategory&id=3">Drame</a>
+                </div>
+            </div>
+            <a href="index.php?ctrl=cinema&action=listEvents">Événements</a>
+        </div>
 
+        <!-- Partie user avec menu déroulant -->
+        <div class="nav-right">
+            <?php if(App\Session::getUser()) { ?>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <i class="fa-solid fa-user"></i> Profil <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="index.php?ctrl=cinema&action=infosUsers&id=<?= App\Session::getUser()->getId() ?>">Mon profil</a>
+                         <a href="index.php?ctrl=cinema&action=addEventForm">Créer un évènement</a>
+                        <a href="index.php?ctrl=cinema&action=listEvents">Réserver</a>
+                        <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
+                    </div>
+                </div>
+            <?php } else { ?>
+                <a href="index.php?ctrl=security&action=loginForm">Connexion</a>
+                <a href="index.php?ctrl=security&action=registerForm">Inscription</a>
+            <?php } ?>
+            
+            <?php if(App\Session::isAdmin()) { ?>
+                <a href="index.php?ctrl=cinema&action=listUSers">Gestion utilisateurs</a>
+            <?php } ?>
+        </div>
+    </nav>
+</header>
 
-                        </div>
-
-
-                        
-                       </nav>
                 </header>
                         </div>   
                 <main id="forum">

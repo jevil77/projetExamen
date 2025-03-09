@@ -5,18 +5,17 @@
     $user = $result["data"]['user']; 
     $watchlist = $result['data']['watchlist'];
     
-    // var_dump('hello');
-    //var_dump($result["data"]['user']);
+    
 ?>
 <?php
-if (isset($user) && $user) {
-    // L'utilisateur est valide, on peut appeler getName()
-    echo $user->getName();
-} else {
-    // Si l'utilisateur n'est pas défini ou valide, afficher un message d'erreur
-    echo "Utilisateur non trouvé ou non connecté.";
-}
-?>
+// if (isset($user) && $user) {
+//     // L'utilisateur est valide, on peut appeler getName()
+//     echo $user->getName();
+// } else {
+//     // Si l'utilisateur n'est pas défini ou valide, afficher un message d'erreur
+//     echo "Utilisateur non trouvé ou non connecté.";
+// }
+// ?>
 
 
 
@@ -42,16 +41,18 @@ if (isset($user) && $user) {
 <?php } ?>
 
 
-<div class="movie-list">
+<h1> Watchlist </h1>
+
+
+<div class="watchlist img">
 
 <?php foreach ($watchlist as $movie) {?>
-            
+    <div class="film">        
     <a href="index.php?ctrl=cinema&action=infosUsers&id=<?= $movie['id_movie'] ?>"> <?=$movie['movieTitle'] ?>
-   <div class="movie1 img"> 
+      
        <img src=" <?=$movie['imagePath'] ?>" alt=""></a>
-    </div>
-    
 
+    </div>
             
     
     <?php }?> 

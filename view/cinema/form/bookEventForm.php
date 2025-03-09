@@ -5,8 +5,7 @@
 
 
 
-
-
+<div class="cinema-form">
 
 <form action="index.php?ctrl=cinema&action=bookEvent&id=<?= $event->getId(); ?>" method="POST">
 <input type="hidden" name="event_id" value="">
@@ -29,3 +28,5 @@
     <button type="submit" name="submit">Confirmer</button>
 
 </form>
+
+</div>

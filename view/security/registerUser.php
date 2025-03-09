@@ -2,6 +2,9 @@
 
 <h1>Formulaire d'inscription</h1>
 
+
+
+<div class="cinema-form">
 <form action="index.php?ctrl=security&action=registerUser" method="POST">
     
         <label for="pseudo">Pseudo</label>
@@ -20,10 +23,5 @@
         <button type="submit" name="submit">S'inscrire</button>
     </form>
 
-
-
-
-
-
-
+</div>
     

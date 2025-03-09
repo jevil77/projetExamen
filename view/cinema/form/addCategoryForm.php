@@ -2,7 +2,7 @@
 
 
 
-<div class="form">
+<div class="cinema-form">
 <form action="index.php?ctrl=cinema&action=addCategory" method="POST" class="categorie-form">
     <label for="addType">Ajouter </label>
     <input name="categoryName" id="categoryName" type="text" placeholder="Nom de la catégorie" required>

@@ -7,7 +7,7 @@
 
 
 
-<div class="custom-form">   
+<div class="cinema-form">   
     
     <form action="index.php?ctrl=cinema&action=addEvent" method="POST"  enctype="multipart/form-data">
         
