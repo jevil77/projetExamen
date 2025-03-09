@@ -37,7 +37,7 @@
                     <a href="index.php?ctrl=cinema&action=index">Tous les genres</a>
                     <a href="index.php?ctrl=cinema&action=listMoviesByCategory&id=2">Thriller</a>
                     <a href="index.php?ctrl=cinema&action=listMoviesByCategory&id=4">Horreur</a>
-                    <a href="/index.php?ctrl=cinema&action=listMoviesByCategory&id=3">Drame</a>
+                    <a href="index.php?ctrl=cinema&action=listMoviesByCategory&id=3">Drame</a>
                 </div>
             </div>
             <a href="index.php?ctrl=cinema&action=listEvents">Événements</a>
