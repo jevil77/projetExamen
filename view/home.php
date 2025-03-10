@@ -59,44 +59,40 @@
 <div class="titre_section">
     <p>Les prochains évènements</p>
 
+        </div>
 
-<div class="movie-container1">
+
+
+<div class="swiper">
+  <div class="swiper-wrapper">
     <?php foreach ($events as $event) { ?>
-    
-    
-    
+       <div class="swiper-slide">
+        <div class="event-card">
+          <a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $event->getMovie()->getId()?>">
+            <img src="<?= $event->getImagePath() ?>" alt="Affiche du film">
+          </a>
+          
+            <h2><?= $event->getEventName() ?></h2>
+            <p><?= $event->getMovie()->getMovieTitle()?> - <?= $event->getMovie()->getReleaseDate() ?></p>
+            <p><?= $event->getMovie()->getSynopsis() ?></p>
+            <p>Date et heure : <?= $event->getEventDateTime() ?></p>
+            <p>Lieu : <?= $event->getTheatre() ?></p>
+            <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId() ?>" class="details-btn1">Réserver</a>
+          
+        </div>
+       </div>
+    <?php } ?>
+  </div>
+  <br>
+  <br>
 
-    <div class="movie1">
-   
-    <div class="event-card">
-       <a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $event->getMovie()->getId() ?>">
-           <img src="<?= $event->getImagePath() ?>" alt="Affiche du film">
-        </a>
-    
-    <div class="event-details">
-        <h3><p><?= $event->getEventName() ?></p></h3>
-        <p><?= $event->getMovie()->getMovieTitle() ?> - <?= $event->getMovie()->getReleaseDate() ?></p>
-        <p><?= $event->getMovie()->getSynopsis() ?></p>
-        <p>Date et heure <?= $event->getEventDateTime() ?></p>
-        <p> au <?= $event->getTheatre()?> </p>
-
-        <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId() ?>" class="details-btn1">Réserver</a>
-    </div>
-   </div>
-
-    
-        
-    </div>
-    <?php     
-} ?>
+  <!-- Ajout de la pagination Swiper -->
+  <div class="swiper-pagination"></div>
 </div>
 
-</section>
-   
-
-<section>
-   <div class="sw"> 
-    
+     
+<main>
+  <div>
     <span>discover</span>
     <h1>aquatic animals</h1>
     <hr>
@@ -157,17 +153,10 @@
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
-
   </div>
-</section>
-  <!-- <img src="https://cdn.pixabay.com/photo/2021/11/04/19/39/jellyfish-6769173_960_720.png" alt="" class="bg">
-  <img src="https://cdn.pixabay.com/photo/2012/04/13/13/57/scallop-32506_960_720.png" alt="" class="bg2"> -->
-
-
-
-
-
-</section>
+  <img src="https://cdn.pixabay.com/photo/2021/11/04/19/39/jellyfish-6769173_960_720.png" alt="" class="bg">
+  <img src="https://cdn.pixabay.com/photo/2012/04/13/13/57/scallop-32506_960_720.png" alt="" class="bg2">
+</main>
 
 
 
