@@ -355,11 +355,16 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
 
 
     public function addEventform($id){
+    
         // Formulaire pour créer un évènement
         // Nouvelle instance de MovieManager
         $movieManager = new MovieManager();
         // Recherche les films par utilisateur
         $movies = $movieManager->findMoviesByUser($id);
+
+       
+
+       
 
         
         return [
@@ -378,17 +383,37 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
             // Cette fonction permet de créer un évènement
             // Soumission du formulaire
             if(isset($_POST["submit"])) {
+
+              
+                
+               
+                
             // Nouvelle instance
             $eventManager = new EventManager();
             // Les données envoyées par le formulaire sont filtrés
              $eventName = filter_input(INPUT_POST, "eventName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-             $eventDateTime = filter_input(INPUT_POST, "eventDateTime",FILTER_VALIDATE_INT);
+             $eventDateTime = filter_input(INPUT_POST, "eventDateTime",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $placeAvailable = filter_input(INPUT_POST, "placeAvailable", FILTER_VALIDATE_INT);
              $theatre = filter_input(INPUT_POST, "theatre",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $city = filter_input(INPUT_POST, "city",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $postalCode = filter_input(INPUT_POST,"postalCode",FILTER_VALIDATE_INT);
              $movieId =filter_input(INPUT_POST,"movie_id",FILTER_VALIDATE_INT);
-             
+
+            //new \DateTime($eventDate); crée un objet DateTime en utilisant la date passée dans $eventDate.
+             $eventDate = new \DateTime($eventDateTime);
+             //crée un objet DateTime représentant la date et l'heure actuelles au moment de l'exécution du script.
+             $today = new \DateTime();
+        
+            
+            // Vérifie si la date de l'évènement créé est bien supérieur à la date du jour
+             if ($eventDate < $today) { Session::addFlash('error', 'Vous ne pouvez pas programmer un évènement dans le passé!');
+
+
+            $this->redirectTo('cinema','listEvents');
+            exit;
+                
+             }
+       
              // s'assure qu'un fichier a bien été uploadé
              if (!isset($_FILES["fileToUpload"]) || $_FILES["fileToUpload"]["error"] !== 0) {
                 die("Erreur : Aucun fichier n'a été uploadé ou une erreur s'est produite.");
@@ -396,8 +421,8 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
             // Fichier où sera stocké l'image
              $target_dir = "public/uploads/";
              $imagePath = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-             $uploadOk = 1;
              $imageFileType = strtolower(pathinfo($imagePath,PATHINFO_EXTENSION));
+             $uploadOk = 1;
              // Vérifie si l'image est une vraie image
              if(isset($_POST["submit"])) {
                $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -437,9 +462,12 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
                 die("Erreur : Aucun utilisateur connecté.");
             }
 
+
+
             // Convertie la date dans un format accepté par la base de données. Remplace le T par un espace pour respecter le format YYYY-MM-DD HH:MM:SS attendu par MySQL
             $eventDateTime = !empty($_POST['eventDateTime']) ? str_replace("T", " ", $_POST['eventDateTime']) . ":00" : null;
-            
+
+           
             $data = [
 
               'eventName' => $eventName,

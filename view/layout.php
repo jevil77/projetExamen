@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,16 +13,20 @@
         <script src="https://kit.fontawesome.com/ccbe9956fa.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Swiper CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"> -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+
+
 
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
         <title>Projet Examen</title>
     </head>
          <!-- Swiper JS -->
-         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+         <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
 
          <!-- Inclusion de ton fichier JavaScript -->
-         <script src="js/swiper-config.js"></script>
+         <!-- <script src="js/swiper-config.js"></script> -->
 
     <body>
        
@@ -60,7 +65,7 @@
                     </button>
                     <div class="dropdown-content">
                         <a href="index.php?ctrl=cinema&action=infosUser&id=<?= App\Session::getUser()->getId() ?>">Mon profil</a>
-                         <a href="index.php?ctrl=cinema&action=addEventForm">Créer un évènement</a>
+                         <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Créer un évènement</a>
                         <a href="index.php?ctrl=cinema&action=listEvents">Réserver</a>
                         <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                     </div>
@@ -199,6 +204,7 @@
                 });
             })
         </script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="<?= PUBLIC_DIR ?>/js/script.js"></script>
     </body>
 </html>

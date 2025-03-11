@@ -25,7 +25,7 @@
 
     
     <label for="eventDateTime">Date et heure de l'évèvement</label>
-    <input type="datetime-local" id="eventDateTime" name="eventDateTime" min="2025-02-26T00:00" placeholder="Date et heure de l'évènement" required>
+    <input type="datetime-local" id="eventDateTime" name="eventDateTime" placeholder="Date et heure de l'évènement" required>
     <br>
 
     <label for="placeAvailable">Nombre de place disponible :</label>

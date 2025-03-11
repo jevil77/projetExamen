@@ -1,3 +1,11 @@
+<?php if ($msg = Session::getFlash('error')): ?>
+    <div class="alert alert-danger"><?= $msg ?></div>
+<?php endif; ?>
+
+
+
+
+
 <?php
 
 $events = $result["data"]['events'];

@@ -27,6 +27,7 @@ class EventManager extends Manager {
 
         $sql = "SELECT *
                 FROM " . $this->tableName . " e
+                WHERE e.eventDateTime >= NOW()
                 ORDER BY e.eventDateTime DESC
                 LIMIT 5";
     
