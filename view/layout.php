@@ -72,7 +72,16 @@
                 </div>
             <?php } else { ?>
                 <a href="index.php?ctrl=security&action=loginForm">Connexion</a>
-                <a href="index.php?ctrl=security&action=registerForm">Inscription</a>
+                <div class="dropdown">
+                  <button class="dropbtn">
+                      <i class="fa-solid"></i> Inscription <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                    <a href="index.php?ctrl=security&action=registerUserForm">Utilisateur</a>
+                    <a href="index.php?ctrl=security&action=registerRealisateurForm">Réalisateur</a>
+                </div>
+            </div>
+                
             <?php } ?>
             
             <?php if(App\Session::isAdmin()) { ?>

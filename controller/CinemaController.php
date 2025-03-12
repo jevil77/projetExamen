@@ -331,23 +331,22 @@ class CinemaController extends AbstractController implements ControllerInterface
                 'user_id' => $user->getId() 
             ];
            
-            // Enregistre les données
-            $movieManager->add($data);          
+            
+           // Enregistre les données et informe l'utilisateur si le film a bien été ajouté
+             if ($movieManager->add($data)) { 
+                Session::addFlash('success',"Le film a bien été ajouté!");
+            } else {
+                 Session::addFlash('error','Une erreur est survenue, veuillez réessayer.');
+            }
             // Redirige vers la liste de films
             $this->redirectTo("cinema", "listMovies");
 
 
-            // Capture et log tout ce qui a été affiché avant d'envoyer la réponse JSON
-            $output = ob_get_clean();
-            if (!empty($output)) {
-            error_log("PHP output before JSON: " . $output);
-        }
+           
+        
  
-             // Envoie un JSON propre pour AJAX
-header("Content-Type: application/json");
-echo json_encode(["status" => "error", "message" => "Unexpected output: " . $output]);
-                     exit;
-                    }
+             
+     }
 
 
     }
@@ -418,7 +417,9 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
        
              // s'assure qu'un fichier a bien été uploadé
              if (!isset($_FILES["fileToUpload"]) || $_FILES["fileToUpload"]["error"] !== 0) {
-                die("Erreur : Aucun fichier n'a été uploadé ou une erreur s'est produite.");
+              Session::addFlash('error'," Aucun fichier n'a été uploadé ou une erreur s'est produite.");
+              $this->redirectTo("cinema", "addEventform");
+                exit;
             }
             // Fichier où sera stocké l'image
              $target_dir = "public/uploads/";
@@ -484,12 +485,19 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
               "user_id" => $user->getId()
             ];
             
-            $eventManager->add($data);
-            $this->redirectTo("cinema", "listMovies");
+
+            if ($eventManager->add($data)) { 
+                Session::addFlash('success',"L'évènement a bien été créé !");
+            } else {
+                 Session::addFlash('error','Une erreur est survenue, veuillez réessayer.');
+            }
+            
+            }
+            $this->redirectTo("cinema", "listEvents");
             exit;
         }
 
-    }
+    
 
         public function listEvents() {
 
@@ -584,7 +592,9 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
                 $newPlaceAvailable = $event->getPlaceAvailable() - $reservePlace;
         
                 if ($newPlaceAvailable < 0) {
-                    die("Impossible de réserver : plus assez de places disponibles.");
+                    Session::addFlash('error', 'Plus de places disponibles pour cet évènement');
+                    $this->redirectTo("cinema", "listEvents",["id" => $user_id]);
+                exit;
                 }
         
                 // Mise à jour du nombre de places disponibles
@@ -592,9 +602,13 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
                     die("Erreur lors de la mise à jour du nombre de places disponibles.");
                 }
         
-        
+                if ($reservePlace) {  Session::addFlash('success', 'Votre réservation est validée');
+                    $this->redirectTo("cinema", "listEvents",["id" => $user_id]);
+                    exit;
+
+                }
                 // Redirection après traitement
-                $this->redirectTo("cinema", "listMovies",["id" => $user_id]);
+                $this->redirectTo("cinema", "listEvents",["id" => $user_id]);
                 exit;
             }
         }
@@ -684,11 +698,19 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
             // Récupération du film
             $movie = $movieManager->findOneById($id);
             if (!$movie) {
-                die("Erreur : film non trouvé.");
+                Session::addFlash('error', 'Film non trouvé');
+                 $this->redirectTo("cinema", "listMovies");
+                 exit;
+
             }
+            
+            
+            // Vérifie si le film a déjà été ajouté à la watchlist
             if ($watchlistManager->isInWatchlist($user_id, $id)) {
-                echo "Ce film est déjà dans votre watchlist.";
-                return;
+
+                Session::addFlash('error','Ce film est déjà dans votre watchlist !');
+                $this->redirectTo("cinema", "listMovies");
+                exit;
             }
         
 
@@ -698,8 +720,13 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
             ];
             //var_dump($user_id,$id);
 
-            $watchlistManager->add($data);
-            echo "Film ajouté à la watchlist !";
+        
+            // Vérifie si l'ajout a réussi
+            if ($watchlistManager->add($data)) { 
+                Session::addFlash('success','Le film a bien été ajouté à votre watchlist !');
+            } else {
+                 Session::addFlash('error','Une erreur est survenue, veuillez réessayer.');
+            }
             
 
 

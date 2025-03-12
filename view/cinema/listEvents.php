@@ -1,4 +1,11 @@
+<?php if (isset($_SESSION["message"])) {
+            echo "<p>" . $_SESSION["message"] . "</p>";} ?>
 
+
+<!-- Récupère le message en session et l'affiche dans la vue -->
+
+<h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
+<h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
 
 
 

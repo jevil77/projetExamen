@@ -1,6 +1,23 @@
+<?php if (isset($_SESSION["message"])) {
+            echo "<p>" . $_SESSION["message"] . "</p>";} ?>
+
+
+<!-- Récupère le message en session et l'affiche dans la vue -->
+
+<h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
+<h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
+
+
+
+
+
+
 <h1>Formulaire d'inscription</h1>
 
-<form action="index.php?ctrl=security&action=registerRealisateur" method="POST">
+
+<div class="cinema-form">
+
+    <form action="index.php?ctrl=security&action=registerRealisateur" method="POST">
         
         <label for="name">Nom :</label>
         <input type="text" id="name" name="name" placeholder="Entrez votre nom" required><br><br>
@@ -22,3 +39,5 @@
         
         <button type="submit" name="submit">S'inscrire</button>
     </form>
+
+</div>

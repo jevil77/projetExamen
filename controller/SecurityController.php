@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 
+use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\UserManager;
@@ -10,7 +11,7 @@ class SecurityController extends AbstractController{
 
 
 
-    public function registerForm (){
+    public function registerUserForm (){
         
 
         return [
@@ -57,17 +58,25 @@ class SecurityController extends AbstractController{
             
             
              
-                if ($user) {
-                    //echo "Un compte avec cet email existe déjà.";
-
-                    $this->redirectTo("security", "loginForm");
+                if ($user) { 
+                    Session::addFlash('error', 'Un compte avec cet email existe déjà !');
+                    $this->redirectTo("security", "registerUserForm");
                     exit;
                 
                 } else {
                     
-                    if($password == $password_confirm && strlen($password) >= 5) {
+                    if ($password !== $password_confirm) {
+                        Session::addFlash('error', 'Les mots de passe ne correspondent pas.');
+                        $this->redirectTo("security", "registerUserForm");
+                        exit;
+                    }
                     
-                
+                    if (strlen($password) < 5) {
+                        Session::addFlash('error', 'Le mot de passe doit contenir au moins 5 caractères.');
+                        $this->redirectTo("security", "registerUserForm");
+                        exit;
+                    }
+                    
                 
                     $userManager->add([
                     
@@ -94,7 +103,7 @@ class SecurityController extends AbstractController{
                          
             }
 
-        }
+        
 
     }         
 
@@ -138,16 +147,24 @@ class SecurityController extends AbstractController{
              
                 $user = $userManager->findOneByEmail($email);
 
-                if ($user) {
-                    //echo "Un compte avec cet email existe déjà.";
-
-                    $this->redirectTo("security", "loginForm");
+                if ($user) { 
+                    Session::addFlash('error', 'Un compte avec cet email existe déjà !');
+                    $this->redirectTo("security", "registerRealisateurForm");
                     exit;
                 
                 } else {
                     
-                    if($password == $password_confirm && strlen($password) >= 5) {
+                    if ($password !== $password_confirm) {
+                        Session::addFlash('error', 'Les mots de passe ne correspondent pas.');
+                        $this->redirectTo("security", "registerRealisateurForm");
+                        exit;
+                    }
                     
+                    if (strlen($password) < 5) {
+                        Session::addFlash('error', 'Le mot de passe doit contenir au moins 5 caractères.');
+                        $this->redirectTo("security", "registerRealisateurForm");
+                        exit;
+                    }
                 
                 
                     $userManager->add([
@@ -174,7 +191,7 @@ class SecurityController extends AbstractController{
                 }
 
                          
-            }
+            
 
         }
 
