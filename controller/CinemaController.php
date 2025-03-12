@@ -405,11 +405,13 @@ echo json_encode(["status" => "error", "message" => "Unexpected output: " . $out
              $today = new \DateTime();
         
             
-            // Vérifie si la date de l'évènement créé est bien supérieur à la date du jour
-             if ($eventDate < $today) { Session::addFlash('error', 'Vous ne pouvez pas programmer un évènement dans le passé!');
+            // Vérifie si la date de l'évènement créé est bien supérieure à la date du jour
+            // addFlash : ajoute un message en session
+             if ($eventDate < $today) { Session::addFlash('error', 'Vous ne pouvez pas programmer un événement dans le passé.');
+                
 
-
-            $this->redirectTo('cinema','listEvents');
+            // Redirige vers la page d'affichage du message enregistré en session
+            $this->redirectTo('cinema','addEventForm');
             exit;
                 
              }
