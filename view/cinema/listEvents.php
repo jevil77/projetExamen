@@ -33,6 +33,7 @@ $events = $result["data"]['events'];
                         <p><?= $event->getMovie()->getSynopsis() ?></p>
                         <p>Date et heure <?= $event->getEventDateTime() ?></p>
                         <p> au <?= $event->getTheatre() ?> </p>
+                        <p>Places disponibles :  <?= $event->getPlaceAvailable() ?> </p>
 
                         <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId()?>" class="details-btn1">Réserver</a>
                     </div>

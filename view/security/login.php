@@ -23,7 +23,9 @@
 
 <h1>Formulaire de connexion</h1>
 
-<form action="index.php?ctrl=security&action=login" method="POST">
+<div class="cinema-form">
+
+   <form action="index.php?ctrl=security&action=login" method="POST">
 
     <label for="email">Email :</label>
     <input type="email" id="email" name="email" placeholder="Entrez votre email" required><br><br>
@@ -32,8 +34,9 @@
     <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required><br><br>
 
     <button type="submit" name="submit">Se connecter</button>
-</form>
+   </form>
 
+</div>
 
 
 

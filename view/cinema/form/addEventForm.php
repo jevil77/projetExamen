@@ -45,7 +45,7 @@
     <br>
 
     <label for="theatre">Lieu de l'évènement</label>
-    <input type="text" id="theatre" name="theatre" placeholder="Nom de l'évènement" required>
+    <input type="text" id="theatre" name="theatre" placeholder="Lieu de l'évènement" required>
     <br> 
     
 

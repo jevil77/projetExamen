@@ -18,12 +18,12 @@ class PostManager extends Manager{
 
     // récupère les posts par films (par leur id)
 
-     public function findPostsByMovies($id) {
+     public function findPostsByMovie($id) {
 
         $sql = "SELECT * 
                 FROM ".$this->tableName." p
                  WHERE p.movie_id = :id
-                ORDER BY p.dateAdded ASC";
+                ORDER BY p.dateAdded DESC";
 
 
      // la requête renvoie plusieurs enregistrements --> getMultipleResults

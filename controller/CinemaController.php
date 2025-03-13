@@ -78,14 +78,14 @@ class CinemaController extends AbstractController implements ControllerInterface
         // Récupère les commentaires associés à un film
         $posts = $postManager->findPostsByMovies($id);
         // Récupère les détails d'un film
-        $movies = $movieManager->findOneById($id);
+        $movie = $movieManager->findOneById($id);
         // Renvoie à la vue la liste des posts par film
         return [
-            "view" => VIEW_DIR."cinema/listPostsByMovies.php",
-            "meta_description" => "Liste des posts par film : ".$movies,
+            "view" => VIEW_DIR."cinema/infosMovies.php",
+            "meta_description" => "Liste des posts par film : ",
             "data" => [
-                "movies" => $movies,
-                "posts" => $posts
+                "movie" => $movie,
+                "post" => $posts
             ]
         ];
     }
@@ -214,18 +214,23 @@ class CinemaController extends AbstractController implements ControllerInterface
   
 
 
-    public function infosMovies($id) {
+    public function infosMovie($id) {
             // Affiche les informations des films
             // Nouvelle instance MovieManager
             $movieManager = new MovieManager();
             // Récupère les films par leur id
             $movie = $movieManager->findOneById($id);
             // Envoie à la vue les informations sur les films
+            $postManager = new PostManager();
+            $posts = $postManager->findPostsByMovie($id);
+
             return [
-                "view" => VIEW_DIR . "cinema/infosMovies.php",
+                "view" => VIEW_DIR . "cinema/infosMovie.php",
                 "meta_description" => "Infos des films :",
                 "data" => [
                     "movie" => $movie,
+                    "post"  => $posts
+
                 ]
             ];
         }
@@ -455,9 +460,10 @@ class CinemaController extends AbstractController implements ControllerInterface
             }
             
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $imagePath)) {
-                echo "Le fichier " . (basename($_FILES["fileToUpload"]["name"])) . " a été uploadé avec succès.";
+                Session::addFlash('success',"Le fichier a été uploadé avec succès !");
+                
             } else {
-                die("Erreur lors de l'upload du fichier.");
+                Session::addFlash('error',"Erreur lors de l'upload du fichier.");
             }
             
             $user = Session::getUser();
@@ -503,7 +509,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
             $eventManager = new EventManager();
-            $events = $eventManager->findAll();
+            $events = $eventManager->findAllEvents();
     
             return [
                 "view" => VIEW_DIR."cinema/listEvents.php",
@@ -549,7 +555,10 @@ class CinemaController extends AbstractController implements ControllerInterface
             $user = Session::getUser();
         
             if (!$user) {
-                die("Utilisateur non connecté.");
+                    Session::addFlash('error', 'Utilisateur non connecté !');
+                    $this->redirectTo("cinema", "bookEvent");
+                exit;
+
             }
             
             //récupère l'id de l'utilisateur connecté
@@ -736,13 +745,37 @@ class CinemaController extends AbstractController implements ControllerInterface
             exit;
 
 
+        } 
 
 
+        public function addPostToMovie($id){
             
-         
- 
+            $user = Session::getUser();
+            
+            $user_id = $user->getId();
+
+            if(isset($_POST['submit'])){
+                
+                 $postManager = new PostManager();
+                 $movieManager = new MovieManager();
+                 
+                 $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                 
+                 if ($text) {
+                    $postManager->add([
+                        "text" => $text,
+                        "movie_id" => $id,
+                        "user_id" => $user_id
+                    ]);
+
+                    Session::addFlash("success", "Votre commentaire a été ajouté avec succès !");
+                } 
+                $this->redirectTo("cinema", "infosMovie");
+                exit;
+            }
+        }
+
         
-    } 
 
 }
     

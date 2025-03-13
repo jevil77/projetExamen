@@ -256,10 +256,14 @@ class SecurityController extends AbstractController{
                                 
                           
                                 } else {
-                                    echo "Le mot de passe est incorrect.";
+                                    Session::addFlash('error', 'Le mot de passe est incorrect !');
+                                    $this->redirectTo("security", "loginForm");
+                                    exit;
                                 }
                             } else {
-                                echo "Aucun utilisateur trouvé avec cet email.";
+                                Session::addFlash('error', 'Aucun utilisateur trouvé avec cet email !');
+                                $this->redirectTo("security", "loginForm");
+                                exit;
                             }
                         
                         }

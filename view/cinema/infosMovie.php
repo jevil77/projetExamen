@@ -1,14 +1,19 @@
-
 <?php
 // error_log();
 // Importation de la classe Session situé dans la namespace App
 use App\Session as Session;
 // Récupère un objet movie
 $movie = $result["data"]['movie']; 
+$posts = $result["data"]['post'];
+// var_dump($posts);
+
+
 // Instance de LikerManager
 $likerManager = new \Model\Managers\LikerManager();
 // Compte le nombre de likes
+
 $likeCount = $likerManager->countLikes($movie->getId());
+var_dump($likerManager, $likeCount);
 // Récupère l'utilisateur connecté
 $user = \App\Session::getUser();
 // Vérifie si l'utilisateur a déjà liké le film
@@ -40,6 +45,27 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
     
 </div>
 </div>
+
+
+<h2>Poster un commentaire</h2>
+
+<form  action="index.php?ctrl=cinema&action=addPostToMovie&id=<?= $movie->getId() ?>" method="POST" >
+
+    <textarea name="text" rows="3" required placeholder="Écrire un message..."></textarea>
+
+    <button type="submit" name="submit" >Envoyer</button>
+
+</form>
+
+
+<?php if (empty($posts)) { ?>
+    <p>Aucun commentaire pour ce film, soyez le premier à le commenter ! </p>
+    <?php } else { ?>
+<?php foreach($posts as $post ){ ?>
+    <p><a href="#"><?= $post->getText() ?> par <?= $post->getUser()->getPseudo() ?> le  <?=(new DateTime($post->getDateAdded()))->format('d/m/Y H:i')?></p>
+<?php } ?>
+<?php } ?>
+
 
 
 <script>

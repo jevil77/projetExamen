@@ -38,7 +38,7 @@
         
         <?php foreach ($movies as $movie) { ?>
             <div class="movie">
-            <a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $movie->getId() ?>">
+            <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $movie->getId() ?>">
                 <img src="<?= $movie->getImagePath() ?>" alt="Affiche du film">
                
                 
@@ -66,7 +66,7 @@
     <?php foreach ($events as $event) { ?>
        <div class="swiper-slide">
         <div class="event-card">
-          <a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $event->getMovie()->getId()?>">
+          <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $event->getMovie()->getId()?>">
             <img src="<?= $event->getImagePath() ?>" alt="Affiche du film">
           </a>
           

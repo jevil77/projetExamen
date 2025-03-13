@@ -16,7 +16,7 @@ use App\Entity;
 final class Post extends Entity{
 
 
-    private $id_post;         // INT
+    private $id;         // INT
     private $text;            // TEXT
     private $dateAdded;       // DATETIME
     private $user;           
@@ -33,31 +33,27 @@ final class Post extends Entity{
      // Getter et Setter pour chaque attribut
 
 
-
-     
-    /**
-     * Get the value of id_post
+ /**
+     * Get the value of id
      */ 
-    public function getId_post()
+    public function getId()
     {
-        return $this->id_post;
+        return $this->id;
     }
 
     /**
-     * Set the value of id_post
+     * Set the value of id
      *
      * @return  self
      */ 
-    public function setId_post($id_post)
+    public function setId($id)
     {
-        $this->id_post = $id_post;
+        $this->id = $id;
 
         return $this;
     }
-
-
     
-
+    
     /**
      * Get the value of text
      */ 
@@ -154,6 +150,8 @@ final class Post extends Entity{
 
 
     
+
+   
 
    
 }

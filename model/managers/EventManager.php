@@ -25,17 +25,49 @@ class EventManager extends Manager {
     public function findFiveLastEvents(){
 
 
-        $sql = "SELECT *
-                FROM " . $this->tableName . " e
-                WHERE e.eventDateTime >= NOW()
-                ORDER BY e.eventDateTime DESC
-                LIMIT 5";
+            $sql = "SELECT *
+                    FROM " . $this->tableName . " e
+                    WHERE e.eventDateTime >= NOW()
+                    ORDER BY e.eventDateTime DESC
+                    LIMIT 5";
     
         return $this->getMultipleResults(
             DAO::select($sql, [], true), 
             $this->className
         );
        }
+
+    public function findAllEvents()
+       {
+           $sql = "SELECT * 
+                   FROM " . $this->tableName . " e
+                   WHERE e.eventDateTime >= NOW() 
+                   ORDER BY e.eventDateTime ASC"; 
+
+
+               return $this->getMultipleResults(
+               DAO::select($sql, [], true),
+               $this->className
+           );
+       }
+       
+    // public function deletePastEvent(){
+
+
+    //     $sql = "DELETE 
+    //             FROM " . $this->tableName . " e
+    //             WHERE eventDateTime < NOW()";
+               
+    //             DAO::delete($sql, []);
+
+  
+    //             }
+
+             
+                
+
+
+    
 
 
 
