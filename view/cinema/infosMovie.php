@@ -11,9 +11,13 @@ $posts = $result["data"]['post'];
 // Instance de LikerManager
 $likerManager = new \Model\Managers\LikerManager();
 // Compte le nombre de likes
+var_dump($movie); 
 
 $likeCount = $likerManager->countLikes($movie->getId());
-var_dump($likerManager, $likeCount);
+
+
+
+
 // Récupère l'utilisateur connecté
 $user = \App\Session::getUser();
 // Vérifie si l'utilisateur a déjà liké le film
@@ -49,7 +53,7 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
 
 <h2>Poster un commentaire</h2>
 
-<form  action="index.php?ctrl=cinema&action=addPostToMovie&id=<?= $movie->getId() ?>" method="POST" >
+<form  action="index.php?ctrl=cinema&action=addPostToMovie&id=<?= $movie->getId()?>" method="POST" >
 
     <textarea name="text" rows="3" required placeholder="Écrire un message..."></textarea>
 
@@ -66,7 +70,31 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
 <?php } ?>
 <?php } ?>
 
-
+<section class="comments">
+    <article class="comment">
+      <a class="comment-img" href="#non">
+        <img src="http://lorempixum.com/50/50/people/1" alt="" width="50" height="50">
+      </a>
+      <div class="comment-body">
+        <div class="text">
+          <p>Hello, this is an example comment</p>
+        </div>
+        <p class="attribution">by <a href="#non">Joe Bloggs</a> at 14:23pm, 4th Dec 2010</p>
+      </div>
+    </article>
+      <article class="comment">
+      <a class="comment-img" href="#non">
+        <img src="http://lorempixum.com/50/50/people/7" alt="" width="50" height="50">
+      </a>
+      <div class="comment-body">
+        <div class="text">
+          <p>This is a much longer one that will go on for a few lines.</p>
+          <p>It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.</p>
+        </div>
+        <p class="attribution">by <a href="#non">Joe Bloggs</a> at 14:23pm, 4th Dec 2010</p>
+      </div>
+    </article>
+  </section>​
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

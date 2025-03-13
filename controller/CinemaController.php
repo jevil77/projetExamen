@@ -70,25 +70,25 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
 
-    public function listPostsByMovies($id) {
+    // public function listPostsByMovies($id) {
 
-        // Nouvelle instance de PostManager et MovieManager
-        $postManager = new PostManager();
-        $movieManager = new MovieManager();
-        // Récupère les commentaires associés à un film
-        $posts = $postManager->findPostsByMovies($id);
-        // Récupère les détails d'un film
-        $movie = $movieManager->findOneById($id);
-        // Renvoie à la vue la liste des posts par film
-        return [
-            "view" => VIEW_DIR."cinema/infosMovies.php",
-            "meta_description" => "Liste des posts par film : ",
-            "data" => [
-                "movie" => $movie,
-                "post" => $posts
-            ]
-        ];
-    }
+    //     // Nouvelle instance de PostManager et MovieManager
+    //     $postManager = new PostManager();
+    //     $movieManager = new MovieManager();
+    //     // Récupère les commentaires associés à un film
+    //     $posts = $postManager->findPostsByMovies($id);
+    //     // Récupère les détails d'un film
+    //     $movie = $movieManager->findOneById($id);
+    //     // Renvoie à la vue la liste des posts par film
+    //     return [
+    //         "view" => VIEW_DIR."cinema/infosMovies.php",
+    //         "meta_description" => "Liste des posts par film : ",
+    //         "data" => [
+    //             "movie" => $movie,
+    //             "post" => $posts
+    //         ]
+    //     ];
+    // }
 
 
     public function listUsers() {
@@ -215,11 +215,17 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
     public function infosMovie($id) {
+        // var_dump($id);die;
             // Affiche les informations des films
             // Nouvelle instance MovieManager
             $movieManager = new MovieManager();
-            // Récupère les films par leur id
+            // // Récupère les films par leur id
             $movie = $movieManager->findOneById($id);
+            // if (!$movie) {
+            //     die("Erreur : Film non trouvé en base de données.");
+            // }
+            
+            var_dump($id);
             // Envoie à la vue les informations sur les films
             $postManager = new PostManager();
             $posts = $postManager->findPostsByMovie($id);
@@ -755,9 +761,10 @@ class CinemaController extends AbstractController implements ControllerInterface
             $user_id = $user->getId();
 
             if(isset($_POST['submit'])){
-                
+
                  $postManager = new PostManager();
                  $movieManager = new MovieManager();
+                 $movie = $movieManager->findOneById($id);
                  
                  $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                  
@@ -767,6 +774,7 @@ class CinemaController extends AbstractController implements ControllerInterface
                         "movie_id" => $id,
                         "user_id" => $user_id
                     ]);
+                  var_dump($movie);
 
                     Session::addFlash("success", "Votre commentaire a été ajouté avec succès !");
                 } 

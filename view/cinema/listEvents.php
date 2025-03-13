@@ -23,7 +23,7 @@ $events = $result["data"]['events'];
         <?php foreach ($events as $event) { ?>
               <div class="movie1">
                   <div class="event-card">
-                    <a href="index.php?ctrl=cinema&action=infosMovies&id=<?= $event->getMovie()->getId() ?>">
+                    <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $event->getMovie()->getId() ?>">
                         <img src="<?= $event->getImagePath() ?>" alt="Affiche du film">
                     </a>
 

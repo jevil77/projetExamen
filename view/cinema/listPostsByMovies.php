@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
     $movie = $result["data"]['movies']; 
     $posts = $result["data"]['posts']; 
 ?>
@@ -21,7 +21,7 @@ if (empty($posts)) { ?>
 
 
 
-
+ -->
 
 
 <!-- <div class="form">
