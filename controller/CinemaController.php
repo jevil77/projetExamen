@@ -215,17 +215,18 @@ class CinemaController extends AbstractController implements ControllerInterface
 
 
     public function infosMovie($id) {
-        // var_dump($id);die;
+       
             // Affiche les informations des films
             // Nouvelle instance MovieManager
             $movieManager = new MovieManager();
             // // Récupère les films par leur id
             $movie = $movieManager->findOneById($id);
+            // var_dump($movie);die;
             // if (!$movie) {
             //     die("Erreur : Film non trouvé en base de données.");
             // }
-            
-            var_dump($id);
+            // var_dump($movie);die;
+            // var_dump($id);
             // Envoie à la vue les informations sur les films
             $postManager = new PostManager();
             $posts = $postManager->findPostsByMovie($id);
@@ -691,21 +692,10 @@ class CinemaController extends AbstractController implements ControllerInterface
 
         public function addToWatchlist($id) {
 
-            //var_dump($id);
-
-
              $user = Session::getUser();
             // Récupérer l'utilisateur depuis la session
 
              $user_id = $user->getId();
-
-
-           
-            // var_dump($user);
-            // if (!$user) {
-            //     die("Erreur : utilisateur non connecté.");
-            // }
- 
             
             $watchlistManager = new WatchlistManager();
             $movieManager = new MovieManager();
@@ -756,6 +746,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
         public function addPostToMovie($id){
             
+            
             $user = Session::getUser();
             
             $user_id = $user->getId();
@@ -763,9 +754,8 @@ class CinemaController extends AbstractController implements ControllerInterface
             if(isset($_POST['submit'])){
 
                  $postManager = new PostManager();
-                 $movieManager = new MovieManager();
-                 $movie = $movieManager->findOneById($id);
-                 
+                
+                
                  $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                  
                  if ($text) {
@@ -774,11 +764,12 @@ class CinemaController extends AbstractController implements ControllerInterface
                         "movie_id" => $id,
                         "user_id" => $user_id
                     ]);
-                  var_dump($movie);
-
+                //   var_dump($movie);
+               
                     Session::addFlash("success", "Votre commentaire a été ajouté avec succès !");
                 } 
-                $this->redirectTo("cinema", "infosMovie");
+               
+                $this->redirectTo("cinema", "infosMovie", $id);
                 exit;
             }
         }

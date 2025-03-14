@@ -11,9 +11,11 @@ $posts = $result["data"]['post'];
 // Instance de LikerManager
 $likerManager = new \Model\Managers\LikerManager();
 // Compte le nombre de likes
-var_dump($movie); 
 
+//  var_dump($movie);die;
 $likeCount = $likerManager->countLikes($movie->getId());
+
+//  var_dump($likeCount);die;
 
 
 
@@ -50,7 +52,9 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
 </div>
 </div>
 
-
+<? 
+// var_dump($id);die;
+ ?>
 <h2>Poster un commentaire</h2>
 
 <form  action="index.php?ctrl=cinema&action=addPostToMovie&id=<?= $movie->getId()?>" method="POST" >
@@ -62,41 +66,34 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
 </form>
 
 
-<?php if (empty($posts)) { ?>
-    <p>Aucun commentaire pour ce film, soyez le premier à le commenter ! </p>
-    <?php } else { ?>
-<?php foreach($posts as $post ){ ?>
-    <p><a href="#"><?= $post->getText() ?> par <?= $post->getUser()->getPseudo() ?> le  <?=(new DateTime($post->getDateAdded()))->format('d/m/Y H:i')?></p>
-<?php } ?>
-<?php } ?>
 
-<section class="comments">
-    <article class="comment">
-      <a class="comment-img" href="#non">
-        <img src="http://lorempixum.com/50/50/people/1" alt="" width="50" height="50">
-      </a>
-      <div class="comment-body">
-        <div class="text">
-          <p>Hello, this is an example comment</p>
-        </div>
-        <p class="attribution">by <a href="#non">Joe Bloggs</a> at 14:23pm, 4th Dec 2010</p>
-      </div>
-    </article>
-      <article class="comment">
-      <a class="comment-img" href="#non">
-        <img src="http://lorempixum.com/50/50/people/7" alt="" width="50" height="50">
-      </a>
-      <div class="comment-body">
-        <div class="text">
-          <p>This is a much longer one that will go on for a few lines.</p>
-          <p>It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.</p>
-        </div>
-        <p class="attribution">by <a href="#non">Joe Bloggs</a> at 14:23pm, 4th Dec 2010</p>
-      </div>
-    </article>
-  </section>​
+
+  <section class="comments">
+    <?php if (empty($posts)) { ?>
+        <p>Aucun commentaire pour ce film, soyez le premier à le commenter !</p>
+    <?php } else { ?>
+        <?php foreach ($posts as $post) { ?>
+            <article class="comment">
+                <div class="comment-body">
+                    <div class="text">
+                        <p><?= $post->getText() ?></p>
+                    </div>
+                    <p class="attribution">
+                        par <a href="#"><?= $post->getUser()->getPseudo() ?></a> 
+                        le <?= (new DateTime($post->getDateAdded()))->format('d/m/Y H:i') ?>
+                    </p>
+                </div>
+            </article>
+        <?php } ?>
+    <?php } ?>
+</section>
+
 
 <script>
+
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const likeBtn = document.querySelector(".like-btn");
 

@@ -1036,18 +1036,27 @@ nav ul li{
 
 
 
-.comment {
+/* .comment {
   width: 500px;
   margin: 20px auto;
   font: 16px/1.4 Arial, sans-serif;
-  background: #f3eee9;
+  background: #;
   overflow: hidden;
   padding: 0 0 1em;
   border-bottom: 1px solid #ddd;
   margin: 0 0 1em;
 
+} */
+.comment {
+
+  width:70%;
 }
 
+.comments {
+  width: 90%; /* Ajuste la largeur selon ton design */
+  max-width: 800px; /* Empêche d'être trop large */
+  margin: 0 auto; /* Centre horizontalement */
+}
 .comment-img {
   float: left;
   margin-right: 33px;
@@ -1074,13 +1083,18 @@ nav ul li{
   margin: 0;
 }
 
+.comment .text {
+  color: #222; 
+  text-align: left;
+}
+
 .comment .attribution {
+  text-align: left;
+  padding: 8px;
   margin: 0.5em 0 0;
   font-size: 14px;
   color: #666;
 }
-
-/* Decoration */
 
 .comments,
 .comment {
@@ -1103,7 +1117,7 @@ nav ul li{
   background: rgba(0,0,0,0.1);
 }
 
-.comment:before {
+/* .comment:before {
   width: 9px;
   height: 9px;
   border: 3px solid #fff;
@@ -1111,13 +1125,13 @@ nav ul li{
   margin: 16px 0 0 -6px;
   box-shadow: 0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
   background: #ccc;
-}
+} */
 
-.comment:hover:before {
+/* .comment:hover:before {
   background: orange;
-}
+} */
 
-.comment .text:before {
+/* .comment .text:before {
   top: 18px;
   left: 78px;
   width: 9px;
@@ -1130,4 +1144,4 @@ nav ul li{
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
-}​
+}​ */
