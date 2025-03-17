@@ -49,6 +49,13 @@
           max-width: 200px; 
           height: auto; 
           border-radius: 5px; 
+          position:relative;
+
+          a{
+            text-decoration: none;
+
+
+          }
         }
 
        

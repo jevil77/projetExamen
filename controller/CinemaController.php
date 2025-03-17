@@ -468,7 +468,7 @@ class CinemaController extends AbstractController implements ControllerInterface
               
               "user_id" => $user->getId()
             ];
-            
+            var_dump($_POST);
 
             if ($eventManager->add($data)) { 
                 Session::addFlash('success',"L'évènement a bien été créé !");

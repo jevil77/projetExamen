@@ -13,7 +13,8 @@
 $images = [
     'public/img/smile.jpg',
     'public/img/titane.jpg',
-    'public/img/losthighway.jpg'
+    'public/img/losthighway.jpg',
+    'public:img/saw.jpg'
 ];
 
 $randomImage = $images[array_rand($images)]; // Sélection aléatoire
