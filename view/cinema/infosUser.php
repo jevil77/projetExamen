@@ -7,40 +7,20 @@
     
     
 ?>
+
+    
 <?php
-// if (isset($user) && $user) {
-//     // L'utilisateur est valide, on peut appeler getName()
-//     echo $user->getName();
-// } else {
-//     // Si l'utilisateur n'est pas défini ou valide, afficher un message d'erreur
-//     echo "Utilisateur non trouvé ou non connecté.";
-// }
-// ?>
+$images = [
+    'public/img/smile.jpg',
+    'public/img/titane.jpg',
+    'public/img/losthighway.jpg'
+];
+
+$randomImage = $images[array_rand($images)]; // Sélection aléatoire
+?>
 
 
-
-
-<!-- <?php  { ?>
-   <div class="user-card">
-    <div class="user-info">
-                <p>Nom : <?= $user->getName() ?></p>
-                <p>Prénom : <?= $user->getFirstName() ?></p>
-                <p>Pseudo : <?= $user->getPseudo() ?></p>
-                <p>Rôle : <?= $user->getRole() ?></p>
-                <p>Email : <?= $user->getEmail() ?></p>
-                
-            </div>
-
-   
-
-    
-    </div> -->
-
-    
-    
-<?php } ?>
-
-<div class="user-card">
+<div class="user-card" style="background-image: url('<?= $randomImage; ?>');">
     <span class="user-info-holder">
         <h2 class="name"><?= $user->getFirstName() ?> <?= $user->getName() ?></h2>
         <span class="skill">Rôle : <?= $user->getRole() ?></span>
