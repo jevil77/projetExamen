@@ -85,7 +85,7 @@
             <?php } ?>
             
             <?php if(App\Session::isAdmin()) { ?>
-                <a href="index.php?ctrl=cinema&action=listUSers">Gestion utilisateurs</a>
+                <a href="index.php?ctrl=cinema&action=listUsers">Gestion utilisateurs</a>
             <?php } ?>
         </div>
     </nav>

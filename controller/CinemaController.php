@@ -106,47 +106,18 @@ class CinemaController extends AbstractController implements ControllerInterface
 
     
     
-    public function infosUsers($id){
+    public function infosUser($id){
 
-       
-
-       
-       
-    
-    // if (!$user) {
-    //     die("Erreur : Utilisateur non connecté.");
-    // }
-
-        // Nouvelle instance de UserManager
+       // Nouvelle instance de UserManager
         $userManager = new UserManager();
       
         // Récupère les informations d'un utilisateur
         $user = $userManager->findOneById($id);
 
-       
-        
 
-    
-        
-       
-        
-        
-        
-        
         $watchlistManager = new WatchlistManager();
         $watchlist = $watchlistManager->getUserWatchlist($user->getId());
 
-        
-        //  var_dump($watchlist);die;
-        
-        
-
-        
-        
-
-
-
-        
         // Renvoie à la vue les informations d'un utilisateur
          return [
            "view" => VIEW_DIR."cinema/infosUser.php",
