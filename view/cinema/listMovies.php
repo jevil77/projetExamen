@@ -26,85 +26,7 @@
 </head>
 <body>
 
-<style>
-        .movie-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 800px;
-            margin: 40px auto;
-        }
 
-        .movie1 {
-            display: flex;
-            align-items: center; 
-            background-color: #2c3440;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-
-        .movie1 img {
-          max-width: 200px; 
-          height: auto; 
-          border-radius: 5px; 
-          position:relative;
-
-          a{
-            text-decoration: none;
-
-
-          }
-        }
-
-       
-        .movie-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            color: white;
-        }
-
-        .movie-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .movie-info p {
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-
-       
-
-
-
-
-        .btn-add-movie {
-        display: inline-block;
-        background-color: #ff4500; 
-        text-decoration: none;
-        color: #ffffff;
-        padding: 10px 20px;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 8px;
-        transition: background 0.3s, transform 0.2s;
-        }
-        
-        .btn-add-movie:hover {
-            
-        background-color: #e63e00; 
-        transform: scale(1.05);
-        }
-        .btn-add-movie:active {
-        background-color: #cc3700;
-        transform: scale(0.95);
-        }
-
-
-</style>
 
 
     
@@ -128,6 +50,30 @@
 
 
 
+<div class="movie_card" id="tomb">
+  <div class="info_section">
+    <div class="movie_header">
+      <img class="locandina" src="https://mr.comingsoon.it/imgdb/locandine/235x336/53750.jpg"/>
+      <h1>Tomb Raider</h1>
+      <h4>2018, Roar Uthaug</h4>
+      <span class="minutes">125 min</span>
+      <p class="type">Action, Fantasy</p>
+    </div>
+    <div class="movie_desc">
+      <p class="text">
+        Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.
+      </p>
+    </div>
+    <div class="movie_social">
+      <ul>
+        <li><i class="material-icons">share</i></li>
+        <li><i class="material-icons"></i></li>
+        <li><i class="material-icons">chat_bubble</i></li>
+      </ul>
+    </div>
+  </div>
+  <div class="blur_back tomb_back"></div>
+</div>
 
 
 
@@ -135,11 +81,13 @@
 
 
 
-<div class="movie-list">
+ <div class="movie-list">
     <?php foreach ($movies as $movie) { ?>
-        <div class="movie1 img">
-        <img src="<?=$movie->GetImagePath() ?>" alt="affiche du film">
-        <h3><a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $movie->getId() ?>"><?= $movie->getMovieTitle() ?></a></h3>
+        <div class="movie-card-img">
+        
+        <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $movie->getId() ?>">
+            <p><?= $movie->getMovieTitle() ?></p>
+            <img src="<?=$movie->GetImagePath() ?>" alt="affiche du film"></a>
 
             
             <div class="movie-info">
@@ -148,7 +96,7 @@
             </div>
         </div>
     <?php } ?>
-</div>
+</div> 
 
 
 
