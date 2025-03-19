@@ -26,53 +26,15 @@
 </head>
 <body>
 
-
-
-
-    
-
-
-
-
-
-
-
 <?php
     $movies = $result["data"]['movies']; 
 ?>
 
-<h1>Liste des films</h1>
 
+<div class="list-movies-header">
+       <h1>Films et courts métrages</h1>
+         <a href="index.php?ctrl=cinema&action=addMovieForm" class="btn-add-movie">+ Ajouter un film </a>
 
-<a href="index.php?ctrl=cinema&action=addMovieForm" class="btn-add-movie">+ Ajouter un film </a>
-
-
-
-
-
-<div class="movie_card" id="tomb">
-  <div class="info_section">
-    <div class="movie_header">
-      <img class="locandina" src="https://mr.comingsoon.it/imgdb/locandine/235x336/53750.jpg"/>
-      <h1>Tomb Raider</h1>
-      <h4>2018, Roar Uthaug</h4>
-      <span class="minutes">125 min</span>
-      <p class="type">Action, Fantasy</p>
-    </div>
-    <div class="movie_desc">
-      <p class="text">
-        Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.
-      </p>
-    </div>
-    <div class="movie_social">
-      <ul>
-        <li><i class="material-icons">share</i></li>
-        <li><i class="material-icons"></i></li>
-        <li><i class="material-icons">chat_bubble</i></li>
-      </ul>
-    </div>
-  </div>
-  <div class="blur_back tomb_back"></div>
 </div>
 
 
@@ -81,22 +43,24 @@
 
 
 
- <div class="movie-list">
-    <?php foreach ($movies as $movie) { ?>
-        <div class="movie-card-img">
-        
-        <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $movie->getId() ?>">
-            <p><?= $movie->getMovieTitle() ?></p>
-            <img src="<?=$movie->GetImagePath() ?>" alt="affiche du film"></a>
 
+<div class="movie-list">
+    <?php foreach ($movies as $movie) { ?>
+        <div class="movie-card1"> <!-- Conteneur principal -->
+            <div class="movie-card-img">
+                <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $movie->getId() ?>">
+                    <p><?= $movie->getMovieTitle() ?></p>
+                    <img src="<?=$movie->getImagePath() ?>" alt="Affiche du film">
+                </a>
+            </div>
             
             <div class="movie-info">
-                <p>Réalisé par : <?= $movie->getUser() ?></p>
-                <p>Année de sortie : <?= $movie->getReleaseDate() ?></p>
+                <p><strong>Réalisé par :</strong> <?= $movie->getUser() ?></p>
+                <p><strong>Année de sortie :</strong> <?= $movie->getReleaseDate() ?></p>
             </div>
         </div>
     <?php } ?>
-</div> 
+</div>
 
 
 
