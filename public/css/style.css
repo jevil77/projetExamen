@@ -167,6 +167,19 @@ body {
     object-fit: cover; 
     
     transition: transform 0.3s ease-in-out;
+    position:relative;
+    a{
+      text-decoration: none;
+      
+      p{
+        position:absolute;
+        padding:10px;
+        color:#e63946;
+        font-size:larger;
+
+      }
+
+    }
 }
 
 .movie img:hover {
@@ -177,8 +190,11 @@ body {
     font-size: 1.2rem;
     font-weight: bold;
     margin-top: 10px;
-    color: #fff; 
     text-transform: uppercase; 
+    position:absolute;
+    text-decoration: none;
+    
+  
 }
 a {
     color:white;
@@ -401,11 +417,13 @@ main {
     transform: scale(0.95);
 }
 
+/* infos movie */
+
 .movie-card {
     display: flex;
     align-items: flex-start;
+    text-align: left;
     gap: 20px;
-    background-color: #2b2b2b; 
     margin:auto;
     padding: 50px;
     margin-top: 5rem;
@@ -450,8 +468,61 @@ main {
     background-color: #b2070f;
 }
 
+/* partie commentaire */
+
+.comment-container {
+  background-color: #1a1a1a;
+  padding: 15px;
+  border-radius: 8px;
+  width: 80%;
+  margin: 20px auto; /* Centre horizontalement */
+  
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.comment-container h2 {
+  color: #ccc;
+  font-size: 18px;
+}
+
+.comment-container textarea {
+  width: 800px;
+  height: 80px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background-color: #222;
+  color: white;
+  font-size: 14px;
+  resize:none;
+}
 
 
+.comment-container textarea::placeholder {
+  color: #888;
+}
+
+.comment-container button {
+  margin-top: 10px;
+  
+  padding: 8px 12px;
+  border: none;
+
+  border-radius: 5px;
+  background-color: #e63946;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.comment-container button:hover {
+  background-color: #0056b3;
+}
 
 /* .user-card {
     display: flex;
@@ -494,6 +565,7 @@ main {
 .like-count {
     font-weight: bold;
     font-size: 1rem;
+    color:#fff;
 }
 
 

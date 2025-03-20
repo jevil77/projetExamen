@@ -77,13 +77,13 @@ class SecurityController extends AbstractController{
                         exit;
                     }
                     
-                
+                    // Ajoute un utilisateur en base de données
                     $userManager->add([
                     
                         "pseudo" => $pseudo,
                         
                         "email" => $email,
-                        
+                        // Hachage sécurisé du mot de passe avant insertion en base de données
                         "password" => password_hash($password, PASSWORD_DEFAULT),
                        
                      ]);
@@ -240,10 +240,8 @@ class SecurityController extends AbstractController{
                            if($user){
                             
                                 $hash = $user->getPassword();
-                               
-                                // var_dump($email,$password);
                     
-
+                                // Vérification du mot de passe avec password_verify
                                 if(password_verify($password, $hash)){
  
                                  $_SESSION["user"] = $user;

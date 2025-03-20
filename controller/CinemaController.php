@@ -664,8 +664,13 @@ class CinemaController extends AbstractController implements ControllerInterface
         public function addToWatchlist($id) {
 
              $user = Session::getUser();
+             var_dump($user);die;
             // Récupérer l'utilisateur depuis la session
-
+            if (!$user) {
+                Session::addFlash('error', 'Vous devez être connecté pour ajouter un film à votre watchlist.');
+                $this->redirectTo("cinema", "infosMovie");
+                exit;
+            }
              $user_id = $user->getId();
             
             $watchlistManager = new WatchlistManager();
@@ -679,6 +684,9 @@ class CinemaController extends AbstractController implements ControllerInterface
                  exit;
 
             }
+
+            
+            
             
             
             // Vérifie si le film a déjà été ajouté à la watchlist
@@ -704,9 +712,6 @@ class CinemaController extends AbstractController implements ControllerInterface
                  Session::addFlash('error','Une erreur est survenue, veuillez réessayer.');
             }
             
-
-
-            //var_dump($user,$id);
 
             $this->redirectTo("cinema", "listMovies");
             exit;

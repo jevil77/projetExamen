@@ -55,16 +55,17 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
 <? 
 // var_dump($id);die;
  ?>
-<h2>Poster un commentaire</h2>
 
-<form  action="index.php?ctrl=cinema&action=addPostToMovie&id=<?= $movie->getId()?>" method="POST" >
 
-    <textarea name="text" rows="3" required placeholder="Écrire un message..."></textarea>
+<div class="comment-container">
+    <div class="comment-for">
+        <form  action="index.php?ctrl=cinema&action=addPostToMovie&id=<?= $movie->getId()?>" method="POST" >
+             <textarea name="text" rows="3" required placeholder="Écrire un message..."></textarea>
+             <button type="submit" name="submit" >Envoyer</button>
+            </form>
 
-    <button type="submit" name="submit" >Envoyer</button>
-
-</form>
-
+    
+    </div>
 
 
 
