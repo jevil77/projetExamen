@@ -65,7 +65,7 @@
   <div class="swiper-wrapper">
     <?php foreach ($events as $event) { ?>
        <div class="swiper-slide">
-        <div class="event-card">
+        <div class="event-card1">
           <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $event->getMovie()->getId()?>">
             <img src="<?= $event->getImagePath() ?>" alt="Affiche du film">
           </a>

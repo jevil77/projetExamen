@@ -210,72 +210,89 @@ h3{
 
 
 
-.titre_section{
-    margin-top: 200px;
-    margin-bottom: 3rem;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: x-large;    
+.titre_section p {
+  font-size: 1.8rem;
+  color: #ff5733;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .movie-container1 {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    max-width: 1200px;
-    margin: 30px auto;
-    
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
-.event-card {
 
+.movie1 {
+  width: 100%;
+  max-width: 700px;
+}
+
+.event-card {
   display: flex;
   align-items: center;
-  justify-content: center; 
-  background-color: #2b2b2b;
-  width: 100%;
-  max-width: 600px; 
-  margin: 0 auto;
-  color: #fff;
+  gap: 20px;
+  background: linear-gradient(135deg, #1c1c1c, #2b2b2b);
   padding: 20px;
-  border-radius: 10px; 
-  
- 
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 87, 51, 0.2);
 }
 
 .event-card img {
- 
-  width: 140px;
-  height: 200px;
-  object-fit: cover; 
-  border-radius: 5px;
+  width: 160px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .event-details {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center; 
-  text-align: center;
+  justify-content: flex-start; /* Alignement en haut */
+  align-items: flex-start; /* Alignement à gauche */
+  text-align: left; /* Texte aligné à gauche */
+  width: 100%;
 }
 
-.event-details h3, 
+.event-details h3 {
+  font-size: 1.3rem;
+  color: #ff5733;
+  margin-bottom: 10px;
+}
+
 .event-details p {
-  margin: 5px 0; 
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #cccccc;
+  text-align: left;
 }
 
 .details-btn1 {
-  padding: 10px 20px;
-  background-color: #e50914;
+  display: inline-block;
+  padding: 12px 18px;
+  background: #ff5733;
   color: white;
   text-decoration: none;
   font-size: 14px;
-  border-radius: 5px;
-
+  font-weight: bold;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .details-btn1:hover {
-  background-color: #b2070f;
+  background: #e44d26;
 }
+
 
 
 
@@ -864,6 +881,16 @@ main {
     gap: 15px; 
   }
 
+  @media (max-width: 550px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer .footer-col {
+        width: 100%;
+        padding: 10px 0;
+    }
+}
 /* .hero{ */
 
     /* width:100%; */
@@ -1142,6 +1169,7 @@ nav ul li{
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-align: left;
 }
 
 .swiper-slide a {
@@ -1161,6 +1189,36 @@ nav ul li{
 }
 .swiper-slide-active div {
   opacity: 1; /* Seule la slide active sera entièrement visible */
+}
+
+@media (max-width: 768px) { /* Mobile */
+  .swiper {
+    padding-top: 2rem;
+    margin-bottom: 200px;
+  }
+
+  .swiper-slide {
+    width: 14rem;
+    height: 22rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .swiper-slide h2 {
+    font-size: 1rem;
+    padding: 0;
+  }
+
+  .swiper-slide p {
+    font-size: 0.65rem;
+    padding: 0 1rem;
+  }
+
+  .swiper-slide a {
+    font-size: 0.8rem;
+    padding: 0.4em 1.5rem;
+    margin: 1rem 0 2rem;
+  }
 }
 
 .swiper-slide--one {
@@ -1215,7 +1273,57 @@ nav ul li{
   }
 }
 
+.event-card1 {
 
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  background-color: #2b2b2b;
+  width: 100%;
+  max-width: 600px; 
+  margin: 0 auto;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px; 
+  
+ 
+
+}
+
+.event-card img {
+ 
+  width: 140px;
+  height: 200px;
+  object-fit: cover; 
+  border-radius: 5px;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  text-align: center;
+}
+
+.event-details h3, 
+.event-details p {
+  margin: 5px 0; 
+}
+
+.details-btn1 {
+  padding: 10px 20px;
+  background-color: #e50914;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 5px;
+
+}
+
+.details-btn1:hover {
+  background-color: #b2070f;
+}
 
 
 

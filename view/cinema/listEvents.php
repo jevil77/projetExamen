@@ -20,30 +20,30 @@ $events = $result["data"]['events'];
     <p>Les prochains évènements</p>
 
     <div class="movie-container1">
-        <!-- Vérifie que $events contient des données -->
+        <!-- Vérifie et affcihe uniquement les évènements à venir -->
         <?php if (!empty($events)) { 
-            // Variable pour vérifier si il y a des évènements à venir
+            // Variable pour savoir si il y a un évènement futur
             $hasUpcomingEvents = false;
             foreach ($events as $event) { 
-                // Vérifie si l'évènement est dans le futur
+                // Récupère la date de l'évènement, la compare à celle d'aujour'hui, si la date est dans le futur, elle est affiché
                 if (new DateTime($event->getEventDateTime()) > new DateTime()) {
                     $hasUpcomingEvents = true;
+                    $places = $event->getPlaceAvailable(); 
+                    
         ?>
               <div class="movie1">
                   <div class="event-card">
                     <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $event->getMovie()->getId() ?>">
                         <img src="<?= $event->getImagePath() ?>" alt="Affiche du film">
                     </a>
-
                     <div class="event-details">
-                        <h3><p><?= $event->getEventName() ?></p></h3>
-                        <p><?= $event->getMovie()->getMovieTitle() ?> - <?= $event->getMovie()->getReleaseDate() ?></p>
-                        <p><?= $event->getMovie()->getSynopsis() ?></p>
-                        <p>Date et heure : <?= $event->getEventDateTime() ?></p>
-                        <p>Lieu : <?= $event->getTheatre() ?></p>
-                        <p>Places disponibles : <?= $event->getPlaceAvailable() ?></p>
-
-                        <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId()?>" class="details-btn1">Réserver</a>
+                        <h3><?= $event->getEventName() ?></h3>
+                        <p><strong><?= $event->getMovie()->getMovieTitle() ?></strong> - <?= $event->getMovie()->getReleaseDate() ?></p>
+                        <p><?=$event->getMovie()->getSynopsis() ?>...</p>
+                        <p><i class="fas fa-calendar-alt"></i> Date et heure : <?= $event->getEventDateTime() ?></p>
+                        <p><i class="fas fa-map-marker-alt"></i> Lieu : <?= $event->getTheatre() ?></p>
+                        <p><i class="fas fa-ticket-alt"></i> Places disponibles : <strong><?= $places ?></strong></p>
+                        <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId()?>">Réserver</a>
                     </div>
                   </div>
               </div>
