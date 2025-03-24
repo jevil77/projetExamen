@@ -51,7 +51,8 @@ h1 {
 
 .dropdown {
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center; 
 }
 
 .dropdown-content {
@@ -314,6 +315,7 @@ main {
   width:100%;
   text-align: center;
   padding: 9rem;
+  margin-top: 50px;
 
   .back-video{
       position:absolute;
@@ -940,6 +942,26 @@ main {
     margin-top: 20px;
 }
 
+@media (max-width: 1024px) {
+  .content h1 {
+      font-size: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content h1 {
+      font-size: 80px;
+      padding-bottom: 5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content h1 {
+      font-size: 50px;
+      padding-bottom: 3rem;
+  }
+}
+
 /* Permet de couvrir toute la vidéo sans déformation */
 /* .back-video{
     position:absolute;
@@ -1329,7 +1351,7 @@ nav ul li{
 
 .parallax {
   /* The image used */
-  background-image: url("../img/cinemapicture.jpg");
+  background-image: url("../img/pexelspellicule.jpg");
 
   /* Set a specific height */
   min-height: 500px;
