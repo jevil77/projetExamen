@@ -31,6 +31,11 @@
 
         <label for="password_confirm">Confirmez le mot de passe :</label>
         <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirmez votre mot de passe" required><br><br>
+
+        <div class="consent-box">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">J'accepte les <a href="index.php?ctrl=security&action=">conditions d'utilisation</a>.</label>
+        </div><br>
         
         <button type="submit" name="submit">S'inscrire</button>
     </form>

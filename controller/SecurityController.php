@@ -29,6 +29,14 @@ class SecurityController extends AbstractController{
 
         //var_dump('hello');die;
 
+        // if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        //     // Vérification de la case consentement
+        //     if (!isset($_POST["consent"])) {
+        //         $_SESSION["error"] = "Vous devez accepter les conditions d'utilisation.";
+        //         header("Location: index.php?ctrl=security&action=registerRealisateur");
+        //         exit();
+        //     }
+        
         
         
         if(isset($_POST["submit"])) {

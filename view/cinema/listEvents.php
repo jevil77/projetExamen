@@ -43,7 +43,11 @@ $events = $result["data"]['events'];
                         <p><i class="fas fa-calendar-alt"></i> Date et heure : <?= $event->getEventDateTime() ?></p>
                         <p><i class="fas fa-map-marker-alt"></i> Lieu : <?= $event->getTheatre() ?></p>
                         <p><i class="fas fa-ticket-alt"></i> Places disponibles : <strong><?= $places ?></strong></p>
-                        <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId()?>">Réserver</a>
+                        <?php if ($event->getPlaceAvailable() > 0) { ?>
+            <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId() ?>" class="details-btn1">Réserver</a>
+          <?php } else { ?>
+            <p class="sold-out">Complet</p>
+          <?php } ?>
                     </div>
                   </div>
               </div>

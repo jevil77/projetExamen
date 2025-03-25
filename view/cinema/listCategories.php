@@ -12,7 +12,7 @@ foreach($categories as $category ){ ?>
 
 
 
-<a href="index.php?ctrl=cinema&action=addCategoryForm">Ajouter une Catégorie</a>
+<a href="index.php?ctrl=cinema&action=addCategoryForm"class="btn-add-movie">Ajouter une Catégorie</a>
 
 
   

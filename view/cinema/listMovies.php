@@ -55,8 +55,18 @@
             </div>
             
             <div class="movie-info">
-                <p><strong>Réalisé par :</strong> <?= $movie->getUser() ?></p>
+            <p><strong>Réalisé par :</strong> 
+    <?php if ($movie->getUser()) {  ?>
+        <a href="index.php?ctrl=cinema&action=infosUser&id=<?= $movie->getUser()->getId() ?>">
+            <?= $movie->getUser()->getPseudo()?>
+        </a>
+    <?php }else { ?>
+        Inconnu
+    <?php } ?>
+</p>
+
                 <p><strong>Année de sortie :</strong> <?= $movie->getReleaseDate() ?></p>
+               
             </div>
         </div>
     <?php } ?>

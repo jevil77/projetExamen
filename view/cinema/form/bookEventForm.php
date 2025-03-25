@@ -3,7 +3,7 @@
 
 ?>
 
-
+<h2>Réserver vos places</h2>
 
 <div class="cinema-form">
 

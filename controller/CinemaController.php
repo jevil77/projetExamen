@@ -740,9 +740,6 @@ class CinemaController extends AbstractController implements ControllerInterface
                         "movie_id" => $id,
                         "user_id" => $user_id
                     ]);
-                //   var_dump($movie);
-               
-                    Session::addFlash("success", "Votre commentaire a été ajouté avec succès !");
                 } 
                
                 $this->redirectTo("cinema", "infosMovie", $id);

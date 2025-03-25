@@ -11,10 +11,9 @@
     
 <?php
 $images = [
-    'public/img/smile.jpg',
-    'public/img/titane.jpg',
-    'public/img/losthighway.jpg',
-    'public:img/saw.jpg'
+    'public/img/pexelsmyatezhny.jpg',
+    'public/img/pexelsnathanengel.jpg',
+    'public/img/pexelspixabay.jpg',
 ];
 
 $randomImage = $images[array_rand($images)]; // Sélection aléatoire

@@ -63,23 +63,43 @@
 
 <div class="swiper">
   <div class="swiper-wrapper">
-    <?php foreach ($events as $event) { ?>
+    <?php 
+    
+    $hasUpcomingEvents = false; // Variable pour vérifier les événements futurs
+    foreach ($events as $event) { 
+        if (new DateTime($event->getEventDateTime()) > new DateTime()) {
+            $hasUpcomingEvents = true; // Un événement futur existe
+    ?>
        <div class="swiper-slide">
         <div class="event-card1">
-          <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $event->getMovie()->getId()?>">
+          <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $event->getMovie()->getId() ?>">
             <img src="<?= $event->getImagePath() ?>" alt="Affiche du film">
           </a>
           
-            <h2><?= $event->getEventName() ?></h2>
-            <p><?= $event->getMovie()->getMovieTitle()?> - <?= $event->getMovie()->getReleaseDate() ?></p>
-            <p><?= $event->getMovie()->getSynopsis() ?></p>
-            <p>Date et heure : <?= $event->getEventDateTime() ?></p>
-            <p>Lieu : <?= $event->getTheatre() ?></p>
-            <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId() ?>" class="details-btn1">Réserver</a>
+          <h2><?= $event->getEventName() ?></h2>
+          <p><?= $event->getMovie()->getMovieTitle()?> - <?= $event->getMovie()->getReleaseDate() ?></p>
+          <p><?= $event->getMovie()->getSynopsis() ?></p>
+          <p><i class="fas fa-calendar-alt"></i> Date et heure : <?= $event->getEventDateTime() ?></p>
+          <p><i class="fas fa-map-marker-alt"></i> Lieu : <?= $event->getTheatre() ?></p>
+          <?php if ($event->getPlaceAvailable() > 0) { ?>
+            <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId() ?>" class="details-btn2">Réserver</a>
+          <?php } else { ?>
+            <p class="sold-out">Complet</p>
+          <?php } ?>
           
         </div>
        </div>
-    <?php } ?>
+    <?php 
+        }
+    } 
+    ?>
+  </div>
+
+  <?php if (!$hasUpcomingEvents) { ?>
+    <p class="no-events">Aucun événement à venir pour le moment.</p>
+  <?php } ?>
+</div>
+
   </div>
   <br>
   <br>
