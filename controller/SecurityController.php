@@ -93,6 +93,7 @@ class SecurityController extends AbstractController{
                         "email" => $email,
                         // Hachage sécurisé du mot de passe avant insertion en base de données
                         "password" => password_hash($password, PASSWORD_DEFAULT),
+                        "role" => "ROLE_USER"
                        
                      ]);
                     
@@ -147,7 +148,12 @@ class SecurityController extends AbstractController{
                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $password_confirm = filter_input(INPUT_POST, "password_confirm", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-
+               $patternPassword = "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/";
+               if (!preg_match($patternPassword, $password)) {
+                   Session::addFlash('error', 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.');
+                   $this->redirectTo("security", "registerUserForm");
+                   exit;
+               }
                if( $name && $firstName && $pseudo && $email && $password && $password_confirm) {
             
      
@@ -168,11 +174,11 @@ class SecurityController extends AbstractController{
                         exit;
                     }
                     
-                    if (strlen($password) < 5) {
-                        Session::addFlash('error', 'Le mot de passe doit contenir au moins 5 caractères.');
-                        $this->redirectTo("security", "registerRealisateurForm");
-                        exit;
-                    }
+                    // if (strlen($password) < 5) {
+                    //     Session::addFlash('error', 'Le mot de passe doit contenir au moins 5 caractères.');
+                    //     $this->redirectTo("security", "registerRealisateurForm");
+                    //     exit;
+                    // }
                 
                 
                     $userManager->add([

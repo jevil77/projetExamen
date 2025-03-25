@@ -3,14 +3,24 @@
     $movies = $result["data"]['movies']; 
 ?>
 
-<h1>Liste des films dans la catégorie :</h1>
+<h1>Liste des films dans la catégorie :</h1><?= htmlspecialchars($category) ?>
 
 <?php 
-if (empty($movies)) { ?>
-   
-<?php } else { ?>
-   
-<?php foreach($movies as $movie ){ ?>
-    <p><a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $movie->getId()?>"><?= $movie->getMovieTitle() ?></a> réalisé par <?= $movie->getUser() ?> . Année de sortie : <?=$movie->getReleaseDate()?></p>
-<?php } ?>
+if (empty($movies)) { 
+    echo "<p>Aucun film disponible.</p>";
+} else { 
+    ?>
+    <div class="movie-container">
+        <?php foreach($movies as $movie ){ ?>
+            <div class="movie">
+                <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $movie->getId() ?>">
+                    <div class="movie-img">
+                        <img src=" <?=$movie->getImagePath() ?>" alt="">
+                    </div>
+                    <p class="movie-title"><?= $movie->getMovieTitle() ?></p>
+                    <p>Réalisé par <?= $movie->getUser() ?>. Année de sortie : <?= $movie->getReleaseDate() ?></p>
+                </a>
+            </div>
+        <?php } ?>
+    </div>
 <?php } ?>

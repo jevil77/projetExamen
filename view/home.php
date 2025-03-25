@@ -18,7 +18,7 @@
     <h2>Vous êtes réalisateur et cherchez à vous faire connaître ? Vous êtes à la bonne place ! Créez sans plus attendre votre évènement cinéma !</h2>
 
     <h3>Passionné de cinéma indépendant et de courts métrages, venez faire de nombreuses découvertes en réservant vos places pour des évènements uniques !</h3>
-    <a href="index.php?ctrl=cinema&action=listEvents">Explore</a>
+    <a href="index.php?ctrl=cinema&action=listEvents">Découvrez les évènements</a>
 
 
   </div>

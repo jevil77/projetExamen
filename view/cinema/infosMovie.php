@@ -59,13 +59,17 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
 
 <div class="comment-container">
     <div class="comment-for">
-        <form  action="index.php?ctrl=cinema&action=addPostToMovie&id=<?= $movie->getId()?>" method="POST" >
-             <textarea name="text" rows="3" required placeholder="Écrire un message..."></textarea>
-             <button type="submit" name="submit" >Envoyer</button>
+        <?php if (isset($_SESSION['user'])): ?>
+            <form action="index.php?ctrl=cinema&action=addPostToMovie&id=<?= $movie->getId() ?>" method="POST">
+                <textarea name="text" rows="3" required placeholder="Écrire un message..."></textarea>
+                <button type="submit" name="submit">Envoyer</button>
             </form>
-
-    
+        <?php else: ?>
+            <p>Vous devez être connecté pour commenter.</p>
+            <a href="index.php?ctrl=security&action=loginForm" class="btn-se-connecter">Se connecter</a>
+        <?php endif; ?>
     </div>
+</div>
 
 
 
