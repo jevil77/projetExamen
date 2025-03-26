@@ -118,6 +118,10 @@ class CinemaController extends AbstractController implements ControllerInterface
         $watchlistManager = new WatchlistManager();
         $watchlist = $watchlistManager->getUserWatchlist($user->getId());
 
+        $eventManager = new EventManager();
+        $events = $eventManager->findEventsByUser($id);
+        var_dump($events);die;
+
         // Renvoie à la vue les informations d'un utilisateur
          return [
            "view" => VIEW_DIR."cinema/infosUser.php",
@@ -125,7 +129,8 @@ class CinemaController extends AbstractController implements ControllerInterface
            "data" => [
                       "user" => $user,
                       "watchlist" => $watchlist,
-                      "id" => $id
+                      "id" => $id,
+                      "events" => $events
 
                     ]
         ];
@@ -746,6 +751,15 @@ class CinemaController extends AbstractController implements ControllerInterface
                 exit;
             }
         }
+
+
+        
+           
+        
+        
+
+
+
 
         
 

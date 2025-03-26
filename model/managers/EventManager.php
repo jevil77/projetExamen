@@ -97,7 +97,31 @@ class EventManager extends Manager {
         }
     }
      
-   
+    public function findEventsByUser($userId) {
+        // Récupérer la date actuelle
+        $currentDate = date('Y-m-d');
+    
+        // Requête SQL pour récupérer les événements réservés par l'utilisateur 
+        $sql = "
+            SELECT *
+            FROM event e
+            JOIN participate p ON e.id_event = p.event_id
+            WHERE p.user_id = :user_id
+            AND e.eventDateTime >= :current_date
+            ORDER BY e.eventDateTime ASC
+        ";
+    
+       
+        return $this->getMultipleResults(
+            DAO::select($sql, ['user_id' => $userId, 'current_date' => $currentDate]), 
+            $this->className
+            
+        );
+
+       
+       
+    }
+    
    
    
    

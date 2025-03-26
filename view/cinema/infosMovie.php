@@ -35,39 +35,45 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
     <p><strong>Réalisé par :</strong> <?= $movie->getUser() ?></p>
     <p><strong>Synopsis :</strong> <?= $movie->getSynopsis() ?></p>
 
- <div class="align-icons">
-    <button class="like-btn" data-movie-id="<?= $movie->getId() ?>">
-        <span class="like-icon"><?= $hasLiked ? '❤️' : '🤍' ?></span>
-        <span class="like-count"><?= $likeCount ?></span>
-    </button>
-    <button class="like-btn">
-    <a href="index.php?ctrl=cinema&action=addToWatchlist&id=<?= $movie->getId() ?>" class="btn-add-movie"><i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i></a>
-   </button>
-   <button class="like-btn">
-    <a href="index.php?ctrl=cinema&action=addPost&id=<?= $movie->getId() ?>" ><i class="fa-regular fa-comment fa-xl" style="color: #e50914;"></i></a>
-   </button>
+    <div class="align-icons">
+
+    <?php if (isset($_SESSION['user'])) { ?>
+        
+        <button class="like-btn" data-movie-id="<?= $movie->getId() ?>">
+            <span class="like-icon"><?= $hasLiked ? '❤️' : '🤍' ?></span>
+            <span class="like-count"><?= $likeCount ?></span>
+            
+        </button>
+
+        <button class="like-btn">
+            <a href="index.php?ctrl=cinema&action=addToWatchlist&id=<?= $movie->getId() ?>" class="btn-add-movie">
+                <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
+            </a>
+        </button>
+    <?php } else { ?>
+        <p>Vous devez être connecté pour liker un film ou en ajouter un à votre watchlist.</p>
+        <a href="index.php?ctrl=security&action=loginForm" class="btn-se-connecter">Se connecter</a>
+    <?php } ?>
 </div>
 
     
 </div>
 </div>
 
-<? 
-// var_dump($id);die;
- ?>
+
 
 
 <div class="comment-container">
     <div class="comment-for">
-        <?php if (isset($_SESSION['user'])): ?>
+        <?php if (isset($_SESSION['user'])){ ?>
             <form action="index.php?ctrl=cinema&action=addPostToMovie&id=<?= $movie->getId() ?>" method="POST">
                 <textarea name="text" rows="3" required placeholder="Écrire un message..."></textarea>
                 <button type="submit" name="submit">Envoyer</button>
             </form>
-        <?php else: ?>
+        <?php } else { ?>
             <p>Vous devez être connecté pour commenter.</p>
             <a href="index.php?ctrl=security&action=loginForm" class="btn-se-connecter">Se connecter</a>
-        <?php endif; ?>
+        <?php } ?>
     </div>
 </div>
 

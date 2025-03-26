@@ -27,36 +27,24 @@ class SecurityController extends AbstractController{
 
     public function registerUser () {
 
-        //var_dump('hello');die;
 
-        // if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        //     // Vérification de la case consentement
-        //     if (!isset($_POST["consent"])) {
-        //         $_SESSION["error"] = "Vous devez accepter les conditions d'utilisation.";
-        //         header("Location: index.php?ctrl=security&action=registerRealisateur");
-        //         exit();
-        //     }
-        
-        
-        
-        if(isset($_POST["submit"])) {
+         if(isset($_POST["submit"])) {
 
-            //var_dump('hello');
-
-            
-        
-            //    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            //    $firstName = filter_input(INPUT_POST, "firstName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $pseudo = filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            //    $role = filter_input(INPUT_POST, "role", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $password_confirm = filter_input(INPUT_POST, "password_confirm", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                
+               $passwordRegex = "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/";
+               // preg_match teste si le mot de passe correspond aux critères, 
+               // le bloc d'erreur est exécuté si le mot de pass ne correspond pas
+               if (!preg_match($passwordRegex, $password)) {
+                   Session::addFlash('error', 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.');
+                   $this->redirectTo("security", "registerUserForm");
+                   exit;
+               }
         
-            //var_dump($pseudo,$email,$password);
-        
-            if( $pseudo  && $email && $password && $password_confirm) {
+            if( $pseudo && $email && $password && $password_confirm) {
             
      
                $userManager = new UserManager();
@@ -148,8 +136,9 @@ class SecurityController extends AbstractController{
                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $password_confirm = filter_input(INPUT_POST, "password_confirm", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-               $patternPassword = "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/";
-               if (!preg_match($patternPassword, $password)) {
+               $passwordRegex = "/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/";
+               // preg_match teste si le mot de passe correspond aux critères, le bloc d'erreur est exécuté si le mot de pass ne corrspond pas
+               if (!preg_match($passwordRegex, $password)) {
                    Session::addFlash('error', 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.');
                    $this->redirectTo("security", "registerUserForm");
                    exit;

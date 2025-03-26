@@ -33,12 +33,13 @@ class UserManager extends Manager{
         );
     }
 
-
+    // Cette méthode permet de trouver un utilisateur avec son adresse email an base de données
     public function findOneByEmail($email)
     {
         $sql = "SELECT * 
                 FROM " . $this->tableName . " u 
                 WHERE u.email = :email";
+                // :email : paramètre sécurisé permettant d'éviter les injections SQL
 
         return $this->getOneOrNullResult(
             DAO::select($sql, ['email' => $email], false),

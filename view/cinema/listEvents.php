@@ -44,7 +44,14 @@ $events = $result["data"]['events'];
                         <p><i class="fas fa-map-marker-alt"></i> Lieu : <?= $event->getTheatre() ?></p>
                         <p><i class="fas fa-ticket-alt"></i> Places disponibles : <strong><?= $places ?></strong></p>
                         <?php if ($event->getPlaceAvailable() > 0) { ?>
-            <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId() ?>" class="details-btn1">Réserver</a>
+                            <?php if (isset($_SESSION['user'])) { ?>
+                        <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId() ?>" class="details-btn1">Réserver</a>
+                         <?php } else { ?>
+                           <p>Vous devez être connecté pour réserver une place.</p>
+                        <a href="index.php?ctrl=security&action=loginForm" class="btn-se-connecter">Se connecter</a>
+                         <?php } ?>
+
+           
           <?php } else { ?>
             <p class="sold-out">Complet</p>
           <?php } ?>

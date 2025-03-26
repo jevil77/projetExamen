@@ -4,6 +4,7 @@
 <?php
     $user = $result["data"]['user']; 
     $watchlist = $result['data']['watchlist'];
+    $events = $result['data']['events'];
     
     
 ?>
