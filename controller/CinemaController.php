@@ -120,7 +120,7 @@ class CinemaController extends AbstractController implements ControllerInterface
 
         $eventManager = new EventManager();
         $events = $eventManager->findEventsByUser($id);
-        var_dump($events);die;
+        var_dump($events);
 
         // Renvoie à la vue les informations d'un utilisateur
          return [

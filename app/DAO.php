@@ -113,9 +113,11 @@ abstract class DAO{
             // Prépare la requête SQL
             $stmt = self::$bdd->prepare($sql);
             $stmt->execute($params);
-            // Récupère les résultats sous forme de . Si $multiple est true, données récupéré sous forme de tableau(plusieus lignes) sinon false(une seule ligne)
+            // Récupère les résultats sous forme de . Si $multiple est true, données récupéré sous forme de tableau(plusieus lignes)
+            //  sinon false(une seule ligne)
             $results = ($multiple) ? $stmt->fetchAll() : $stmt->fetch();
-            // Ferme le curseur de la requête et libère les ressources. Si les résultats sont false retourne null sinon tableau avec le paramètre $multiple
+            // Ferme le curseur de la requête et libère les ressources. 
+            // Si les résultats sont false retourne null sinon tableau avec le paramètre $multiple
             $stmt->closeCursor();
             return ($results == false) ? null : $results;
         }

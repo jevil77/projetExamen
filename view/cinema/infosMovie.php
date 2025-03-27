@@ -90,7 +90,7 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
                         <p><?= $post->getText() ?></p>
                     </div>
                     <p class="attribution">
-                        par <a href="#"><?= $post->getUser()->getPseudo() ?></a> 
+                        par <a href="index.php?ctrl=cinema&action=infosUser&id=<?= $post->getUser()->getId()?>"><?= $post->getUser()->getPseudo() ?></a> 
                         le <?= (new DateTime($post->getDateAdded()))->format('d/m/Y H:i') ?>
                     </p>
                 </div>
