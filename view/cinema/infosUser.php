@@ -5,7 +5,7 @@
     $user = $result["data"]['user']; 
     $watchlist = $result['data']['watchlist'];
     $events = $result['data']['events'];
-    
+    var_dump($events);die;
     
 ?>
 
@@ -59,4 +59,16 @@ $randomImage = $images[array_rand($images)]; // Sélection aléatoire
         <p class="no-movies">Aucun film dans cette watchlist.</p>
 <?php } ?>
 
+</div>
+
+<div>
+<?php foreach ($events as $event) { ?>
+    <div class="">
+        <a href="index.php?ctrl=cinema&action=listEvents&id=<?= $event['id_event'] ?>">
+            <p><?= $event['eventName'] ?></p>
+            <p>Date: <?= $event['eventDateTime'] ?></p>
+            <img src="<?= $event['imagePath'] ?>" alt="Image de l'événement">
+        </a>
+    </div>
+<?php } ?>
 </div>

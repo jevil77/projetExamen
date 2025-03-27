@@ -20,7 +20,7 @@
     <br> -->
 
     <label for="reservePlace">Nombre de places :</label>
-    <input type="number" id="reservePlace" name="reservePlace" min="1" max="5" required>
+    <input type="number" id="reservePlace" name="reservePlace" min="1" max="10" required>
     <br>
 
 

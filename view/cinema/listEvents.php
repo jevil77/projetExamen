@@ -41,7 +41,7 @@ $events = $result["data"]['events'];
                         <p><strong><?= $event->getMovie()->getMovieTitle() ?></strong> - <?= $event->getMovie()->getReleaseDate() ?></p>
                         <p><?=$event->getMovie()->getSynopsis() ?>...</p>
                         <p><i class="fas fa-calendar-alt"></i> Date et heure : <?= $event->getEventDateTime() ?></p>
-                        <p><i class="fas fa-map-marker-alt"></i> Lieu : <?= $event->getTheatre() ?></p>
+                        <p><i class="fas fa-map-marker-alt"></i> Lieu : <?= $event->getTheatre() ?> <?= $event->getPostalCode() ?> <?= $event->getCity() ?></p>
                         <p><i class="fas fa-ticket-alt"></i> Places disponibles : <strong><?= $places ?></strong></p>
                         <?php if ($event->getPlaceAvailable() > 0) { ?>
                             <?php if (isset($_SESSION['user'])) { ?>
