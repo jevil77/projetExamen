@@ -101,7 +101,7 @@ class EventManager extends Manager {
         // Requête SQL pour récupérer les événements réservés par l'utilisateur 
         $sql = "
                 SELECT *
-                FROM event e
+                FROM " . $this->tableName . " e
                 JOIN participate p ON e.id_event = p.event_id
                 WHERE p.user_id = :user_id
                 AND e.eventDateTime >= NOW() 
@@ -110,7 +110,7 @@ class EventManager extends Manager {
     
         // Utilisation de la méthode 'select' pour exécuter la requête
         return $this->getMultipleResults(
-            DAO::select($sql, ['user_id' => $userId]),  // Seulement 'user_id' nécessaire
+            DAO::select($sql, ['user_id' => $userId]),  
             $this->className
         );
     }

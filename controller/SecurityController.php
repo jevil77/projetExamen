@@ -140,7 +140,7 @@ class SecurityController extends AbstractController{
                // preg_match teste si le mot de passe correspond aux critères, le bloc d'erreur est exécuté si le mot de pass ne corrspond pas
                if (!preg_match($passwordRegex, $password)) {
                    Session::addFlash('error', 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.');
-                   $this->redirectTo("security", "registerUserForm");
+                   $this->redirectTo("security", "registerRealisateurForm");
                    exit;
                }
                if( $name && $firstName && $pseudo && $email && $password && $password_confirm) {
