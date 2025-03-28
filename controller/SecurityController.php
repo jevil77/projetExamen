@@ -228,20 +228,19 @@ class SecurityController extends AbstractController{
                
 
                         $userManager = new UserManager();
-                        //var_dump("hello"); die;
+                       
                         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-                         //var_dump($email,$password);
-
-
+                         
+                        //Vérifie que les deux champs ont bien été remplis.
                         if($email && $password) {
-                           
+                           //Instancie UserManager et cherche un utilisateur correspondant à l'email
                            $user = $userManager->findOneByEmail($email);
-                        //   var_dump($user);
                         
-                           if($user){
                             
+                           if($user){
+                                //Récupère le mot de passe haché depuis la base de données.
                                 $hash = $user->getPassword();
                     
                                 // Vérification du mot de passe avec password_verify

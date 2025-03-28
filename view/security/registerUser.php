@@ -12,7 +12,7 @@
 
 
 
-<h1>Formulaire d'inscription</h1>
+<h1>Formulaire d'inscription </h1>
 
 
 

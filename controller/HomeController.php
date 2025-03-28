@@ -33,7 +33,6 @@ class HomeController extends AbstractController implements ControllerInterface {
 
 
 
-
        
         return [
             "view" => VIEW_DIR."home.php",
@@ -41,7 +40,8 @@ class HomeController extends AbstractController implements ControllerInterface {
             "data" => [
 
                 "movie" => $movies,
-                "event" => $events
+                "event" => $events,
+             
                  
 
             ]

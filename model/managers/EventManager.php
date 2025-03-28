@@ -51,19 +51,7 @@ class EventManager extends Manager {
            );
        }
        
-    // public function deletePastEvent(){
-
-
-    //     $sql = "DELETE 
-    //             FROM " . $this->tableName . " e
-    //             WHERE eventDateTime < NOW()";
-               
-    //             DAO::delete($sql, []);
-
-  
-    //             }
-
-             
+   
                 
 
 

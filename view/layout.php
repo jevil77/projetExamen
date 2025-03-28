@@ -65,9 +65,9 @@
                     </button>
                     <div class="dropdown-content">
                         <a href="index.php?ctrl=cinema&action=infosUser&id=<?= App\Session::getUser()->getId() ?>">Mon profil</a>
-                        <?php if (App\Session::getUser()->getRole() == 'ROLE_REALISATEUR') : ?>
-    <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Créer un évènement</a>
-<?php endif; ?>
+                        <?php if (App\Session::getUser()->getRole() == 'ROLE_REALISATEUR') { ?>
+                        <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Créer un évènement</a>
+                        <?php } ?>
                         <a href="index.php?ctrl=cinema&action=listEvents">Réserver</a>
                         <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                     </div>

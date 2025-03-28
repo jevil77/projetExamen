@@ -142,7 +142,7 @@ h1 {
 
 body {
     background-color: #121212;
-    color: #2c3440;
+    color:#fff;
     line-height: 1.6;
 }
 
@@ -161,7 +161,7 @@ body {
     display: flex;
     flex-direction: column; 
     align-items: center; 
-    width: 280px; 
+    width: 250px; 
     text-align: center; 
 
 }
@@ -314,6 +314,44 @@ h3{
   color: #b2070f;
 }
 
+@media (max-width: 767px) {
+  /* Titre section */
+  .titre_section p {
+    font-size: 1.4rem;
+    margin-top: 4rem;
+    margin-bottom: 60px;
+  }
+
+  /* Container des films */
+  .movie-container1 {
+    gap: 10px;
+    margin-bottom: 10rem;
+  }
+
+  /* Carte d'événements */
+  .event-card {
+    flex-direction: column; 
+    text-align: center;
+  }
+
+  .event-card img {
+    width: 100%; 
+    height: auto; /* Garde le ratio de l'image */
+  }
+
+  .event-details h3 {
+    font-size: 1.2rem;
+  }
+
+  .event-details p {
+    font-size: 0.9rem;
+  }
+
+  .details-btn1 {
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+}
 
 
 
@@ -1527,50 +1565,7 @@ nav ul li{
   background: rgba(0,0,0,0.1);
 }
 
-/* .comment:before {
-  width: 9px;
-  height: 9px;
-  border: 3px solid #fff;
-  border-radius: 100px;
-  margin: 16px 0 0 -6px;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
-  background: #ccc;
-} */
 
-/* .comment:hover:before {
-  background: orange;
-} */
-
-/* .comment .text:before {
-  top: 18px;
-  left: 78px;
-  width: 9px;
-  height: 9px;
-  border-width: 0 0 1px 1px;
-  border-style: solid;
-  border-color: #e5e5e5;
-  background: #fff;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-}​ */
-
-
-
-
-/* html 
-  font-size: 16px;
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f3f8fe;
-} */
 
 .user-card {
  
