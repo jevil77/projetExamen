@@ -120,7 +120,7 @@
         <h1>Another Section</h1>
         <p>More content goes here.</p>
     </div>
-    <div class="parallax"></div>
+   
 
 
 
