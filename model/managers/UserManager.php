@@ -46,4 +46,31 @@ class UserManager extends Manager{
             $this->className
         );
     }
+
+
+    public function setBanStatus($userId, $status) {
+       
+        $sql = "UPDATE " . $this->tableName . " u
+        SET ban = :ban WHERE id_user = :id";
+    
+       
+        return DAO::update($sql, [
+            'ban' => $status,
+            'id' => $userId
+        ]);
+    }
+    
+    
+
+
+
+
+
+    
 }
+
+
+
+
+
+

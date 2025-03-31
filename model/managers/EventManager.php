@@ -90,10 +90,10 @@ class EventManager extends Manager {
         $sql = "
                 SELECT *
                 FROM " . $this->tableName . " e
-                JOIN participate p ON e.id_event = p.event_id
-                WHERE p.user_id = :user_id
-                AND e.eventDateTime >= NOW() 
-                ORDER BY e.eventDateTime ASC;
+                 JOIN participate p ON e.id_event = p.event_id
+                 WHERE p.user_id = :user_id
+                 AND e.eventDateTime >= NOW() 
+                 ORDER BY e.eventDateTime ASC;
              ";
     
         // Utilisation de la méthode 'select' pour exécuter la requête

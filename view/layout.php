@@ -71,6 +71,7 @@
                         <a href="index.php?ctrl=cinema&action=listEvents">Réserver</a>
                         <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                     </div>
+                    
                 </div>
             <?php } else { ?>
                 <a href="index.php?ctrl=security&action=loginForm">Connexion</a>
@@ -83,14 +84,17 @@
                     <a href="index.php?ctrl=security&action=registerRealisateurForm">Réalisateur</a>
                 </div>
             </div>
-                
+            
             <?php } ?>
             
-            <?php if(App\Session::isAdmin()) { ?>
-                <a href="index.php?ctrl=cinema&action=listUsers">Gestion utilisateurs</a>
-            <?php } ?>
         </div>
+        <?php if (App\Session::isAdmin()) { ?>
+          <a href="index.php?ctrl=cinema&action=listUsers">Gestion utilisateurs</a>
+            <?php } ?>
+           
+        
     </nav>
+   
 </header>
 
                 

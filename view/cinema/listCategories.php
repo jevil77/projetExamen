@@ -12,7 +12,7 @@ foreach($categories as $category ){ ?>
 
 
 <!-- Vérifie si le user a le ROLE_ADMIN -->
-<?php if (App\Session::getUser()->getRole()=='ROLE_ADMIN'){ ?>
+<?php if (App\Session::getUser()->getRole() == 'ROLE_ADMIN'){ ?>
 
 <a href="index.php?ctrl=admin&action=addCategoryForm"class="btn-add-movie">Ajouter une Catégorie</a>
 

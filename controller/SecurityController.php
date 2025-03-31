@@ -239,7 +239,11 @@ class SecurityController extends AbstractController{
                            $user = $userManager->findOneByEmail($email);
                         
                             
-                           if($user){
+                           
+                           if($user->getBan() == 0){
+                                if($user){
+
+
                                 //Récupère le mot de passe haché depuis la base de données.
                                 $hash = $user->getPassword();
                     
@@ -266,10 +270,16 @@ class SecurityController extends AbstractController{
                                 exit;
                             }
                         
-                        }
                     
-                
+                        
     
+                        }  else {
+                            Session::addFlash('error', "Vous n'avez pas été gentil, vous êtes ban");
+                            $this->redirectTo("security", "loginForm");
+                        }
+
+                       
+                       
                
 
 
@@ -280,10 +290,10 @@ class SecurityController extends AbstractController{
 
             
 
-       
             }
+            
 
-
+            }
 
 
 

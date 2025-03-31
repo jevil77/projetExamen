@@ -5,6 +5,7 @@ use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\CategoryManager;
+use Model\Managers\UserManager;
 
 
 
@@ -49,6 +50,62 @@ class AdminController extends AbstractController{
       }     
 
 
+      // Bannir un utilisateur
+      public function banUser($id) {
+       
+        $userManager = new UserManager();
+    
+        $status = 1;
+
+        
+        $userManager->setBanStatus($id,$status);
+       
+        Session::addFlash('success', "L'utilisateur a été banni avec succès.");
+    
+        
+        $this->redirectTo("cinema", "listUsers");
+    
+    
+    }
+
+       // Débannir un utilisateur
+       public function unbanUser($id) {
+
+
+
+        $userManager = new UserManager();
+        
+        
+        
+        $status = 0; 
+       
+        
+        $userManager->setBanStatus($id, $status);
+
+       
+        
+        Session::addFlash('success', "L'utilisateur a été débanni avec succès.");
+    
+       
+        $this->redirectTo("cinema", "listUsers");
+    
+    
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+}
+
+
+
 
       
       
@@ -70,7 +127,7 @@ class AdminController extends AbstractController{
 
 
 
-     }
+      
 
 
 

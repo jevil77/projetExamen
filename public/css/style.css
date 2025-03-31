@@ -1610,19 +1610,25 @@ nav ul li{
   font-family: "Merriweather", sans-serif;
 }
 
-.profil-card {
- 
-  height: auto;
+.container1 {
   display: flex;
-  justify-content: center;
-  padding: 2rem;
-  background: #2b2b2b;
-  border-radius: 0.5rem;
-  gap: 1rem;
-  box-shadow: 0px 0px 10px #80808080;
-  margin-top: 15rem;
-  margin-bottom: 20rem;
+  flex-direction: column; /* Place chaque .profil-card en colonne */
+  gap: 10px; /* Espacement entre chaque profil */
 }
+
+.profil-card {
+  display: flex; /* Aligne le pseudo et le bouton sur la même ligne */
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Espacement entre pseudo et bouton */
+  background: #222; /* Pour voir la disposition */
+  padding: 10px;
+  border-radius: 5px;
+  width: fit-content;
+  color: white;
+}
+
+
 
 
 .profil-info-holder {
@@ -1654,4 +1660,19 @@ nav ul li{
 }
 
 
+.btn-ban {
+  background-color: #ff4500;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  white-space: nowrap; /* Évite que le bouton passe à la ligne */
+  display:flex;
+
+}
+.btn-ban:hover {
+  background-color: #d93d00;
+}
 

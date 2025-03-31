@@ -18,6 +18,7 @@ final class User extends Entity{
     private $password;        // VARCHAR
     private $creationDate;    // DATETIME
     private $event;
+    private $ban;
 
 
 
@@ -234,6 +235,26 @@ final class User extends Entity{
     }
 
 }
+
+/**
+     * Get the value of ban
+     */ 
+    public function getBan()
+    {
+        return $this->ban;
+    }
+
+    /**
+     * Set the value of ban
+     *
+     * @return  self
+     */ 
+    public function setBan($ban)
+    {
+        $this->ban = $ban;
+
+        return $this;
+    }
   
 
 
@@ -244,6 +265,8 @@ final class User extends Entity{
    
 
    
+
+    
 
     
 }
