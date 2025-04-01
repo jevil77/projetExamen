@@ -112,13 +112,13 @@
 
     <div class="parallax"></div>
     <div class="content-parallax">
-        <h1>Welcome to My Parallax Website</h1>
-        <p>This is a simple example of a parallax scrolling effect.</p>
+        <h1>Bienvenue sur Ciné Events</h1>
+        <p>Ici vous pouvez faire de belles découvertes cinématographiques, liker vos courts métrage préférés, les commenter et les ajouter à votre watchlist !</p>
     </div>
     <div class="parallax"></div>
     <div class="content-parallax">
-        <h1>Another Section</h1>
-        <p>More content goes here.</p>
+        <h1>Réalisateurs ?!</h1>
+        <p>Programmez votre projection via notre formulaire et faites découvrir votre film/court métrage dans une de nos salles partenaires !</p>
     </div>
    
 

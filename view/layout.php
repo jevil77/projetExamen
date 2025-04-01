@@ -15,7 +15,9 @@
         <!-- Swiper CSS -->
         <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"> -->
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 
 
@@ -111,58 +113,60 @@
 <footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
   <div class="footer-container">
     <div class="footer-col" role="navigation" aria-labelledby="quick-nav-heading" itemscope itemtype="http://schema.org/SiteNavigationElement">
-      <h3 id="quick-nav-heading" itemprop="name">Quick Nav</h3>
+    
       <ul>
-        <li><a href="#" itemprop="url">Home</a></li>
-        <li><a href="#" itemprop="url">Contents</a></li>
-        <li><a href="#" itemprop="url">Creations</a></li>
-        <li><a href="#" itemprop="url">Services</a></li>
-        <li><a href="#" itemprop="url">Store</a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a>Mentions légales</li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a></li>
       </ul>
     </div>
     <div class="footer-col" role="navigation" aria-labelledby="know-heading">
-      <h3 id="know-heading" itemprop="name">Know</h3>
+      
       <ul>
-        <li><a href="#" itemprop="url">About</a></li>
-        <li><a href="#" itemprop="url">Mission</a></li>
-        <li><a href="#" itemprop="url">Services</a></li>
-        <li><a href="#" itemprop="url">Social</a></li>
-        <li><a href="#" itemprop="url">Get in touch</a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a>Conditions d'utilisation</li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a></li>
       </ul>
     </div>
     <div class="footer-col" role="navigation" aria-labelledby="contents-heading">
-      <h3 id="contents-heading" itemprop="name">Contents</h3>
+      
       <ul>
-        <li><a href="#" itemprop="url">Inside SDP</a></li>
-        <li><a href="#" itemprop="url">Blog</a></li>
-        <li><a href="#" itemprop="url">Verses / Poems</a></li>
-        <li><a href="#" itemprop="url">Visual Narratives</a></li>
-        <li><a href="#" itemprop="url">Topics Index</a></li>
-        <li><a href="#" itemprop="url">More</a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a>Politique de confidentialité</li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a></li>
       </ul>
     </div>
     <div class="footer-col" role="navigation" aria-labelledby="resources-heading">
-      <h3 id="resources-heading" itemprop="name">Resources</h3>
+      
       <ul>
-        <li><a href="#" itemprop="url">Graphics</a></li>
-        <li><a href="#" itemprop="url">Free codes</a></li>
-        <li><a href="#" itemprop="url">Helpful sites</a></li>
-        <li><a href="#" itemprop="url"> Freebies</a></li>
-        <li><a href="#" itemprop="url"> Templates</a></li>
-        <li><a href="#" itemprop="url"> Mockups</a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a>A propos de nous</li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a></li>
       </ul>
     </div>
     <div class="footer-col" role="navigation" aria-labelledby="support-heading">
-      <h3 id="support-heading" itemprop="name">Support</h3>
+      
       <ul>
-        <li><a href="#" itemprop="url">Contact</a></li>
-        <li><a href="#" itemprop="url">Web chat</a></li>
-        <li><a href="#" itemprop="url">E-mail</a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a></li>
+        <li><a href="#" itemprop="url"></a>Contacts</li>
+        
       </ul>
     </div>
     <div class="footer-col social" role="navigation" aria-labelledby="social-heading">
-      <h3 id="social-heading" itemprop="name">Social</h3>
+      
       <ul class="social-icons">
+      
         <li><a href="#" aria-label="Facebook" itemprop="url"><i class="fa-brands fa-facebook"></i></a></li>
         <li><a href="#" aria-label="Twitter" itemprop="url"><i class="fa-brands fa-x-twitter"></i></a></li>
         <li><a href="#" aria-label="Mastodon" itemprop="url"><i class="fa-brands fa-mastodon"></i></a></li>
@@ -170,21 +174,17 @@
     </div>
     <div class="clearfix"></div>
   </div><div class="footer-bottom">
-  <p>© 2024 <a style='color:inherit' href="https://www.sdavidprince.space"></a>Evènements Ciné</p>
+  <p>© 2025 <a style='color:inherit' href="https://www.sdavidprince.space"></a>Ciné Events</p>
   <ul class="footer-bottom-links">
-    <li><a href="#">Legal</a></li>
-    <li><a href="#">Credits</a></li>
-    <li><a href="#">Sponsor/Advertise</a></li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
   </ul>
 </div>
 
 </footer>
-<!-- END OF FOOTER -->
 
-                <!-- <div class="footer">
-                <p>&copy; <?= date_create("now")->format("Y") ?> - <a href="#">Règlement du forum</a> - <a href="#">Mentions légales</a></p>
-                        </div>
-            </footer> -->
+
         </div>
         <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
