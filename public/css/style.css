@@ -756,8 +756,8 @@ main {
 
 @media screen and (max-width: 450px) {
   .watchlist {
-    flex-direction: column; /* Met les films en colonne */
-    align-items: center; /* Centre les films */
+    flex-direction: column; 
+    align-items: center; 
     margin-top: 50px;
     margin-bottom: 100px;
   }
@@ -770,7 +770,7 @@ main {
   }
 
   .watchlist img {
-    width: 150px; /* Réduit la taille des affiches */
+    width: 150px; 
     height: 225px;
     margin-right: 0; /* Supprime le chevauchement */
   }
