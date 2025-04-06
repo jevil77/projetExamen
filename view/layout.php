@@ -4,10 +4,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Variable pour la description d'une page -->
         <?php if($meta_description){?>
             <meta name="description" content="<?= $meta_description ?>">
 
        <?php } ?>
+       
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <script src="https://kit.fontawesome.com/ccbe9956fa.js" crossorigin="anonymous"></script>
@@ -16,8 +19,8 @@
         <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"> -->
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 
 
@@ -67,9 +70,11 @@
                     </button>
                     <div class="dropdown-content">
                         <a href="index.php?ctrl=cinema&action=infosUser&id=<?= App\Session::getUser()->getId() ?>">Mon profil</a>
+
                         <?php if (App\Session::getUser()->getRole() == 'ROLE_REALISATEUR') { ?>
                         <a href="index.php?ctrl=cinema&action=addEventForm&id=<?= App\Session::getUser()->getId() ?>">Créer un évènement</a>
                         <?php } ?>
+                        
                         <a href="index.php?ctrl=cinema&action=listEvents">Réserver</a>
                         <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                     </div>

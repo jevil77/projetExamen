@@ -81,11 +81,17 @@
           <p><?= $event->getMovie()->getSynopsis() ?></p>
           <p><i class="fas fa-calendar-alt"></i> Date et heure : <?= $event->getEventDateTime() ?></p>
           <p><i class="fas fa-map-marker-alt"></i> Lieu : <?= $event->getTheatre() ?></p>
-          <?php if ($event->getPlaceAvailable() > 0) { ?>
-            <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId() ?>" class="details-btn2">Réserver</a>
-          <?php } else { ?>
-            <p class="sold-out">Complet</p>
-          <?php } ?>
+          <?php if (isset($_SESSION['user'])) { // Vérifie si l'utilisateur est connecté
+    if ($event->getPlaceAvailable() > 0) { ?>
+        <a href="index.php?ctrl=cinema&action=bookEventForm&id=<?= $event->getId() ?>" class="details-btn2">Réserver</a>
+    <?php } else { ?>
+        <p class="sold-out">Complet</p>
+    <?php }
+} else { ?>
+    <span style="color: red; font-weight: bold;">Vous devez être connecté pour réserver.</span>
+
+<?php } ?>
+
           
         </div>
        </div>

@@ -8,7 +8,8 @@
 
 
 <div class="container1">
-<div class="profil-card"> 
+    <div class="profil-card"> 
+        
   <?php foreach($users as $user ){ ?>
     <p><a href="index.php?ctrl=cinema&action=infosUser&id=<?=$user->getId()?>"><?= $user->getPseudo()?></a></p>
     <p> 

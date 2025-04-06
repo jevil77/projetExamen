@@ -61,11 +61,9 @@ class EventManager extends Manager {
 
 
 
-       // Cette fonction met à jour le nombre de places disponibles d'un évènement identifié par in id dans la base de données
-
-       public function updatePlaces($event_id, $newPlaceAvailable) {
+       // Cette fonction met à jour le nombre de places disponibles d'un évènement identifié par un id dans la base de données
+        public function updatePlaces($event_id, $newPlaceAvailable) {
         $sql = "UPDATE event SET placeAvailable = :newPlaceAvailable WHERE id_event = :event_id";
-
         // Modifie placeAvailable avec une nouvelle valeur (:newPlaceAvailable).  Met à jour l'événement correspondant à l'id
        
         try {
@@ -73,17 +71,15 @@ class EventManager extends Manager {
                 'newPlaceAvailable' => $newPlaceAvailable,
                 'event_id' => $event_id
             ]);
-    
             if (!$result) {
                 throw new \Exception("La mise à jour du nombre de places a échoué.");
             }
-    
             return $result;
         } catch (\Exception $e) {
             error_log("Erreur lors de la mise à jour des places : " . $e->getMessage());
             return false;
         }
-    }
+      }
      
     public function findEventsByUser($userId) {
         // Requête SQL pour récupérer les événements réservés par l'utilisateur 

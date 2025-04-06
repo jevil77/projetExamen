@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+// Active l'affichage des erreurs
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -15,6 +16,7 @@ define('PUBLIC_DIR', "public/");     // Chemin où se trouvent les fichiers publ
 define('DEFAULT_CTRL', 'Home'); // Nom du contrôleur par défaut
 define('ADMIN_MAIL', "admin@gmail.com"); // Email de l'administrateur
 
+//chargement automatique des classes
 require("app/Autoloader.php");
 
 Autoloader::register();
@@ -26,6 +28,7 @@ use App\Session as Session;
 //--------- REQUÊTE HTTP INTERCEPTÉE -----------
 $ctrlname = DEFAULT_CTRL; // Contrôleur par défaut
 
+//si un contrôleur est passé dans l'URL via ?ctrl
 if (isset($_GET['ctrl'])) {
     $ctrlname = $_GET['ctrl'];
 }
@@ -38,6 +41,7 @@ if (!class_exists($ctrlNS)) {
     $ctrlNS = "controller\\" . DEFAULT_CTRL . "Controller";
 }
 
+//instanciation du contrôleur
 $ctrl = new $ctrlNS();
 
 $action = "index"; // Action par défaut
@@ -45,6 +49,7 @@ if (isset($_GET['action']) && method_exists($ctrl, $_GET['action'])) {
     $action = $_GET['action'];
 }
 
+// récupération éventuelle d'un identifiant
 $id = $_GET['id'] ?? null;
 
 // === 🚀 GESTION AJAX POUR LES LIKES ===

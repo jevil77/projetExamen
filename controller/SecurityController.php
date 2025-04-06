@@ -26,9 +26,7 @@ class SecurityController extends AbstractController{
 
 
     public function registerUser () {
-
-
-         if(isset($_POST["submit"])) {
+            if(isset($_POST["submit"])) {
 
                $pseudo = filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
@@ -45,16 +43,10 @@ class SecurityController extends AbstractController{
                }
         
             if( $pseudo && $email && $password && $password_confirm) {
-            
-     
                $userManager = new UserManager();
-            
                $user = $userManager->findOneByEmail($email);
        
-            
-            
-             
-                if ($user) { 
+                 if ($user) { 
                     Session::addFlash('error', 'Un compte avec cet email existe déjà !');
                     $this->redirectTo("security", "registerUserForm");
                     exit;
@@ -84,9 +76,6 @@ class SecurityController extends AbstractController{
                         "role" => "ROLE_USER"
                        
                      ]);
-                    
-                
-                     //var_dump($_POST);die;
                     
                     
                     }

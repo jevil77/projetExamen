@@ -21,6 +21,7 @@ class WatchlistManager extends Manager{
     public function isInWatchlist($user_id, $movie_id): bool {
         // Requête SQL qui vérifie si un film est dans la watchlist d'un utilisateur
         // :user_id et :movie_id évitent les injections SQL et augmentent la sécurité
+        
         $sql = "SELECT COUNT(*) AS total FROM watchlist WHERE user_id = :user_id AND movie_id = :movie_id";
     
         // $result contient le résultat de la requête. La méthode select renvoie false si aucune correspondance n'est trouvée.

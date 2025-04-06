@@ -1,32 +1,21 @@
 <?php
 
-
-
 namespace Controller;
 
-// Active l'affichage des erreurs (à enlever en production)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
- 
-// Capture tout ce que PHP affiche
-ob_start();
-
-
-use App\Session;
-use App\AbstractController;
-use App\ControllerInterface;
-use Model\Managers\CategoryManager;
-use Model\Managers\MovieManager;
-use Model\Managers\ParticipateManager;
-use Model\Managers\PostManager;
-use Model\Managers\EventManager;
+// Importation des classes 
+use App\Session; // Gestion de sessions utilisateur
+use App\AbstractController; // Classe abstraite prévue pour être étendu aux contrôlleurs
+use App\ControllerInterface; // Impose la méthode index aux contrôlleurs qui l'implémente
+use Model\Managers\EventManager; // Gestion des évènements
+use Model\Managers\CategoryManager; // Gestion des catégories
+use Model\Managers\MovieManager;  // Gestion des films
+use Model\Managers\ParticipateManager; // Gestion de la participation à un évènement
+use Model\Managers\PostManager; // Gestion des commentaires
 use Model\Managers\UserManager;
 use Model\Managers\LikerManager;
 use Model\Managers\WatchlistManager;
 
-
-
+// CinemaController qui étend AbstractController et implemente ControllerInterface
 class CinemaController extends AbstractController implements ControllerInterface{
 
     public function index() {
@@ -329,7 +318,9 @@ class CinemaController extends AbstractController implements ControllerInterface
                 
             // Nouvelle instance
             $eventManager = new EventManager();
+
             // Les données envoyées par le formulaire sont filtrés
+
              $eventName = filter_input(INPUT_POST, "eventName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $eventDateTime = filter_input(INPUT_POST, "eventDateTime",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $placeAvailable = filter_input(INPUT_POST, "placeAvailable", FILTER_VALIDATE_INT);
@@ -406,14 +397,15 @@ class CinemaController extends AbstractController implements ControllerInterface
                 die("Erreur : Aucun utilisateur connecté.");
             }
 
+            
+            
 
-
-            // Convertie la date dans un format accepté par la base de données. Remplace le T par un espace pour respecter le format YYYY-MM-DD HH:MM:SS attendu par MySQL
+            // Convertit la date dans un format accepté par la base de données. 
+            // Remplace le T par un espace pour respecter le format YYYY-MM-DD HH:MM:SS attendu par MySQL
             $eventDateTime = !empty($_POST['eventDateTime']) ? str_replace("T", " ", $_POST['eventDateTime']) . ":00" : null;
 
            
             $data = [
-
               'eventName' => $eventName,
               'eventDateTime' => $eventDateTime,
               'placeAvailable' => $placeAvailable,
@@ -422,18 +414,18 @@ class CinemaController extends AbstractController implements ControllerInterface
               'postalCode' => $postalCode,
               'imagePath' => $imagePath,
               'movie_id '=> $movieId,
-              
               "user_id" => $user->getId()
             ];
-            var_dump($_POST);
+        
 
             if ($eventManager->add($data)) { 
                 Session::addFlash('success',"L'évènement a bien été créé !");
             } else {
                  Session::addFlash('error','Une erreur est survenue, veuillez réessayer.');
             }
-            
+
             }
+            
             $this->redirectTo("cinema", "listEvents");
             exit;
         }
@@ -620,9 +612,9 @@ class CinemaController extends AbstractController implements ControllerInterface
 
         public function addToWatchlist($id) {
 
+
              $user = Session::getUser();
-             //var_dump($user);die;
-            // Récupérer l'utilisateur depuis la session
+             
             if (!$user) {
                 Session::addFlash('error', 'Vous devez être connecté pour ajouter un film à votre watchlist.');
                 $this->redirectTo("cinema", "infosMovie");
@@ -634,19 +626,17 @@ class CinemaController extends AbstractController implements ControllerInterface
             $movieManager = new MovieManager();
             
             // Récupération du film
+
             $movie = $movieManager->findOneById($id);
+
             if (!$movie) {
                 Session::addFlash('error', 'Film non trouvé');
                  $this->redirectTo("cinema", "listMovies");
                  exit;
 
             }
-
-            
-            
-            
-            
             // Vérifie si le film a déjà été ajouté à la watchlist
+
             if ($watchlistManager->isInWatchlist($user_id, $id)) {
 
                 Session::addFlash('error','Ce film est déjà dans votre watchlist !');
@@ -657,13 +647,12 @@ class CinemaController extends AbstractController implements ControllerInterface
 
             $data = [
                 'user_id'=> $user_id,
-                'movie_id'=> $id
-            ];
-            //var_dump($user_id,$id);
+                'movie_id'=> $id];
 
-        
             // Vérifie si l'ajout a réussi
+
             if ($watchlistManager->add($data)) { 
+                
                 Session::addFlash('success','Le film a bien été ajouté à votre watchlist !');
             } else {
                  Session::addFlash('error','Une erreur est survenue, veuillez réessayer.');
@@ -679,17 +668,13 @@ class CinemaController extends AbstractController implements ControllerInterface
 
         public function addPostToMovie($id){
             
-            
             $user = Session::getUser();
-            
             $user_id = $user->getId();
-
+            
             if(isset($_POST['submit'])){
 
                  $postManager = new PostManager();
-                
-                
-                 $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                  $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                  
                  if ($text) {
                     $postManager->add([

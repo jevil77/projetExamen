@@ -27,7 +27,9 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
 ?>
 
 <div class="movie-card">
+
 <img src="<?= $movie->getImagePath() ?>" alt="<?= $movie->getMovieTitle() ?>" class="movie-poster">
+
 <div class="movie-info">
     <h3><?= $movie->getMovieTitle() ?> (<?= $movie->getReleaseDate() ?>)</h3>
     <p><strong>Durée :</strong> <?= $movie->getDuration() ?> min</p>

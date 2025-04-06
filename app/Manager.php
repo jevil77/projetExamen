@@ -28,7 +28,7 @@ abstract class Manager{
         $sql = "SELECT *
                 FROM ".$this->tableName." a
                 ".$orderQuery;
-        // Exécute la requête DAO et retourne une collection d'objets hydatés
+        // Exécute la requête DAO et retourne une collection d'objets hydratés
         return $this->getMultipleResults(
             DAO::select($sql), 
             $this->className

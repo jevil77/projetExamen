@@ -65,23 +65,4 @@ class HomeController extends AbstractController implements ControllerInterface {
     }
 
 
-    public function test() {
-
-    }
-
-
-
-
-
-
-    
- 
-    
-    
-
-
-
-
-
-
-}
+}  

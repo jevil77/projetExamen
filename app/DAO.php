@@ -19,11 +19,11 @@ abstract class DAO{
 
     private static $bdd;
 
-    /**
-     * cette méthode permet de créer l'unique instance de PDO de l'application
-     */
-    public static function connect(){
-        //self::$bdd : Propriété statique de la classe qui stocke l'objet PDO une fois connecté. new \PDO : instance de la classe PDO qui permet de se connecter à la bdd
+    
+    /*cette méthode permet de créer l'unique instance de PDO de l'application  */
+     public static function connect(){
+        //self::$bdd : Propriété statique de la classe qui stocke l'objet PDO une fois connecté. new \PDO : 
+        // instance de la classe PDO qui permet de se connecter à la bdd
         self::$bdd = new \PDO(
             // Adresse de l'hôte et nom de la bdd
             self::$host.';dbname='.self::$dbname,
@@ -42,10 +42,12 @@ abstract class DAO{
             )   
         );
     }
+    
     // Méthode permettant d'insérer des données en bdd
     public static function insert($sql, $params = []) {
         try {
-            // Prépare la requête à exécuter. $bdd : instance de connexion (méthode connect). $stmt : statement, objet PDOstatement qui représente la requête
+            // Prépare la requête à exécuter. $bdd : instance de connexion (méthode connect). 
+            // $stmt : statement, objet PDOstatement qui représente la requête
             $stmt = self::$bdd->prepare($sql);
             // Exécute la requête préparée, elle prend un tableau de params qui remplace les valeurs des placeholders
             $stmt->execute($params);
@@ -111,8 +113,10 @@ abstract class DAO{
     {
         try{
             // Prépare la requête SQL
+
             $stmt = self::$bdd->prepare($sql);
             $stmt->execute($params);
+            
             // Récupère les résultats sous forme de . Si $multiple est true, données récupéré sous forme de tableau(plusieus lignes)
             //  sinon false(une seule ligne)
             $results = ($multiple) ? $stmt->fetchAll() : $stmt->fetch();

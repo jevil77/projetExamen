@@ -38,7 +38,9 @@ class UserManager extends Manager{
     {
         $sql = "SELECT * 
                 FROM " . $this->tableName . " u 
+
                 WHERE u.email = :email";
+                
                 // :email : paramètre sécurisé permettant d'éviter les injections SQL
 
         return $this->getOneOrNullResult(

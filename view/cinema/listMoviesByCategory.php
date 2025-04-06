@@ -10,11 +10,11 @@ if (empty($movies)) {
     echo "<p>Aucun film disponible.</p>";
 } else { 
     ?>
-    <div class="movie-container">
+    <div class="list-by-category">
         <?php foreach($movies as $movie ){ ?>
-            <div class="movie">
+            <div class="list-by-category .film">
                 <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $movie->getId() ?>">
-                    <div class="movie-img">
+                    <div class="list-by-category img">
                         <img src=" <?=$movie->getImagePath() ?>" alt="">
                     </div>
                     <p class="movie-title"><?= $movie->getMovieTitle() ?></p>
