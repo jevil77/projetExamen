@@ -48,7 +48,7 @@ $randomImage = $images[array_rand($images)]; // Sélection aléatoire
         <div class="film">        
         <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $movie['id_movie'] ?>"> 
         <p><?=$movie['movieTitle'] ?></p>
-           <img src=" <?=$movie['imagePath'] ?>" alt=""></a>
+           <img src=" <?=$movie['imagePath'] ?>" alt="affiche de film"></a>
     
         </div>
     
@@ -60,18 +60,8 @@ $randomImage = $images[array_rand($images)]; // Sélection aléatoire
 <?php } ?>
 
 </div>
-<div>
-<?php foreach ($events as $event) { ?>
-        <div class="film">   
-        
-        <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $event['id_event'] ?>"> 
-        <?php
-        var_dump($event);
-  
-        ?>
-    
-    <h2>cdgds</h2>
-    
-    <?php }?> 
-</div>
+
+<h1>Événements à venir</h1>
+
+
 
