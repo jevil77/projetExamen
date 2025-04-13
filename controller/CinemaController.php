@@ -311,11 +311,6 @@ class CinemaController extends AbstractController implements ControllerInterface
             // Cette fonction permet de créer un évènement
             // Soumission du formulaire
             if(isset($_POST["submit"])) {
-
-              
-                
-               
-                
             // Nouvelle instance
             $eventManager = new EventManager();
 
@@ -440,7 +435,10 @@ class CinemaController extends AbstractController implements ControllerInterface
     
             return [
                 "view" => VIEW_DIR."cinema/listEvents.php",
+
                 "meta_description" => "Liste des évènements :",
+                
+                
                 "data" => [
                     
                     "events" => $events,

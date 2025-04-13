@@ -39,7 +39,9 @@
         <?php foreach ($movies as $movie) { ?>
             <div class="movie">
             <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $movie->getId() ?>">
-                <img src="<?= $movie->getImagePath() ?>" alt="Affiche du film">
+                
+            <img src="<?= $movie->getImagePath() ?>" alt="Affiche du film <?= $movie->getMovieTitle() ?>">
+
                
                 
             <p class="movie-title"><?= $movie->getMovieTitle() ?></a></p>

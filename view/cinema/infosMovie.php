@@ -52,6 +52,7 @@ $hasLiked = $user ? $likerManager->hasLiked($user->getId(), $movie->getId()) : f
                 <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
             </a>
         </button>
+        
     <?php } else { ?>
         <p>Vous devez être connecté pour liker un film ou en ajouter un à votre watchlist.</p>
         <a href="index.php?ctrl=security&action=loginForm" class="btn-se-connecter">Se connecter</a>
