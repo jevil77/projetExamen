@@ -33,7 +33,13 @@
 
 <div class="list-movies-header">
        <h1>Films et courts métrages</h1>
-         <a href="index.php?ctrl=cinema&action=addMovieForm" class="btn-add-movie">+ Ajouter un film </a>
+       <?php if (App\Session::getUser() && App\Session::getUser()->getRole() == 'ROLE_REALISATEUR'): ?>
+    <a href="index.php?ctrl=cinema&action=addMovieForm" class="btn-add-movie">+ Ajouter un film </a>
+<?php endif; ?>
+
+  
+
+        
 
 </div>
 
@@ -46,7 +52,7 @@
 
 <div class="movie-list">
     <?php foreach ($movies as $movie) { ?>
-        <div class="movie-card1"> <!-- Conteneur principal -->
+        <div class="movie-card1"> 
             <div class="movie-card-img">
                 <a href="index.php?ctrl=cinema&action=infosMovie&id=<?= $movie->getId() ?>">
                     <p><?= $movie->getMovieTitle() ?></p>

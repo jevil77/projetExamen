@@ -95,9 +95,12 @@
             <?php } ?>
             
         </div>
-        <?php if (App\Session::isAdmin()) { ?>
-          <a href="index.php?ctrl=cinema&action=listUsers">Gestion utilisateurs</a>
-            <?php } ?>
+      
+          
+          <?php if (App\Session::getUser() && App\Session::getUser()->getRole() == 'ROLE_ADMIN'): ?>
+            <a href="index.php?ctrl=cinema&action=listUsers">Gestion utilisateurs</a>
+          <?php endif; ?>
+
            
         
     </nav>

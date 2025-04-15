@@ -17,8 +17,6 @@ if (empty($movies)) {
                     <div class="list-by-category img">
                         <img src=" <?=$movie->getImagePath() ?>" alt="">
                     </div>
-                    <p class="movie-title"><?= $movie->getMovieTitle() ?></p>
-                    <p>Réalisé par <?= $movie->getUser() ?>. Année de sortie : <?= $movie->getReleaseDate() ?></p>
                 </a>
             </div>
         <?php } ?>

@@ -139,6 +139,8 @@ class SecurityController extends AbstractController{
              
                 $user = $userManager->findOneByEmail($email);
 
+                // Logique conditionnelle imbriquée courante en algorithmie
+                // Vérification si un user existe déjà avec cette adresse mail
                 if ($user) { 
                     Session::addFlash('error', 'Un compte avec cet email existe déjà !');
                     $this->redirectTo("security", "registerRealisateurForm");
@@ -151,7 +153,8 @@ class SecurityController extends AbstractController{
                         $this->redirectTo("security", "registerRealisateurForm");
                         exit;
                     }
-                    
+                // Deuxième test logique pour comparer les deux mots de passe saisis ($password et $password_confirm)
+                
                     // if (strlen($password) < 5) {
                     //     Session::addFlash('error', 'Le mot de passe doit contenir au moins 5 caractères.');
                     //     $this->redirectTo("security", "registerRealisateurForm");

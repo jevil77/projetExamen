@@ -61,7 +61,7 @@ $randomImage = $images[array_rand($images)]; // Sélection aléatoire
 
 </div>
 
-<h1>Événements à venir</h1>
+
 
 
 

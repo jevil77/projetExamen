@@ -485,7 +485,6 @@ class CinemaController extends AbstractController implements ControllerInterface
                 exit;
 
             }
-            
             //récupère l'id de l'utilisateur connecté
             $user_id = $user->getId();
 
@@ -500,6 +499,8 @@ class CinemaController extends AbstractController implements ControllerInterface
                 if (!$reservePlace || $reservePlace <= 0) {
                     die("Le nombre de places réservées est invalide.");
                 }
+                
+               
         
                 $participateManager = new ParticipateManager();
         
